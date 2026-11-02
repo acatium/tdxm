@@ -1,0 +1,39 @@
+# mapping_set_id: https://example.org/work/mappings/servicenow
+# mapping_set_description: "The work vocabulary to ServiceNow's CSDM and task tables (Brazil release). Object ids are table.field; fields inherited from task resolve through the table hierarchy. Every row is checked against a live instance's data dictionary."
+# license: https://www.apache.org/licenses/LICENSE-2.0
+# curie_map:
+#   work: https://example.org/work/
+#   access: https://example.org/work/access/
+#   snow: https://example.org/servicenow/
+#   skos: http://www.w3.org/2004/02/skos/core#
+#   semapv: https://w3id.org/semapv/vocab/
+subject_id	predicate_id	object_id	mapping_justification	comment
+work:WorkDefinition.id	skos:exactMatch	snow:sc_cat_item.sys_id	semapv:ManualMappingCuration	A catalogue item is a definition of work. Near-duplicates are a gap (duplicate_definition).
+work:WorkDefinition.name	skos:exactMatch	snow:sc_cat_item.name	semapv:ManualMappingCuration	
+work:WorkRequest.id	skos:exactMatch	snow:sc_req_item.number	semapv:ManualMappingCuration	The request's id is its number, which people quote.
+work:WorkRequest.external_ref	skos:exactMatch	snow:sc_req_item.number	semapv:ManualMappingCuration	
+work:WorkRequest.requested_at	skos:exactMatch	snow:sc_req_item.opened_at	semapv:ManualMappingCuration	
+work:WorkRequest.requested_by	skos:exactMatch	snow:sc_req_item.opened_by	semapv:ManualMappingCuration	
+work:WorkRequest.on_behalf_of	skos:exactMatch	snow:sc_req_item.requested_for	semapv:ManualMappingCuration	prov:actedOnBehalfOf
+work:WorkRequest.work_definition	skos:exactMatch	snow:sc_req_item.cat_item	semapv:ManualMappingCuration	
+work:TaskRecord.id	skos:exactMatch	snow:sc_task.number	semapv:ManualMappingCuration	
+work:TaskRecord.request	skos:exactMatch	snow:sc_task.request_item	semapv:ManualMappingCuration	
+work:TaskRecord.actor	skos:exactMatch	snow:sc_task.assigned_to	semapv:ManualMappingCuration	
+work:TaskRecord.started_at	skos:exactMatch	snow:sc_task.opened_at	semapv:ManualMappingCuration	
+work:TaskRecord.ended_at	skos:exactMatch	snow:sc_task.closed_at	semapv:ManualMappingCuration	
+work:TaskRecord.external_ref	skos:exactMatch	snow:sc_task.number	semapv:ManualMappingCuration	
+work:TaskRecord.id	skos:exactMatch	snow:sysapproval_approver.sys_id	semapv:ManualMappingCuration	An approval row has no number.
+work:TaskRecord.external_ref	skos:exactMatch	snow:sysapproval_approver.sys_id	semapv:ManualMappingCuration	
+work:TaskRecord.started_at	skos:exactMatch	snow:sysapproval_approver.sys_created_on	semapv:ManualMappingCuration	When the approval was asked for.
+work:TaskRecord.ended_at	skos:exactMatch	snow:sysapproval_approver.sys_updated_on	semapv:ManualMappingCuration	When it was answered.
+work:TaskRecord.request	skos:exactMatch	snow:sysapproval_approver.sysapproval	semapv:ManualMappingCuration	An approval row is a task of the approve step.
+work:TaskRecord.actor	skos:exactMatch	snow:sysapproval_approver.approver	semapv:ManualMappingCuration	
+work:Outcome.status	skos:closeMatch	snow:sysapproval_approver.state	semapv:ManualMappingCuration	approved -> accepted; rejected -> the task's decision is deny.
+work:Outcome.status	skos:relatedMatch	snow:sc_req_item.reassignment_count	semapv:ManualMappingCuration	Greater than zero -> reassigned.
+access:AccessRequest.justification	skos:exactMatch	snow:sc_req_item.description	semapv:ManualMappingCuration	
+work:WorkRequest.channel	skos:relatedMatch	snow:sc_req_item.contact_type	semapv:ManualMappingCuration	Transform: a request Moveworks knows is moveworks; otherwise the contact type.
+work:Actor.id	skos:exactMatch	snow:sys_user.user_name	semapv:ManualMappingCuration	
+work:Actor.name	skos:exactMatch	snow:sys_user.name	semapv:ManualMappingCuration	
+access:Customisation.id	skos:exactMatch	snow:sys_script.sys_id	semapv:ManualMappingCuration	Business rules; client scripts and fields map the same way.
+access:Customisation.name	skos:exactMatch	snow:sys_script.name	semapv:ManualMappingCuration	
+access:Customisation.host_table	skos:exactMatch	snow:sys_script.collection	semapv:ManualMappingCuration	

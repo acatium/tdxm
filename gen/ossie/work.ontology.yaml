@@ -1,0 +1,921 @@
+version: 0.2.0.dev0
+name: Work
+description: Concepts of the work vocabulary, generated from LinkML. Do not edit by hand.
+prefixes:
+  work: https://example.org/work/
+  access: https://example.org/work/access/
+  org: https://example.org/contoso/
+ontology:
+- concept: ActorKind
+  type: ValueType
+  extends:
+  - String
+  description: One of person, agent, service_account, system.
+  requires:
+  - ActorKind == 'person' OR ActorKind == 'agent' OR ActorKind == 'service_account' OR ActorKind == 'system'
+- concept: ApproverKind
+  type: ValueType
+  extends:
+  - String
+  description: One of dataset_owner, role.
+  requires:
+  - ApproverKind == 'dataset_owner' OR ApproverKind == 'role'
+- concept: AutonomyLevel
+  type: ValueType
+  extends:
+  - String
+  description: The earned autonomy ladder. Promotion follows evidence; demotion is immediate.
+  requires:
+  - AutonomyLevel == 'assist' OR AutonomyLevel == 'act_with_checkpoint' OR AutonomyLevel == 'act' OR AutonomyLevel
+    == 'act_and_report'
+- concept: ChangeKind
+  type: ValueType
+  extends:
+  - String
+  description: The three things whose change is earned on evidence.
+  requires:
+  - ChangeKind == 'repair' OR ChangeKind == 'declared_policy' OR ChangeKind == 'autonomy'
+- concept: Classification
+  type: ValueType
+  extends:
+  - String
+  description: Ordered from least to most sensitive.
+  requires:
+  - Classification == 'public' OR Classification == 'internal' OR Classification == 'confidential' OR Classification
+    == 'restricted'
+- concept: CleanupPlan
+  type: ValueType
+  extends:
+  - String
+  description: One of retire, revert_to_base, declare, replace_with_adapter, keep.
+  requires:
+  - CleanupPlan == 'retire' OR CleanupPlan == 'revert_to_base' OR CleanupPlan == 'declare' OR CleanupPlan == 'replace_with_adapter'
+    OR CleanupPlan == 'keep'
+- concept: CustomisationKind
+  type: ValueType
+  extends:
+  - String
+  description: One of catalogue_item, business_rule, client_script, custom_field, approval_rule.
+  requires:
+  - CustomisationKind == 'catalogue_item' OR CustomisationKind == 'business_rule' OR CustomisationKind == 'client_script'
+    OR CustomisationKind == 'custom_field' OR CustomisationKind == 'approval_rule'
+- concept: DecisionEffect
+  type: ValueType
+  extends:
+  - String
+  description: One of allow, deny, checkpoint.
+  requires:
+  - DecisionEffect == 'allow' OR DecisionEffect == 'deny' OR DecisionEffect == 'checkpoint'
+- concept: GapKind
+  type: ValueType
+  extends:
+  - String
+  description: One of orphan_action, idle_privilege, unregistered_actor, policy_candidate, duplicate_definition,
+    dead_customisation, drift, vocabulary.
+  requires:
+  - GapKind == 'orphan_action' OR GapKind == 'idle_privilege' OR GapKind == 'unregistered_actor' OR GapKind == 'policy_candidate'
+    OR GapKind == 'duplicate_definition' OR GapKind == 'dead_customisation' OR GapKind == 'drift' OR GapKind ==
+    'vocabulary'
+- concept: OutcomeStatus
+  type: ValueType
+  extends:
+  - String
+  description: One of accepted, reversed, reopened, reassigned, failed, abandoned.
+  requires:
+  - OutcomeStatus == 'accepted' OR OutcomeStatus == 'reversed' OR OutcomeStatus == 'reopened' OR OutcomeStatus ==
+    'reassigned' OR OutcomeStatus == 'failed' OR OutcomeStatus == 'abandoned'
+- concept: Privilege
+  type: ValueType
+  extends:
+  - String
+  description: One of read, write, admin.
+  requires:
+  - Privilege == 'read' OR Privilege == 'write' OR Privilege == 'admin'
+- concept: RiskClass
+  type: ValueType
+  extends:
+  - String
+  description: One of low, medium, high.
+  requires:
+  - RiskClass == 'low' OR RiskClass == 'medium' OR RiskClass == 'high'
+- concept: Verdict
+  type: ValueType
+  extends:
+  - String
+  description: One of approve, reject.
+  requires:
+  - Verdict == 'approve' OR Verdict == 'reject'
+- concept: WorkEventKind
+  type: ValueType
+  extends:
+  - String
+  description: One of requested, decided, started, stopped, approved, rejected, overridden, completed, reversed,
+    promoted, demoted.
+  requires:
+  - WorkEventKind == 'requested' OR WorkEventKind == 'decided' OR WorkEventKind == 'started' OR WorkEventKind ==
+    'stopped' OR WorkEventKind == 'approved' OR WorkEventKind == 'rejected' OR WorkEventKind == 'overridden' OR
+    WorkEventKind == 'completed' OR WorkEventKind == 'reversed' OR WorkEventKind == 'promoted' OR WorkEventKind
+    == 'demoted'
+- concept: Role
+  type: EntityType
+  description: A kind of person or agent, by job. Policy is written over roles, never over individuals.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{Role} is identified by {String}'
+  - name: name
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Role} has name- {String}'
+  - name: department
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Role} has department- {String}'
+- concept: Dataset
+  type: EntityType
+  description: Data that people and agents ask to use.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{Dataset} is identified by {String}'
+  - name: name
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Dataset} has name- {String}'
+  - name: platform
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Dataset} has platform- {String}'
+  - name: classification
+    roles:
+    - concept: Classification
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Dataset} has classification- {Classification}'
+  - name: domain
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Dataset} has domain- {String}'
+  - name: owner
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Dataset} has owner- {Actor}'
+- concept: Grant
+  type: EntityType
+  description: Standing access to a dataset, as held in an authority system.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{Grant} is identified by {String}'
+  - name: actor
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Grant} has actor- {Actor}'
+  - name: dataset
+    roles:
+    - concept: Dataset
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Grant} has dataset- {Dataset}'
+  - name: privilege
+    roles:
+    - concept: Privilege
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Grant} has privilege- {Privilege}'
+  - name: held_in
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Grant} has held in- {String}'
+  - name: granted_at
+    roles:
+    - concept: DateTime
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Grant} has granted at- {DateTime}'
+  - name: request
+    roles:
+    - concept: WorkRequest
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Grant} has request- {WorkRequest}'
+  - name: last_used_at
+    roles:
+    - concept: DateTime
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Grant} has last used at- {DateTime}'
+- concept: ContosoAccessPolicy
+  type: EntityType
+  description: Contoso's access policy, as the profile defines it.
+  extends:
+  - AccessPolicy
+- concept: AccessPolicy
+  type: EntityType
+  description: Access declared once, by role and classification, and compiled into the authority systems. When a
+    declared policy covers a request, the request need not exist.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{AccessPolicy} is identified by {String}'
+  - name: description
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessPolicy} has description- {String}'
+  - name: role
+    roles:
+    - concept: Role
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessPolicy} has role- {Role}'
+  - name: domain
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessPolicy} has domain- {String}'
+  - name: max_classification
+    roles:
+    - concept: Classification
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessPolicy} has max classification- {Classification}'
+  - name: privilege
+    roles:
+    - concept: Privilege
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessPolicy} has privilege- {Privilege}'
+  - name: effect
+    roles:
+    - concept: DecisionEffect
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessPolicy} has effect- {DecisionEffect}'
+  - name: requires_approval
+    roles:
+    - concept: Boolean
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessPolicy} has requires approval- {Boolean}'
+- concept: ContosoApprovalRule
+  type: EntityType
+  description: Contoso's approval rule. Can be limited to the financial year-end close, when finance data needs
+    a second approver. That rule used to live in a platform script and acts once a year, which is why usage data
+    alone says it is dead.
+  extends:
+  - ApprovalRule
+  relationships:
+  - name: year_end_close_days
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{ContosoApprovalRule} has year end close days- {Integer}'
+- concept: ApprovalRule
+  type: EntityType
+  description: Who must approve a request, and when. Declared once, compiled into the platform that holds the requests,
+    and checked by the replay against what the platform actually did.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{ApprovalRule} is identified by {String}'
+  - name: description
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{ApprovalRule} has description- {String}'
+  - name: approver_kind
+    roles:
+    - concept: ApproverKind
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{ApprovalRule} has approver kind- {ApproverKind}'
+  - name: approver_role
+    roles:
+    - concept: Role
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{ApprovalRule} has approver role- {Role}'
+  - name: min_classification
+    roles:
+    - concept: Classification
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{ApprovalRule} has min classification- {Classification}'
+  - name: domain
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{ApprovalRule} has domain- {String}'
+- concept: Customisation
+  type: EntityType
+  description: Something a customer added to the platform instead of to the model. Retired, reverted, declared into
+    the customer's model, replaced by an adapter, or kept with a reason.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{Customisation} is identified by {String}'
+  - name: name
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Customisation} has name- {String}'
+  - name: customisation_kind
+    roles:
+    - concept: CustomisationKind
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Customisation} has customisation kind- {CustomisationKind}'
+  - name: host_table
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Customisation} has host table- {String}'
+  - name: executions_180d
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Customisation} has executions 180d- {Integer}'
+  - name: last_executed_at
+    roles:
+    - concept: DateTime
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Customisation} has last executed at- {DateTime}'
+  - name: plan
+    roles:
+    - concept: CleanupPlan
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Customisation} has plan- {CleanupPlan}'
+  - name: plan_reason
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Customisation} has plan reason- {String}'
+- concept: WorkDefinition
+  type: EntityType
+  description: A kind of work the organisation does, as a sequence of steps.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{WorkDefinition} is identified by {String}'
+  - name: name
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkDefinition} has name- {String}'
+  - name: description
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkDefinition} has description- {String}'
+  - name: owner
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkDefinition} has owner- {Actor}'
+- concept: Actor
+  type: EntityType
+  description: A person, agent, service account or system that can take part in work.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{Actor} is identified by {String}'
+  - name: name
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Actor} has name- {String}'
+  - name: actor_kind
+    roles:
+    - concept: ActorKind
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Actor} has actor kind- {ActorKind}'
+  - name: registered
+    roles:
+    - concept: Boolean
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Actor} has registered- {Boolean}'
+  - name: owner
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Actor} has owner- {Actor}'
+  - name: title
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Actor} has title- {String}'
+- concept: Capability
+  type: EntityType
+  description: 'An actor''s standing to perform a step: the autonomy level it holds now and the evidence behind
+    it. Permission comes from the authority systems; proven ability comes from outcomes in the record.'
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{Capability} is identified by {String}'
+  - name: actor
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Capability} has actor- {Actor}'
+  - name: autonomy_level
+    roles:
+    - concept: AutonomyLevel
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Capability} has autonomy level- {AutonomyLevel}'
+  - name: evidence_count
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Capability} has evidence count- {Integer}'
+  - name: accepted_count
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Capability} has accepted count- {Integer}'
+  - name: lower_bound
+    roles:
+    - concept: Float
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Capability} has lower bound- {Float}'
+- concept: ContosoAccessRequest
+  type: EntityType
+  description: An access request at Contoso, which carries the cost centre that pays for the platform usage.
+  extends:
+  - AccessRequest
+  relationships:
+  - name: cost_centre
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{ContosoAccessRequest} has cost centre- {String}'
+- concept: AccessRequest
+  type: EntityType
+  description: A request to use a dataset.
+  extends:
+  - WorkRequest
+  relationships:
+  - name: dataset
+    roles:
+    - concept: Dataset
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessRequest} has dataset- {Dataset}'
+  - name: privilege
+    roles:
+    - concept: Privilege
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessRequest} has privilege- {Privilege}'
+  - name: justification
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessRequest} has justification- {String}'
+  - name: duration_days
+    roles:
+    - concept: Integer
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AccessRequest} has duration days- {Integer}'
+- concept: WorkRequest
+  type: EntityType
+  description: A request for a kind of work, from a person or an agent, on someone's behalf.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{WorkRequest} is identified by {String}'
+  - name: work_definition
+    roles:
+    - concept: WorkDefinition
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkRequest} has work definition- {WorkDefinition}'
+  - name: requested_by
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkRequest} has requested by- {Actor}'
+  - name: on_behalf_of
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkRequest} has on behalf of- {Actor}'
+  - name: requested_at
+    roles:
+    - concept: DateTime
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkRequest} has requested at- {DateTime}'
+  - name: channel
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkRequest} has channel- {String}'
+  - name: external_ref
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkRequest} has external ref- {String}'
+- concept: TaskRecord
+  type: EntityType
+  description: 'One step performed under a request. A task with no request is not a task: it is an orphan action,
+    and fails validation by construction.'
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{TaskRecord} is identified by {String}'
+  - name: request
+    roles:
+    - concept: WorkRequest
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{TaskRecord} has request- {WorkRequest}'
+  - name: actor
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{TaskRecord} has actor- {Actor}'
+  - name: on_behalf_of
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{TaskRecord} has on behalf of- {Actor}'
+  - name: autonomy_level
+    roles:
+    - concept: AutonomyLevel
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{TaskRecord} has autonomy level- {AutonomyLevel}'
+  - name: started_at
+    roles:
+    - concept: DateTime
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{TaskRecord} has started at- {DateTime}'
+  - name: ended_at
+    roles:
+    - concept: DateTime
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{TaskRecord} has ended at- {DateTime}'
+  - name: external_ref
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{TaskRecord} has external ref- {String}'
+- concept: Action
+  type: EntityType
+  description: Something an actor did to a system, as observed in telemetry. Governed actions belong to a request;
+    an action without one is the first kind of gap.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{Action} is identified by {String}'
+  - name: actor
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Action} has actor- {Actor}'
+  - name: target_system
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Action} has target system- {String}'
+  - name: operation
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Action} has operation- {String}'
+  - name: resource
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Action} has resource- {String}'
+  - name: at
+    roles:
+    - concept: DateTime
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Action} has at- {DateTime}'
+  - name: request
+    roles:
+    - concept: WorkRequest
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Action} has request- {WorkRequest}'
+  - name: source
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Action} has source- {String}'
+- concept: WorkEvent
+  type: EntityType
+  description: 'Something that happened to a request or a task. The one record every lens projects from: security
+    (OCSF), operations (OpenTelemetry), analytics and agents (Ossie), and chat. Events are hash-chained.'
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{WorkEvent} is identified by {String}'
+  - name: kind
+    roles:
+    - concept: WorkEventKind
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkEvent} has kind- {WorkEventKind}'
+  - name: at
+    roles:
+    - concept: DateTime
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkEvent} has at- {DateTime}'
+  - name: request
+    roles:
+    - concept: WorkRequest
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkEvent} has request- {WorkRequest}'
+  - name: task
+    roles:
+    - concept: TaskRecord
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkEvent} has task- {TaskRecord}'
+  - name: actor
+    roles:
+    - concept: Actor
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkEvent} has actor- {Actor}'
+  - name: reason
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkEvent} has reason- {String}'
+  - name: source
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkEvent} has source- {String}'
+  - name: via
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkEvent} has via- {String}'
+  - name: prev_hash
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkEvent} has prev hash- {String}'
+  - name: hash
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{WorkEvent} has hash- {String}'
+- concept: AutonomyChange
+  type: EntityType
+  description: A promotion or demotion of a capability, with the evidence that justified it.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{AutonomyChange} is identified by {String}'
+  - name: capability
+    roles:
+    - concept: Capability
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AutonomyChange} has capability- {Capability}'
+  - name: from_level
+    roles:
+    - concept: AutonomyLevel
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AutonomyChange} has from level- {AutonomyLevel}'
+  - name: to_level
+    roles:
+    - concept: AutonomyLevel
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AutonomyChange} has to level- {AutonomyLevel}'
+  - name: at
+    roles:
+    - concept: DateTime
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AutonomyChange} has at- {DateTime}'
+  - name: reason
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AutonomyChange} has reason- {String}'
+  - name: confirmation
+    roles:
+    - concept: Confirmation
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{AutonomyChange} has confirmation- {Confirmation}'
+- concept: Gap
+  type: EntityType
+  description: Something observed that does not fit the vocabulary, or fits with a required part missing. A gap
+    is written in the same terms as its remedy.
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{Gap} is identified by {String}'
+  - name: gap_kind
+    roles:
+    - concept: GapKind
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Gap} has gap kind- {GapKind}'
+  - name: subject
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Gap} has subject- {String}'
+  - name: proposes
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Gap} has proposes- {String}'
+- concept: Confirmation
+  type: EntityType
+  description: 'A person''s decision on a proposed change: a repair, a declared policy or an autonomy promotion.
+    Nothing proposed is applied without one. Bound to the proposal''s content by a digest in its id, so a changed
+    proposal needs a new confirmation. In a deployment, written by a person; a demo may write labelled stand-ins.'
+  identify_by:
+  - id
+  relationships:
+  - name: id
+    roles:
+    - concept: String
+    multiplicity: OneToOne
+    verbalizes:
+    - '{Confirmation} is identified by {String}'
+  - name: change_kind
+    roles:
+    - concept: ChangeKind
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Confirmation} has change kind- {ChangeKind}'
+  - name: verdict
+    roles:
+    - concept: Verdict
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Confirmation} has verdict- {Verdict}'
+  - name: decided_by
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Confirmation} has decided by- {String}'
+  - name: decided_at
+    roles:
+    - concept: DateTime
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Confirmation} has decided at- {DateTime}'
+  - name: reason
+    roles:
+    - concept: String
+    multiplicity: ManyToOne
+    verbalizes:
+    - '{Confirmation} has reason- {String}'

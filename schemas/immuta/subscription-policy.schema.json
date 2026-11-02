@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/shopfloor/schemas/immuta/subscription-policy.schema.json",
+  "title": "Immuta V2 API: subscription policy (POST /api/v2/policy)",
+  "description": "DERIVED FROM DOCUMENTATION, not published by Immuta. Written from https://documentation.immuta.com/SaaS/developer-guides/api-intro/immuta-v2-api/subscription-policy.md (fetched 2026-10-30): the body parameter tables and examples. A tenant's dryRun=true replaces this check.",
+  "type": "object",
+  "required": ["policyKey", "name", "type", "actions"],
+  "additionalProperties": false,
+  "properties": {
+    "policyKey": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "type": {"enum": ["subscription", "data"]},
+    "staged": {"type": "boolean"},
+    "circumstanceOperator": {"enum": ["all", "any"]},
+    "actions": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {"enum": ["entitlements", "manual", "prevent"]},
+        "accessGrant": {"enum": ["READ", "WRITE"]},
+        "automaticSubscription": {"type": "boolean"},
+        "allowDiscovery": {"type": "boolean"},
+        "advanced": {"type": "string"},
+        "description": {"type": "string"},
+        "entitlements": {
+          "type": "object",
+          "required": ["operator"],
+          "additionalProperties": false,
+          "properties": {
+            "operator": {"enum": ["all", "any"]},
+            "groups": {"type": "array", "items": {"type": "string"}},
+            "attributes": {"type": "array", "items": {"type": "object", "required": ["name", "value"],
+              "properties": {"name": {"type": "string"}, "value": {"type": "string"}}}}
+          },
+          "anyOf": [{"required": ["groups"]}, {"required": ["attributes"]}]
+        }
+      },
+      "allOf": [{"if": {"properties": {"type": {"const": "entitlements"}}},
+                 "then": {"anyOf": [{"required": ["entitlements"]}, {"required": ["advanced"]}]}}]
+    },
+    "circumstances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "type": {"enum": ["tags", "columnRegex", "columnTags", "domains", null, "server", "time"]},
+          "tag": {"type": "string"}, "columnTag": {"type": "string"}, "regex": {"type": "string"},
+          "caseInsensitive": {"type": "boolean"}, "server": {"type": "string"},
+          "startDate": {"type": "string"}, "endDate": {"type": "string"},
+          "domains": {"type": "array", "items": {"type": "object", "properties": {"id": {"type": "string"},
+            "name": {"type": "string"}}, "anyOf": [{"required": ["id"]}, {"required": ["name"]}]}}
+        },
+        "allOf": [
+          {"if": {"properties": {"type": {"const": "tags"}}, "required": ["type"]}, "then": {"required": ["tag"]}},
+          {"if": {"properties": {"type": {"const": "domains"}}, "required": ["type"]}, "then": {"required": ["domains"]}},
+          {"if": {"properties": {"type": {"const": "columnRegex"}}, "required": ["type"]}, "then": {"required": ["regex"]}}
+        ]
+      }
+    },
+    "certification": {"type": "object", "required": ["text", "label"],
+      "properties": {"text": {"type": "string"}, "label": {"type": "string"},
+                     "tags": {"type": "array", "items": {"type": "string"}}, "recertify": {"type": "boolean"}}}
+  }
+}

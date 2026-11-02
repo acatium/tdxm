@@ -1,0 +1,8 @@
+.env
+.venv/
+.cache/
+var/
+__pycache__/
+*.egg-info/
+# written by a person (or, in the demo, by make scenario); never committed
+data/confirmations.yaml

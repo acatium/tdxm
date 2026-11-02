@@ -1,0 +1,304 @@
+{
+ "runs": [
+  {
+   "prompt": "You are reviewing customisations on a ServiceNow instance at Contoso Capital, a financial firm,\nto move them into an open vocabulary for governed work. The vocabulary is LinkML; Contoso's own model extends\nit. Here are the classes and slots that matter (core work:, profile access:, customer org:):\n\n- work:WorkDefinition: A kind of work the organisation does, as a sequence of steps. Slots: id, name, description, steps, owner.\n- work:StepDefinition: One step of a kind of work. Autonomy is earned per step, not per agent. Slots: id, name, description, risk_class, requires_approval, acceptance.\n- work:AcceptanceCriterion: How an outcome of a step is judged right. Judged after the reversal window closes. Slots: id, description, reversal_window_days.\n- work:Actor: A person, agent, service account or system that can take part in work. Slots: id, name, actor_kind, registered, owner, title.\n- work:Capability: An actor's standing to perform a step: the autonomy level it holds now and the evidence behind it. Permission comes from the authority systems; proven ability comes from outcomes in the record. Slots: id, actor, step, autonomy_level, evidence_count, accepted_count, lower_bound.\n- work:WorkRequest: A request for a kind of work, from a person or an agent, on someone's behalf. Slots: id, work_definition, requested_by, on_behalf_of, requested_at, channel, external_ref.\n- work:TaskRecord: One step performed under a request. A task with no request is not a task: it is an orphan action, and fails validation by construction. Slots: id, request, step, actor, on_behalf_of, autonomy_level, started_at, ended_at, decision, outcome, external_ref.\n- work:Action: Something an actor did to a system, as observed in telemetry. Governed actions belong to a request; an action without one is the first kind of gap. Slots: id, actor, target_system, operation, resource, at, request, source.\n- work:Decision: An authority decision on a step, taken outside the model that proposed the action. Slots: effect, rule, decided_by, reason.\n- work:Outcome: How a step turned out, judged against its acceptance criteria. Slots: status, decided_at, decided_by.\n- work:WorkEvent: Something that happened to a request or a task. The one record every lens projects from: security (OCSF), operations (OpenTelemetry), analytics and agents (Ossie), and chat. Events are hash-chained. Slots: id, kind, at, request, task, actor, reason, source, via, prev_hash, hash.\n- work:AutonomyChange: A promotion or demotion of a capability, with the evidence that justified it. Slots: id, capability, from_level, to_level, at, reason, evidence, confirmation.\n- work:Gap: Something observed that does not fit the vocabulary, or fits with a required part missing. A gap is written in the same terms as its remedy. Slots: id, gap_kind, subject, evidence, proposes.\n- work:Confirmation: A person's decision on a proposed change: a repair, a declared policy or an autonomy promotion. Nothing proposed is applied without one. Bound to the proposal's content by a digest in its id, so a changed proposal needs  Slots: id, change_kind, verdict, decided_by, decided_at, reason.\n- work:Record: A container for exchanging the record. Slots: work_definitions, actors, capabilities, requests, tasks, actions, events, changes, gaps, confirmations.\n- enum ActorKind: person, agent, service_account, system\n- enum RiskClass: low, medium, high\n- enum AutonomyLevel: assist, act_with_checkpoint, act, act_and_report\n- enum DecisionEffect: allow, deny, checkpoint\n- enum OutcomeStatus: accepted, reversed, reopened, reassigned, failed, abandoned\n- enum WorkEventKind: requested, decided, started, stopped, approved, rejected, overridden, completed, reversed, promoted, demoted\n- enum ChangeKind: repair, declared_policy, autonomy\n- enum Verdict: approve, reject\n- access:Dataset: Data that people and agents ask to use. Slots: id, name, platform, classification, domain, owner.\n- access:Role: A kind of person or agent, by job. Policy is written over roles, never over individuals. Slots: id, name, department.\n- access:Grant: Standing access to a dataset, as held in an authority system. Slots: id, actor, dataset, privilege, held_in, granted_at, request, last_used_at.\n- access:AccessRequest (is_a WorkRequest): A request to use a dataset. Slots: dataset, privilege, justification, duration_days.\n- access:AccessPolicy: Access declared once, by role and classification, and compiled into the authority systems. When a declared policy covers a request, the request need not exist. Slots: id, description, role, domain, max_classification, privilege, effect, requires_approval.\n- access:ApprovalRule: Who must approve a request, and when. Declared once, compiled into the platform that holds the requests, and checked by the replay against what the platform actually did. Slots: id, description, approver_kind, approver_role, min_classification, domain.\n- access:Customisation: Something a customer added to the platform instead of to the model. Retired, reverted, declared into the customer's model, replaced by an adapter, or kept with a reason. Slots: id, name, customisation_kind, host_table, executions_180d, last_executed_at, plan, plan_reason.\n- access:AccessRecord (is_a Record): The record, with the access profile. Slots: roles, datasets, grants, policies, approval_rules, customisations.\n- enum Classification: public, internal, confidential, restricted\n- enum Privilege: read, write, admin\n- enum ApproverKind: dataset_owner, role\n- enum CustomisationKind: catalogue_item, business_rule, client_script, custom_field, approval_rule\n- org:ContosoAccessRequest (is_a AccessRequest): An access request at Contoso, which carries the cost centre that pays for the platform usage. Slots: cost_centre.\n- org:ContosoAccessPolicy (is_a AccessPolicy): Contoso's access policy, as the profile defines it. Slots: .\n- org:ContosoApprovalRule (is_a ApprovalRule): Contoso's approval rule. Can be limited to the financial year-end close, when finance data needs a second approver. That rule used to live in a platform script and acts once a year, which is why usage data alone says it  Slots: year_end_close_days.\n- org:ContosoRecord (is_a AccessRecord): Contoso's record. Requests and policies are Contoso's own extensions of the profile's classes. Slots: requests, policies, approval_rules.\n\nFor each customisation below, decide:\n- meaning: what it is, in these terms.\n  - defines_the_work: a catalogue item that is a definition of the data-access work.\n  - business_meaning: a rule or field that carries Contoso policy the vocabulary can express (declare it).\n  - duplicates_platform: re-implements what the platform already does (revert to base).\n  - integration_glue: pushes changes to another system; the compiler's adapters do this (replace).\n  - no_effect: as written it can never do anything (retire).\n  - outside_vocabulary: real Contoso practice the vocabulary cannot express yet (keep, and say what is missing).\n- proposed_plan: retire | revert_to_base | declare | replace_with_adapter | keep.\n- target_term: the vocabulary term it becomes (null if none).\n- translation: for declare, the LinkML YAML or policy instance that expresses it (null otherwise). Be exact\n  about conditions: dates, datasets, roles, patterns.\n- effect_table and effect_query: for business rules only, a ServiceNow encoded query on the table where the\n  rule's effect would be visible in history (e.g. approval rows it creates, field values it sets), matching\n  only records this rule would have produced. Use field names exactly as they appear. Null for items and fields.\n- reason: one or two sentences.\n\nDo not assume anything about how often a customisation is used; you are not told.\n\nCustomisations:\n[\n {\n  \"id\": \"03570a9ec618e8796f6f00b7531e03de\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Tableau / data access\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Tableau / data access\"\n },\n {\n  \"id\": \"243bd45b69b849e99ee000770cbe022b\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Data access request - DO NOT USE\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Data access request - DO NOT USE\"\n },\n {\n  \"id\": \"57ea65f5729b2b613f06d0a5704cbc05\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Analytics platform access\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Analytics platform access\"\n },\n {\n  \"id\": \"58ba5b00b85e49cc68ec69c855919867\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Request Power BI dataset access\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Request Power BI dataset access\"\n },\n {\n  \"id\": \"6e3f2f9c6757107be9d5bfa51f006864\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"New data access request (2023)\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"New data access request (2023)\"\n },\n {\n  \"id\": \"793bf7d8b9d23eb6a162dd0727515cd3\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Request access to restricted data\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Request access to restricted data\"\n },\n {\n  \"id\": \"89f979ae1a83358eff7bd358df2d9576\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Request access to Snowflake\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Request access to Snowflake\"\n },\n {\n  \"id\": \"8babff98e0dcb7519fc143df049ccbfb\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Access to Credit Risk data mart\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Access to Credit Risk data mart\"\n },\n {\n  \"id\": \"8ff3aec6bc5847d67a44bb126e7894fa\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Access request: market data\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Access request: market data\"\n },\n {\n  \"id\": \"933baebb896904781a643b4f32910c32\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Request read access (Finance data)\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Request read access (Finance data)\"\n },\n {\n  \"id\": \"958ae1884933a74079793fa019ee4138\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Data access - Loan book\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Data access - Loan book\"\n },\n {\n  \"id\": \"c44d123966d7463a8d9f297b3e2c9db2\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Databricks workspace access\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Databricks workspace access\"\n },\n {\n  \"id\": \"cd12a56df0a817508928c91363c1d821\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Snowflake access request\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Snowflake access request\"\n },\n {\n  \"id\": \"f48fc7d55a8f6e859406a80444e63fe0\",\n  \"kind\": \"catalogue_item\",\n  \"name\": \"Data share request\",\n  \"category\": \"Data Access\",\n  \"short_description\": \"Data share request\"\n },\n {\n  \"id\": \"0bd75d7abc30c69e8a76f5af814e89c9\",\n  \"kind\": \"custom_field\",\n  \"name\": \"sc_req_item.u_approval_level\",\n  \"label\": \"Approval level\",\n  \"type\": \"string\"\n },\n {\n  \"id\": \"1bf12a1855a00b21187a05bfa590a434\",\n  \"kind\": \"custom_field\",\n  \"name\": \"sc_req_item.u_chargeback_amount\",\n  \"label\": \"Chargeback amount\",\n  \"type\": \"string\"\n },\n {\n  \"id\": \"972bc91be6e0e724b2e29033179d1799\",\n  \"kind\": \"custom_field\",\n  \"name\": \"sc_req_item.u_privilege\",\n  \"label\": \"Privilege\",\n  \"type\": \"string\"\n },\n {\n  \"id\": \"adb0c7af1c9a84754c1ea7fc91cb46f7\",\n  \"kind\": \"custom_field\",\n  \"name\": \"sc_req_item.u_legacy_ticket_ref\",\n  \"label\": \"Legacy ticket reference\",\n  \"type\": \"string\"\n },\n {\n  \"id\": \"bf2b761c7be119e1a1f2ccc32756855e\",\n  \"kind\": \"custom_field\",\n  \"name\": \"sc_req_item.u_cost_centre\",\n  \"label\": \"Cost centre\",\n  \"type\": \"string\"\n },\n {\n  \"id\": \"ceda2714c25f71f14f546fa64fd82a7e\",\n  \"kind\": \"custom_field\",\n  \"name\": \"sc_req_item.u_dataset\",\n  \"label\": \"Dataset\",\n  \"type\": \"string\"\n },\n {\n  \"id\": \"1a2ba59e0efa1abc8a96750d3c582346\",\n  \"kind\": \"business_rule\",\n  \"name\": \"Require cost centre on data access\",\n  \"table\": \"sc_req_item\",\n  \"when\": \"before\",\n  \"insert\": \"true\",\n  \"update\": \"false\",\n  \"script\": \"(function executeRule(current, previous) {\\n    if (current.cat_item.category.getDisplayValue() != 'Data Access') return;\\n    var cc = current.getValue('u_cost_centre') || '';\\n    if (!/^CC-[0-9]{4}$/.test(cc)) {\\n        gs.addErrorMessage('A cost centre (CC-1234) is required for data access requests.');\\n        current.setAbortAction(true);\\n    }\\n})(current, previous);\"\n },\n {\n  \"id\": \"1adf4963dbbf24829128870552dc88f2\",\n  \"kind\": \"business_rule\",\n  \"name\": \"Close request item when tasks complete\",\n  \"table\": \"sc_req_item\",\n  \"when\": \"after\",\n  \"insert\": \"false\",\n  \"update\": \"true\",\n  \"script\": \"(function executeRule(current, previous) {\\n    var t = new GlideRecord('sc_task');\\n    t.addQuery('request_item', current.sys_id);\\n    t.addQuery('active', true);\\n    t.query();\\n    if (!t.hasNext() && current.state != 3) {\\n        current.state = 3;\\n        current.update();  // re-enters business rules\\n    }\\n})(current, previous);\"\n },\n {\n  \"id\": \"4804590adb9ae3c6ccaafe916b38645e\",\n  \"kind\": \"business_rule\",\n  \"name\": \"Escalate VIP data requests\",\n  \"table\": \"sc_req_item\",\n  \"when\": \"after\",\n  \"insert\": \"true\",\n  \"update\": \"false\",\n  \"script\": \"(function executeRule(current, previous) {\\n    if (current.getValue('u_approval_level') != 'VIP') return;\\n    gs.eventQueue('contoso.vip.request', current, current.requested_for, '');\\n})(current, previous);\"\n },\n {\n  \"id\": \"5342fd0cf463bf0108a04a732536a706\",\n  \"kind\": \"business_rule\",\n  \"name\": \"Sync access request to Snowflake (legacy\",\n  \"table\": \"sc_req_item\",\n  \"when\": \"async\",\n  \"insert\": \"true\",\n  \"update\": \"false\",\n  \"script\": \"(function executeRule(current, previous) {\\n    if (gs.getProperty('contoso.snowflake.sync.enabled', 'false') != 'true') return;\\n    var r = new sn_ws.RESTMessageV2('Contoso Snowflake', 'grant');\\n    r.setStringParameterNoEscape('user', current.requested_for.user_name);\\n    r.setStringParameterNoEscape('object', current.getValue('u_dataset'));\\n    r.setStringParameterNoEscape('privilege', current.getValue('u_privilege'));\\n    var resp = r.execute();\\n    current.work_notes = 'Snowflake sync: ' + resp.getStatusCode();\\n    current.update();\\n})(current, previous);\"\n },\n {\n  \"id\": \"624e69b410b3dfc1cab03cbfb79008ef\",\n  \"kind\": \"business_rule\",\n  \"name\": \"Copy dataset into description (2022)\",\n  \"table\": \"sc_req_item\",\n  \"when\": \"before\",\n  \"insert\": \"true\",\n  \"update\": \"false\",\n  \"script\": \"(function executeRule(current, previous) {\\n    if (current.getValue('u_legacy_ticket_ref') == '') return;\\n    current.description = 'Dataset: ' + current.getValue('u_dataset') + '\\\\n' + current.description;\\n})(current, previous);\"\n },\n {\n  \"id\": \"7484ac5069d1c0419700a00e33166a37\",\n  \"kind\": \"business_rule\",\n  \"name\": \"Security approval for restricted data\",\n  \"table\": \"sc_req_item\",\n  \"when\": \"after\",\n  \"insert\": \"true\",\n  \"update\": \"false\",\n  \"script\": \"(function executeRule(current, previous) {\\n    var restricted = [\\\"client_master\\\", \\\"counterparty_exposure\\\", \\\"gl_actuals\\\", \\\"payroll\\\"];\\n    if (restricted.indexOf(current.getValue('u_dataset')) < 0) return;\\n    var a = new GlideRecord('sysapproval_approver');\\n    a.initialize();\\n    a.sysapproval = current.sys_id;\\n    a.approver = '5bb1f05607167c49e249269b9e713986';  // security team lead\\n    a.state = 'requested';\\n    a.insert();\\n})(current, previous);\"\n },\n {\n  \"id\": \"873937971757a9ca284b1898da024ae1\",\n  \"kind\": \"business_rule\",\n  \"name\": \"Data owner approval\",\n  \"table\": \"sc_req_item\",\n  \"when\": \"after\",\n  \"insert\": \"true\",\n  \"update\": \"false\",\n  \"script\": \"(function executeRule(current, previous) {\\n    // Owners by domain. Updated by hand when owners change.\\n    var owners = {\\\"credit\\\": \\\"b25c10ee67ca336d30a30a259b3f558b\\\", \\\"finance\\\": \\\"5ad9ec95eec9269f0fd95d090cd6e889\\\", \\\"hr\\\": \\\"6ce9c825ba3b826d4bbc011a93cfd00e\\\", \\\"markets\\\": \\\"f73157eae33b226d3c01b3305517809b\\\", \\\"operations\\\": \\\"83e8f595f6186a7e9495734f385fdc04\\\"};\\n    var domains = {\\\"budget_forecast\\\": \\\"finance\\\", \\\"client_master\\\": \\\"operations\\\", \\\"counterparty_exposure\\\": \\\"credit\\\", \\\"credit_risk_mart\\\": \\\"credit\\\", \\\"esg_scores\\\": \\\"markets\\\", \\\"fx_rates\\\": \\\"markets\\\", \\\"gl_actuals\\\": \\\"finance\\\", \\\"loan_book\\\": \\\"credit\\\", \\\"market_data_eod\\\": \\\"markets\\\", \\\"payroll\\\": \\\"hr\\\", \\\"research_notes\\\": \\\"markets\\\", \\\"trade_blotter\\\": \\\"markets\\\"};\\n    var approver = owners[domains[current.getValue('u_dataset')]];\\n    if (!approver) return;\\n    var a = new GlideRecord('sysapproval_approver');\\n    a.initialize();\\n    a.sysapproval = current.sys_id;\\n    a.approver = approver;\\n    a.state = 'requested';\\n    a.insert();\\n})(current, previous);\"\n },\n {\n  \"id\": \"e3aeefc1904406b20dadf3bc8e068853\",\n  \"kind\": \"business_rule\",\n  \"name\": \"Finance year-end approval\",\n  \"table\": \"sc_req_item\",\n  \"when\": \"after\",\n  \"insert\": \"true\",\n  \"update\": \"false\",\n  \"script\": \"(function executeRule(current, previous) {\\n    // FY close: finance data needs the controller as well, from 22 March to 31 March.\\n    var finance = [\\\"budget_forecast\\\", \\\"gl_actuals\\\"];\\n    if (finance.indexOf(current.getValue('u_dataset')) < 0) return;\\n    var now = new GlideDateTime();\\n    var month = now.getMonthUTC(), day = now.getDayOfMonthUTC();\\n    if (!(month == 3 && day >= 22)) return;\\n    var a = new GlideRecord('sysapproval_approver');\\n    a.initialize();\\n    a.sysapproval = current.sys_id;\\n    a.approver = 'ba7c24798865d7a0e8f81525b07211d3';\\n    a.state = 'requested';\\n    a.insert();\\n})(current, previous);\"\n },\n {\n  \"id\": \"eb572408ecf8fb4bb2edc498dfa01c44\",\n  \"kind\": \"business_rule\",\n  \"name\": \"Allocate data access chargeback\",\n  \"table\": \"sc_req_item\",\n  \"when\": \"before\",\n  \"insert\": \"true\",\n  \"update\": \"false\",\n  \"script\": \"(function executeRule(current, previous) {\\n    // Finance charges each cost centre per dataset per month. Rates agreed with Finance, FY2024.\\n    var rates = {\\\"budget_forecast\\\": 30, \\\"client_master\\\": 70, \\\"counterparty_exposure\\\": 80, \\\"credit_risk_mart\\\": 60, \\\"esg_scores\\\": 15, \\\"fx_rates\\\": 10, \\\"gl_actuals\\\": 50, \\\"loan_book\\\": 40, \\\"market_data_eod\\\": 120, \\\"payroll\\\": 25, \\\"research_notes\\\": 20, \\\"trade_blotter\\\": 90};\\n    var r = rates[current.getValue('u_dataset')];\\n    if (r) current.setValue('u_chargeback_amount', r * (current.getValue('u_privilege') == 'read' ? 1 : 3));\\n})(current, previous);\"\n }\n]\n",
+   "model": "claude-fable-5-1",
+   "cost_usd": 1.26385,
+   "answer": {
+    "items": [
+     {
+      "id": "03570a9ec618e8796f6f00b7531e03de",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# One of 14 catalogue items that are the same work. All declare into a single definition;\n# the platform/dataset in the item name becomes a slot value on the request, not a separate work kind.\n# This item: access:Dataset.platform = Tableau\nwork_definitions:\n  - id: contoso:data_access\n    name: Data access\n    description: Request, approve and grant access to a dataset for a person or agent.\n    owner: role:data_governance\n    steps:\n      - id: contoso:data_access.request\n        name: Submit request\n        risk_class: low\n        requires_approval: false\n        acceptance: {id: contoso:data_access.request.ok, description: Request names a dataset, privilege, justification and cost centre, reversal_window_days: 0}\n      - id: contoso:data_access.approve\n        name: Approve\n        risk_class: medium\n        requires_approval: true\n        acceptance: {id: contoso:data_access.approve.ok, description: Approvals match the declared ApprovalRules, reversal_window_days: 0}\n      - id: contoso:data_access.grant\n        name: Grant in authority system\n        risk_class: high\n        requires_approval: false\n        acceptance: {id: contoso:data_access.grant.ok, description: Grant exists in the authority system and is used within duration_days, reversal_window_days: 30}\nrequest_class: org:ContosoAccessRequest",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "A Data Access catalogue item is a definition of the data-access work. Tableau is the dataset's platform, so this collapses into the single contoso:data_access definition with platform as a slot value."
+     },
+     {
+      "id": "243bd45b69b849e99ee000770cbe022b",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). No platform or dataset qualifier.\n# The name says its owners superseded it; whether anything still submits through it is for the usage data to say.\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "Despite the label, it is a definition of the same data-access work and folds into contoso:data_access. The 'DO NOT USE' label is Contoso's own statement, not evidence of usage, which I am not told."
+     },
+     {
+      "id": "57ea65f5729b2b613f06d0a5704cbc05",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). 'Analytics platform' is access:Dataset.platform, unqualified.\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "Another entry point to the same data-access work; the platform is a dataset attribute, not a different kind of work."
+     },
+     {
+      "id": "58ba5b00b85e49cc68ec69c855919867",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). This item: access:Dataset.platform = Power BI\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "Defines the data-access work for Power BI datasets; platform is a slot on access:Dataset, so it collapses into contoso:data_access."
+     },
+     {
+      "id": "6e3f2f9c6757107be9d5bfa51f006864",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). Generic, dated 2023; no qualifier.\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "A dated re-creation of the generic data-access item. It defines the same work and folds into contoso:data_access."
+     },
+     {
+      "id": "793bf7d8b9d23eb6a162dd0727515cd3",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). This item: access:Dataset.classification = restricted\n# The extra approval for restricted data is declared by ApprovalRule contoso:security_approval_restricted (from rule 7484ac50...), not by a separate work kind.\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "Restricted data is a classification on the dataset, and what differs (security approval) is an ApprovalRule keyed on min_classification. The work is the same."
+     },
+     {
+      "id": "89f979ae1a83358eff7bd358df2d9576",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). This item: access:Dataset.platform = Snowflake\n# Duplicate of cd12a56d... (Snowflake access request).\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "One of two Snowflake entry points to the same work; platform is a dataset slot, so it collapses into contoso:data_access."
+     },
+     {
+      "id": "8babff98e0dcb7519fc143df049ccbfb",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). This item: access:AccessRequest.dataset = credit_risk_mart (domain credit)\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "A per-dataset copy of the data-access item. The dataset is a slot on the request, so this folds into contoso:data_access."
+     },
+     {
+      "id": "8ff3aec6bc5847d67a44bb126e7894fa",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). This item: access:AccessRequest.dataset = market_data_eod (domain markets)\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "A per-dataset copy of the data-access item for market data; dataset is a request slot, so it folds into contoso:data_access."
+     },
+     {
+      "id": "933baebb896904781a643b4f32910c32",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). This item: access:Dataset.domain = finance, access:AccessRequest.privilege = read\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "Defines the same work pre-filled with domain finance and privilege read; both are request or dataset slots, so it folds into contoso:data_access."
+     },
+     {
+      "id": "958ae1884933a74079793fa019ee4138",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). This item: access:AccessRequest.dataset = loan_book (domain credit)\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "A per-dataset copy of the data-access item for the loan book; dataset is a request slot, so it folds into contoso:data_access."
+     },
+     {
+      "id": "c44d123966d7463a8d9f297b3e2c9db2",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). This item: access:Dataset.platform = Databricks\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "Defines the data-access work for Databricks; platform is a dataset slot, so it collapses into contoso:data_access."
+     },
+     {
+      "id": "cd12a56df0a817508928c91363c1d821",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). This item: access:Dataset.platform = Snowflake\n# Duplicate of 89f979ae... (Request access to Snowflake).\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "Second Snowflake entry point to the same work; it folds into contoso:data_access alongside its twin."
+     },
+     {
+      "id": "f48fc7d55a8f6e859406a80444e63fe0",
+      "meaning": "defines_the_work",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkDefinition",
+      "translation": "# Same definition as contoso:data_access (see 03570a9e...). A share is access requested on someone else's behalf:\n# work:WorkRequest.on_behalf_of carries the recipient; dataset and privilege are the usual request slots.\nwork_definitions:\n  - id: contoso:data_access",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "Sharing data is the same access work requested on behalf of a recipient, which WorkRequest.on_behalf_of already carries. It folds into contoso:data_access."
+     },
+     {
+      "id": "0bd75d7abc30c69e8a76f5af814e89c9",
+      "meaning": "outside_vocabulary",
+      "proposed_plan": "keep",
+      "target_term": null,
+      "translation": null,
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "Its only consumer is the VIP escalation rule, which routes by who the requester is. The vocabulary writes policy over roles and classifications, not over individuals, and has no requester-tier or priority slot on WorkRequest. Missing: a requester priority (or a VIP role) and an escalation concept."
+     },
+     {
+      "id": "1bf12a1855a00b21187a05bfa590a434",
+      "meaning": "outside_vocabulary",
+      "proposed_plan": "keep",
+      "target_term": null,
+      "translation": null,
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "Holds the monthly charge Finance levies per dataset per cost centre. The vocabulary carries the paying cost_centre on org:ContosoAccessRequest but has no tariff or amount. Missing: a monthly rate on access:Dataset, a privilege multiplier, and a chargeback_amount slot on the Contoso request."
+     },
+     {
+      "id": "972bc91be6e0e724b2e29033179d1799",
+      "meaning": "business_meaning",
+      "proposed_plan": "declare",
+      "target_term": "access:AccessRequest.privilege",
+      "translation": "# sc_req_item.u_privilege is the profile slot access:AccessRequest.privilege; no new slot needed.\n# Value mapping (string field -> enum Privilege):\n#   read  -> read\n#   write -> write\n#   admin -> admin\nclasses:\n  ContosoAccessRequest:\n    is_a: access:AccessRequest\n    slot_usage:\n      privilege:\n        required: true\n        range: Privilege",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "The field is the privilege slot the access profile already defines; declaring it as required with the Privilege enum replaces a free string."
+     },
+     {
+      "id": "adb0c7af1c9a84754c1ea7fc91cb46f7",
+      "meaning": "business_meaning",
+      "proposed_plan": "declare",
+      "target_term": "work:WorkRequest.external_ref",
+      "translation": "# sc_req_item.u_legacy_ticket_ref is work:WorkRequest.external_ref: the identifier of the request in the system it was migrated from.\nclasses:\n  ContosoAccessRequest:\n    is_a: access:AccessRequest\n    slot_usage:\n      external_ref:\n        description: Reference of the ticket in the legacy system this request was migrated from (sc_req_item.u_legacy_ticket_ref).\n        required: false",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "A reference to the same request in another system is exactly what external_ref is for on WorkRequest."
+     },
+     {
+      "id": "bf2b761c7be119e1a1f2ccc32756855e",
+      "meaning": "business_meaning",
+      "proposed_plan": "declare",
+      "target_term": "org:ContosoAccessRequest.cost_centre",
+      "translation": "slots:\n  cost_centre:\n    description: The cost centre that pays for the platform usage (sc_req_item.u_cost_centre).\n    range: string\n    pattern: '^CC-[0-9]{4}$'\nclasses:\n  ContosoAccessRequest:\n    is_a: access:AccessRequest\n    slots:\n      - cost_centre\n    slot_usage:\n      cost_centre:\n        required: true",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "This is the cost_centre slot Contoso's model already extends AccessRequest with; the format and required-ness come from the companion business rule."
+     },
+     {
+      "id": "ceda2714c25f71f14f546fa64fd82a7e",
+      "meaning": "business_meaning",
+      "proposed_plan": "declare",
+      "target_term": "access:AccessRequest.dataset",
+      "translation": "# sc_req_item.u_dataset is access:AccessRequest.dataset. The string values are access:Dataset ids:\n#   budget_forecast, client_master, counterparty_exposure, credit_risk_mart, esg_scores, fx_rates,\n#   gl_actuals, loan_book, market_data_eod, payroll, research_notes, trade_blotter\nclasses:\n  ContosoAccessRequest:\n    is_a: access:AccessRequest\n    slot_usage:\n      dataset:\n        required: true\n        range: Dataset",
+      "effect_table": null,
+      "effect_query": null,
+      "reason": "The field names the dataset requested, which is the dataset slot of AccessRequest; its twelve string values are the Dataset ids the approval and chargeback rules enumerate."
+     },
+     {
+      "id": "1a2ba59e0efa1abc8a96750d3c582346",
+      "meaning": "business_meaning",
+      "proposed_plan": "declare",
+      "target_term": "org:ContosoAccessRequest.cost_centre",
+      "translation": "# Applies to every request in the Data Access category, on creation. Abort if cost centre is missing or not CC- followed by four digits.\nclasses:\n  ContosoAccessRequest:\n    is_a: access:AccessRequest\n    slot_usage:\n      cost_centre:\n        required: true\n        pattern: '^CC-[0-9]{4}$'",
+      "effect_table": "sc_req_item",
+      "effect_query": "cat_item.category.title=Data Access^u_cost_centreSTARTSWITHCC-",
+      "reason": "The rule is a validation constraint on cost_centre: required, format CC-nnnn. LinkML expresses it as required plus pattern on the Contoso request class, and the schema validator enforces it instead of the script."
+     },
+     {
+      "id": "1adf4963dbbf24829128870552dc88f2",
+      "meaning": "duplicates_platform",
+      "proposed_plan": "revert_to_base",
+      "target_term": "work:WorkEvent",
+      "translation": null,
+      "effect_table": "sc_req_item",
+      "effect_query": "state=3^RLQUERYsc_task.request_item,=0,active=true^ENDRLQUERY",
+      "reason": "Closing a request item once its last task closes is what the platform's request fulfilment flow already does; this copy also calls update() inside an after rule, re-entering the rule chain. The completed event is a WorkEvent of kind completed on the request."
+     },
+     {
+      "id": "4804590adb9ae3c6ccaafe916b38645e",
+      "meaning": "outside_vocabulary",
+      "proposed_plan": "keep",
+      "target_term": null,
+      "translation": null,
+      "effect_table": "sysevent",
+      "effect_query": "name=contoso.vip.request",
+      "reason": "It escalates on a requester attribute (VIP), which the vocabulary deliberately does not model: policy is over roles and classifications, and there is no escalation or notification event kind. Missing: a requester priority or VIP role, and a way to declare an escalation. If VIP maps to a Role it could later become an ApprovalRule."
+     },
+     {
+      "id": "5342fd0cf463bf0108a04a732536a706",
+      "meaning": "integration_glue",
+      "proposed_plan": "replace_with_adapter",
+      "target_term": "access:Grant",
+      "translation": null,
+      "effect_table": "sys_journal_field",
+      "effect_query": "name=sc_req_item^element=work_notes^valueSTARTSWITHSnowflake sync:",
+      "reason": "It pushes a grant for user, object and privilege into Snowflake over REST and notes the status code. The compiler's Snowflake adapter writes access:Grant with held_in Snowflake from the approved request, so the script is replaced. It is gated on a property whose value I am not told."
+     },
+     {
+      "id": "624e69b410b3dfc1cab03cbfb79008ef",
+      "meaning": "duplicates_platform",
+      "proposed_plan": "revert_to_base",
+      "target_term": "access:AccessRequest.dataset",
+      "translation": null,
+      "effect_table": "sc_req_item",
+      "effect_query": "descriptionSTARTSWITHDataset: ",
+      "reason": "It copies u_dataset, which the record already holds and which maps to AccessRequest.dataset, into free text in the description. Its guard compares getValue() to '' but getValue returns null for an empty field, so it stamps every insert, not only migrated legacy tickets. Reverting leaves the dataset where the vocabulary keeps it."
+     },
+     {
+      "id": "7484ac5069d1c0419700a00e33166a37",
+      "meaning": "business_meaning",
+      "proposed_plan": "declare",
+      "target_term": "org:ContosoApprovalRule",
+      "translation": "# The four listed datasets are Contoso's restricted set; the hard-coded approver (sys_user 5bb1f056...) is the security team lead, declared as a role.\napproval_rules:\n  - id: contoso:security_approval_restricted\n    description: Any request for a restricted dataset needs approval from the security team lead, in addition to the data owner.\n    approver_kind: role\n    approver_role: role:security_team_lead\n    min_classification: restricted\n    domain: null\ndatasets:\n  - {id: client_master, classification: restricted}\n  - {id: counterparty_exposure, classification: restricted}\n  - {id: gl_actuals, classification: restricted}\n  - {id: payroll, classification: restricted}\nroles:\n  - {id: role:security_team_lead, name: Security team lead, department: Information Security}",
+      "effect_table": "sysapproval_approver",
+      "effect_query": "source_table=sc_req_item^approver=5bb1f05607167c49e249269b9e713986^sysapproval.u_datasetINclient_master,counterparty_exposure,gl_actuals,payroll",
+      "reason": "A second approver for a fixed list of sensitive datasets is an ApprovalRule keyed on min_classification restricted, with the list becoming the datasets' classification and the individual becoming a role."
+     },
+     {
+      "id": "873937971757a9ca284b1898da024ae1",
+      "meaning": "business_meaning",
+      "proposed_plan": "declare",
+      "target_term": "org:ContosoApprovalRule",
+      "translation": "approval_rules:\n  - id: contoso:data_owner_approval\n    description: Every data access request is approved by the owner of the dataset's domain.\n    approver_kind: dataset_owner\n    approver_role: null\n    min_classification: public\n    domain: null\n# The hand-maintained maps become Dataset.domain and Dataset.owner (owner is the domain owner's Actor):\nactors:\n  - {id: actor:b25c10ee67ca336d30a30a259b3f558b, actor_kind: person, title: Data owner, credit}\n  - {id: actor:5ad9ec95eec9269f0fd95d090cd6e889, actor_kind: person, title: Data owner, finance}\n  - {id: actor:6ce9c825ba3b826d4bbc011a93cfd00e, actor_kind: person, title: Data owner, hr}\n  - {id: actor:f73157eae33b226d3c01b3305517809b, actor_kind: person, title: Data owner, markets}\n  - {id: actor:83e8f595f6186a7e9495734f385fdc04, actor_kind: person, title: Data owner, operations}\ndatasets:\n  - {id: budget_forecast, domain: finance, owner: actor:5ad9ec95eec9269f0fd95d090cd6e889}\n  - {id: client_master, domain: operations, owner: actor:83e8f595f6186a7e9495734f385fdc04}\n  - {id: counterparty_exposure, domain: credit, owner: actor:b25c10ee67ca336d30a30a259b3f558b}\n  - {id: credit_risk_mart, domain: credit, owner: actor:b25c10ee67ca336d30a30a259b3f558b}\n  - {id: esg_scores, domain: markets, owner: actor:f73157eae33b226d3c01b3305517809b}\n  - {id: fx_rates, domain: markets, owner: actor:f73157eae33b226d3c01b3305517809b}\n  - {id: gl_actuals, domain: finance, owner: actor:5ad9ec95eec9269f0fd95d090cd6e889}\n  - {id: loan_book, domain: credit, owner: actor:b25c10ee67ca336d30a30a259b3f558b}\n  - {id: market_data_eod, domain: markets, owner: actor:f73157eae33b226d3c01b3305517809b}\n  - {id: payroll, domain: hr, owner: actor:6ce9c825ba3b826d4bbc011a93cfd00e}\n  - {id: research_notes, domain: markets, owner: actor:f73157eae33b226d3c01b3305517809b}\n  - {id: trade_blotter, domain: markets, owner: actor:f73157eae33b226d3c01b3305517809b}",
+      "effect_table": "sysapproval_approver",
+      "effect_query": "source_table=sc_req_item^approver=b25c10ee67ca336d30a30a259b3f558b^sysapproval.u_datasetINcounterparty_exposure,credit_risk_mart,loan_book^NQsource_table=sc_req_item^approver=5ad9ec95eec9269f0fd95d090cd6e889^sysapproval.u_datasetINbudget_forecast,gl_actuals^NQsource_table=sc_req_item^approver=6ce9c825ba3b826d4bbc011a93cfd00e^sysapproval.u_dataset=payroll^NQsource_table=sc_req_item^approver=f73157eae33b226d3c01b3305517809b^sysapproval.u_datasetINesg_scores,fx_rates,market_data_eod,research_notes,trade_blotter^NQsource_table=sc_req_item^approver=83e8f595f6186a7e9495734f385fdc04^sysapproval.u_dataset=client_master",
+      "reason": "Dataset-owner approval is the profile's approver_kind dataset_owner; the two hand-edited maps are Dataset.domain and Dataset.owner, which the authority systems keep current instead of a script."
+     },
+     {
+      "id": "e3aeefc1904406b20dadf3bc8e068853",
+      "meaning": "business_meaning",
+      "proposed_plan": "declare",
+      "target_term": "org:ContosoApprovalRule.year_end_close_days",
+      "translation": "# Condition as scripted: request created when the UTC date is 22 to 31 March inclusive, for dataset budget_forecast or gl_actuals.\n# The approver (sys_user ba7c2479...) is the financial controller, declared as a role.\napproval_rules:\n  - id: contoso:finance_year_end_approval\n    description: During the financial year-end close (22 to 31 March), requests for finance data also need the financial controller's approval.\n    approver_kind: role\n    approver_role: role:financial_controller\n    min_classification: public\n    domain: finance\n    year_end_close_days: 10   # the ten days ending on the FY end, 31 March: 22,23,...,31 March, evaluated in UTC\nroles:\n  - {id: role:financial_controller, name: Financial controller, department: Finance}\n# finance domain datasets, as this rule enumerates them: budget_forecast, gl_actuals",
+      "effect_table": "sysapproval_approver",
+      "effect_query": "source_table=sc_req_item^approver=ba7c24798865d7a0e8f81525b07211d3^sysapproval.u_datasetINbudget_forecast,gl_actuals",
+      "reason": "This is exactly what org:ContosoApprovalRule.year_end_close_days exists for: a second approver on finance data limited to the year-end close window. It acts for ten days a year, so its execution count says nothing about whether it matters."
+     },
+     {
+      "id": "eb572408ecf8fb4bb2edc498dfa01c44",
+      "meaning": "outside_vocabulary",
+      "proposed_plan": "keep",
+      "target_term": null,
+      "translation": null,
+      "effect_table": "sc_req_item",
+      "effect_query": "u_datasetINbudget_forecast,client_master,counterparty_exposure,credit_risk_mart,esg_scores,fx_rates,gl_actuals,loan_book,market_data_eod,payroll,research_notes,trade_blotter^u_chargeback_amountISNOTEMPTY",
+      "reason": "Real Contoso practice: Finance bills each cost centre a per-dataset monthly rate (FY2024 tariff), tripled for write or admin. The vocabulary knows the paying cost_centre but has no rate, multiplier or amount. Missing: a monthly_rate on access:Dataset, a privilege multiplier policy, and chargeback_amount on org:ContosoAccessRequest."
+     }
+    ]
+   },
+   "status": "proposed, awaiting confirmation by a person"
+  }
+ ]
+}

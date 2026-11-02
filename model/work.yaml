@@ -1,0 +1,279 @@
+id: https://example.org/work
+name: work
+title: Work, a vocabulary for governed work by people and agents
+description: >-
+  The core of a draft open standard. It defines work (what should be done and how success is judged), who
+  does it and on whose authority, what was actually done, and how it turned out. Domain profiles extend it
+  (access is the first); a customer's own specifics extend a profile in their own namespace and never edit
+  the core. Every other format (OCSF, OpenTelemetry, Ossie, ServiceNow's tables, Veza, Armis, Moveworks) is a
+  mapping or a projection of this source.
+  Draft: identifiers use example.org until the vocabulary has a home.
+version: 0.1.0-draft
+license: Apache-2.0
+prefixes:
+  work: https://example.org/work/
+  linkml: https://w3id.org/linkml/
+  prov: http://www.w3.org/ns/prov#
+  schema: http://schema.org/
+  skos: http://www.w3.org/2004/02/skos/core#
+default_prefix: work
+default_range: string
+imports:
+  - linkml:types
+
+classes:
+
+  # --- Definition: what work is, and how success is judged (ISA-95: product definition) ---
+
+  WorkDefinition:
+    description: A kind of work the organisation does, as a sequence of steps.
+    annotations: {namespace: work_definition}
+    slots: [id, name, description, steps, owner]
+
+  StepDefinition:
+    description: One step of a kind of work. Autonomy is earned per step, not per agent.
+    annotations: {namespace: step}
+    slots: [id, name, description, risk_class, requires_approval, acceptance]
+
+  AcceptanceCriterion:
+    description: How an outcome of a step is judged right. Judged after the reversal window closes.
+    slots: [id, description, reversal_window_days]
+
+  # --- Capability: who may do what, at what autonomy (ISA-95: production capability) ---
+
+  Actor:
+    description: A person, agent, service account or system that can take part in work.
+    class_uri: prov:Agent
+    annotations: {namespace: actor}
+    slots: [id, name, actor_kind, registered, owner, title]
+
+  Capability:
+    description: >-
+      An actor's standing to perform a step: the autonomy level it holds now and the evidence behind it.
+      Permission comes from the authority systems; proven ability comes from outcomes in the record.
+    annotations: {namespace: capability}
+    slots: [id, actor, step, autonomy_level, evidence_count, accepted_count, lower_bound]
+
+  # --- Schedule: what was asked for (ISA-95: production schedule) ---
+
+  WorkRequest:
+    description: A request for a kind of work, from a person or an agent, on someone's behalf.
+    annotations: {namespace: request}
+    slots: [id, work_definition, requested_by, on_behalf_of, requested_at, channel, external_ref]
+
+  # --- Performance: what was done and how it turned out (ISA-95: production performance) ---
+
+  TaskRecord:
+    description: >-
+      One step performed under a request. A task with no request is not a task: it is an orphan action,
+      and fails validation by construction.
+    class_uri: prov:Activity
+    annotations: {namespace: task}
+    slots: [id, request, step, actor, on_behalf_of, autonomy_level, started_at, ended_at, decision, outcome,
+            external_ref]
+    slot_usage:
+      request: {required: true}
+      step: {required: true}
+      actor: {required: true}
+
+  Action:
+    description: >-
+      Something an actor did to a system, as observed in telemetry. Governed actions belong to a request;
+      an action without one is the first kind of gap.
+    class_uri: prov:Activity
+    annotations: {namespace: action}
+    slots: [id, actor, target_system, operation, resource, at, request, source]
+    slot_usage:
+      request: {required: true}
+
+  Decision:
+    description: An authority decision on a step, taken outside the model that proposed the action.
+    annotations: {namespace: decision}
+    slots: [effect, rule, decided_by, reason]
+
+  Outcome:
+    description: How a step turned out, judged against its acceptance criteria.
+    annotations: {namespace: outcome}
+    slots: [status, decided_at, decided_by]
+
+  WorkEvent:
+    description: >-
+      Something that happened to a request or a task. The one record every lens projects from: security
+      (OCSF), operations (OpenTelemetry), analytics and agents (Ossie), and chat. Events are hash-chained.
+    annotations: {namespace: event}
+    slots: [id, kind, at, request, task, actor, reason, source, via, prev_hash, hash]
+
+  AutonomyChange:
+    description: A promotion or demotion of a capability, with the evidence that justified it.
+    annotations: {namespace: autonomy_change}
+    slots: [id, capability, from_level, to_level, at, reason, evidence, confirmation]
+
+  Gap:
+    description: >-
+      Something observed that does not fit the vocabulary, or fits with a required part missing. A gap is
+      written in the same terms as its remedy.
+    annotations: {namespace: gap}
+    slots: [id, gap_kind, subject, evidence, proposes]
+
+  Confirmation:
+    description: >-
+      A person's decision on a proposed change: a repair, a declared policy or an autonomy promotion. Nothing
+      proposed is applied without one. Bound to the proposal's content by a digest in its id, so a changed
+      proposal needs a new confirmation. In a deployment, written by a person; a demo
+      may write labelled stand-ins.
+    annotations: {namespace: confirmation}
+    slots: [id, change_kind, verdict, decided_by, decided_at, reason]
+    slot_usage:
+      decided_by: {required: true}
+      decided_at: {required: true}
+  Record:
+    tree_root: true
+    description: A container for exchanging the record.
+    slots: [work_definitions, actors, capabilities, requests, tasks, actions, events, changes, gaps, confirmations]
+
+slots:
+  id: {identifier: true, range: string}
+  name: {slot_uri: schema:name}
+  description: {slot_uri: schema:description}
+  owner: {range: Actor, description: "The actor accountable."}
+  steps: {range: StepDefinition, multivalued: true, inlined_as_list: true}
+  risk_class: {range: RiskClass}
+  requires_approval: {range: boolean}
+  acceptance: {range: AcceptanceCriterion, multivalued: true, inlined_as_list: true}
+  reversal_window_days: {range: integer, minimum_value: 0}
+  actor_kind: {range: ActorKind, required: true}
+  title: {description: "The actor's job title, as the directory holds it. Policy is written over roles derived from it."}
+  registered:
+    range: boolean
+    description: Whether the actor is known to the registry of agents and identities.
+  actor: {range: Actor, slot_uri: prov:wasAssociatedWith}
+  step: {range: StepDefinition}
+  autonomy_level: {range: AutonomyLevel}
+  evidence_count: {range: integer, minimum_value: 0}
+  accepted_count: {range: integer, minimum_value: 0}
+  lower_bound:
+    range: float
+    minimum_value: 0
+    maximum_value: 1
+    description: Wilson lower bound of the acceptance rate. Promotion compares this, not the raw rate.
+  work_definition: {range: WorkDefinition}
+  requested_by: {range: Actor}
+  on_behalf_of: {range: Actor, slot_uri: prov:actedOnBehalfOf}
+  requested_at: {range: datetime}
+  channel: {description: "Where the request came in, e.g. a chat assistant or a portal."}
+  external_ref: {description: "The record's identifier in the system that holds it, e.g. a ticket number."}
+  request: {range: WorkRequest}
+  started_at: {range: datetime, slot_uri: prov:startedAtTime}
+  ended_at: {range: datetime, slot_uri: prov:endedAtTime}
+  decision: {range: Decision, inlined: true}
+  outcome: {range: Outcome, inlined: true}
+  target_system: {description: "The system acted on."}
+  operation: {description: "What was done, in the target system's terms."}
+  resource: {description: "The thing acted on, in the target system's terms."}
+  at: {range: datetime}
+  source: {description: "The system that reported this."}
+  effect: {range: DecisionEffect, required: true}
+  rule: {description: "The rule that decided."}
+  decided_by: {description: "The system or person that decided."}
+  reason: {description: "Why, in words an operator can read."}
+  status: {range: OutcomeStatus, required: true}
+  decided_at: {range: datetime}
+  kind: {range: WorkEventKind, required: true}
+  task: {range: TaskRecord}
+  via: {description: "The surface an action was taken through, e.g. a chat card."}
+  prev_hash: {description: "Hash of the previous event in the chain."}
+  hash: {description: "Hash of this event and the previous hash."}
+  capability: {range: Capability}
+  from_level: {range: AutonomyLevel}
+  to_level: {range: AutonomyLevel}
+  evidence: {multivalued: true, description: "Identifiers of the records that justify this."}
+  gap_kind: {range: GapKind, required: true}
+  subject: {description: "Identifier of the thing the gap is about."}
+  proposes: {description: "The remedy, in the vocabulary's terms."}
+  work_definitions: {range: WorkDefinition, multivalued: true, inlined_as_list: true}
+  actors: {range: Actor, multivalued: true, inlined_as_list: true}
+  capabilities: {range: Capability, multivalued: true, inlined_as_list: true}
+  requests: {range: WorkRequest, multivalued: true, inlined_as_list: true}
+  tasks: {range: TaskRecord, multivalued: true, inlined_as_list: true}
+  actions: {range: Action, multivalued: true, inlined_as_list: true}
+  events: {range: WorkEvent, multivalued: true, inlined_as_list: true}
+  changes: {range: AutonomyChange, multivalued: true, inlined_as_list: true}
+  gaps: {range: Gap, multivalued: true, inlined_as_list: true}
+  confirmations: {range: Confirmation, multivalued: true, inlined_as_list: true}
+  change_kind: {range: ChangeKind, required: true}
+  confirmation: {range: Confirmation, description: "The person's confirmation a promotion rests on. A demotion has none."}
+  verdict: {range: Verdict, required: true}
+
+enums:
+  WorkMetric:
+    description: >-
+      The measures of work performance (ISA-95 production performance; ISO 22400 in spirit). Each value
+      carries its definition as SQL over the record's tables, so every consumer computes it the same way.
+    permissible_values:
+      first_pass_yield:
+        description: Share of completed tasks accepted without being reversed, reopened or reassigned.
+        annotations: {expression: "AVG(CASE WHEN tasks.outcome_status = 'accepted' THEN 1.0 ELSE 0.0 END)", table: tasks}
+      reversal_rate:
+        description: Share of completed tasks reversed within their window.
+        annotations: {expression: "AVG(CASE WHEN tasks.outcome_status = 'reversed' THEN 1.0 ELSE 0.0 END)", table: tasks}
+      agent_share:
+        description: Share of tasks performed by agents rather than people.
+        annotations: {expression: "AVG(CASE WHEN actors.actor_kind = 'agent' THEN 1.0 ELSE 0.0 END)", table: tasks}
+      orphan_actions:
+        description: Number of observed actions with no request.
+        annotations: {expression: "COALESCE(SUM(CASE WHEN actions.request IS NULL THEN 1 ELSE 0 END), 0)", table: actions}
+      stops:
+        description: Number of steps halted by an authority outside the performer.
+        annotations: {expression: "COALESCE(SUM(CASE WHEN events.kind = 'stopped' THEN 1 ELSE 0 END), 0)", table: events}
+  ActorKind:
+    permissible_values: {person: {}, agent: {}, service_account: {}, system: {}}
+  RiskClass:
+    permissible_values: {low: {}, medium: {}, high: {}}
+  AutonomyLevel:
+    description: The earned autonomy ladder. Promotion follows evidence; demotion is immediate.
+    permissible_values:
+      assist: {description: "Proposes; a person acts."}
+      act_with_checkpoint: {description: "Acts after a person approves."}
+      act: {description: "Acts; a person can review."}
+      act_and_report: {description: "Acts and reports in aggregate."}
+  DecisionEffect:
+    permissible_values: {allow: {}, deny: {}, checkpoint: {}}
+  OutcomeStatus:
+    permissible_values:
+      accepted: {}
+      reversed: {description: "Undone within the reversal window."}
+      reopened: {}
+      reassigned: {}
+      failed: {}
+      abandoned: {}
+  WorkEventKind:
+    permissible_values:
+      requested: {}
+      decided: {}
+      started: {}
+      stopped: {description: "Halted by an authority outside the performer, e.g. security."}
+      approved: {}
+      rejected: {}
+      overridden: {}
+      completed: {}
+      reversed: {}
+      promoted: {}
+      demoted: {}
+  ChangeKind:
+    description: The three things whose change is earned on evidence.
+    permissible_values:
+      repair: {description: "How the work is defined. Proved by replaying history."}
+      declared_policy: {description: "The rules the work runs under. Proved by approval history, out of sample."}
+      autonomy: {description: "Who may act unattended. Proved by outcomes."}
+  Verdict:
+    permissible_values: {approve: {}, reject: {}}
+  GapKind:
+    permissible_values:
+      orphan_action: {description: "An action with no request."}
+      idle_privilege: {description: "A grant no governed task has used."}
+      unregistered_actor: {description: "An actor acting that the registry does not know."}
+      policy_candidate: {description: "An approval that history shows is a formality: a candidate for declared policy."}
+      duplicate_definition: {description: "Several definitions of the same work."}
+      dead_customisation: {description: "A customisation that never runs."}
+      drift: {description: "Grants in an authority system that no request explains."}
+      vocabulary: {description: "Something observed that the vocabulary cannot express; a gap in the standard."}

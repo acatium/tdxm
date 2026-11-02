@@ -1,0 +1,824 @@
+{
+ "plan": [
+  {
+   "id": "03570a9ec618e8796f6f00b7531e03de",
+   "kind": "catalogue_item",
+   "name": "Tableau / data access",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "243bd45b69b849e99ee000770cbe022b",
+   "kind": "catalogue_item",
+   "name": "Data access request - DO NOT USE",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "57ea65f5729b2b613f06d0a5704cbc05",
+   "kind": "catalogue_item",
+   "name": "Analytics platform access",
+   "plan": "declare",
+   "why": "Another entry point to the same data-access work; the platform is a dataset attribute, not a different kind of work.",
+   "usage_180d": 227,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "58ba5b00b85e49cc68ec69c855919867",
+   "kind": "catalogue_item",
+   "name": "Request Power BI dataset access",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "6e3f2f9c6757107be9d5bfa51f006864",
+   "kind": "catalogue_item",
+   "name": "New data access request (2023)",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "793bf7d8b9d23eb6a162dd0727515cd3",
+   "kind": "catalogue_item",
+   "name": "Request access to restricted data",
+   "plan": "declare",
+   "why": "Restricted data is a classification on the dataset, and what differs (security approval) is an ApprovalRule keyed on min_classification. The work is the same.",
+   "usage_180d": 77,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "89f979ae1a83358eff7bd358df2d9576",
+   "kind": "catalogue_item",
+   "name": "Request access to Snowflake",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "8babff98e0dcb7519fc143df049ccbfb",
+   "kind": "catalogue_item",
+   "name": "Access to Credit Risk data mart",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "8ff3aec6bc5847d67a44bb126e7894fa",
+   "kind": "catalogue_item",
+   "name": "Access request: market data",
+   "plan": "declare",
+   "why": "A per-dataset copy of the data-access item for market data; dataset is a request slot, so it folds into contoso:data_access.",
+   "usage_180d": 78,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "933baebb896904781a643b4f32910c32",
+   "kind": "catalogue_item",
+   "name": "Request read access (Finance data)",
+   "plan": "declare",
+   "why": "Defines the same work pre-filled with domain finance and privilege read; both are request or dataset slots, so it folds into contoso:data_access.",
+   "usage_180d": 79,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "958ae1884933a74079793fa019ee4138",
+   "kind": "catalogue_item",
+   "name": "Data access - Loan book",
+   "plan": "declare",
+   "why": "A per-dataset copy of the data-access item for the loan book; dataset is a request slot, so it folds into contoso:data_access.",
+   "usage_180d": 86,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "c44d123966d7463a8d9f297b3e2c9db2",
+   "kind": "catalogue_item",
+   "name": "Databricks workspace access",
+   "plan": "declare",
+   "why": "Defines the data-access work for Databricks; platform is a dataset slot, so it collapses into contoso:data_access.",
+   "usage_180d": 104,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "cd12a56df0a817508928c91363c1d821",
+   "kind": "catalogue_item",
+   "name": "Snowflake access request",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "f48fc7d55a8f6e859406a80444e63fe0",
+   "kind": "catalogue_item",
+   "name": "Data share request",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "defines_the_work",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkDefinition",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "0bd75d7abc30c69e8a76f5af814e89c9",
+   "kind": "custom_field",
+   "name": "sc_req_item.u_approval_level",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "outside_vocabulary",
+   "proposed_by_agent": "keep",
+   "target_term": null,
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "1bf12a1855a00b21187a05bfa590a434",
+   "kind": "custom_field",
+   "name": "sc_req_item.u_chargeback_amount",
+   "plan": "keep",
+   "why": "Holds the monthly charge Finance levies per dataset per cost centre. The vocabulary carries the paying cost_centre on org:ContosoAccessRequest but has no tariff or amount. Missing: a monthly rate on access:Dataset, a privilege multiplier, and a chargeback_amount slot on the Contoso request.",
+   "usage_180d": 651,
+   "meaning": "outside_vocabulary",
+   "proposed_by_agent": "keep",
+   "target_term": null,
+   "replay": {
+    "replayed": 0,
+    "diffs": 0
+   },
+   "status": "kept"
+  },
+  {
+   "id": "972bc91be6e0e724b2e29033179d1799",
+   "kind": "custom_field",
+   "name": "sc_req_item.u_privilege",
+   "plan": "declare",
+   "why": "The field is the privilege slot the access profile already defines; declaring it as required with the Privilege enum replaces a free string.",
+   "usage_180d": 651,
+   "meaning": "business_meaning",
+   "proposed_by_agent": "declare",
+   "target_term": "access:AccessRequest.privilege",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "adb0c7af1c9a84754c1ea7fc91cb46f7",
+   "kind": "custom_field",
+   "name": "sc_req_item.u_legacy_ticket_ref",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "business_meaning",
+   "proposed_by_agent": "declare",
+   "target_term": "work:WorkRequest.external_ref",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "bf2b761c7be119e1a1f2ccc32756855e",
+   "kind": "custom_field",
+   "name": "sc_req_item.u_cost_centre",
+   "plan": "declare",
+   "why": "This is the cost_centre slot Contoso's model already extends AccessRequest with; the format and required-ness come from the companion business rule.",
+   "usage_180d": 651,
+   "meaning": "business_meaning",
+   "proposed_by_agent": "declare",
+   "target_term": "org:ContosoAccessRequest.cost_centre",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "ceda2714c25f71f14f546fa64fd82a7e",
+   "kind": "custom_field",
+   "name": "sc_req_item.u_dataset",
+   "plan": "declare",
+   "why": "The field names the dataset requested, which is the dataset slot of AccessRequest; its twelve string values are the Dataset ids the approval and chargeback rules enumerate.",
+   "usage_180d": 651,
+   "meaning": "business_meaning",
+   "proposed_by_agent": "declare",
+   "target_term": "access:AccessRequest.dataset",
+   "replay": {
+    "replayed": 0,
+    "diffs": 0,
+    "note": "No decision logic; checked by usage only."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "1a2ba59e0efa1abc8a96750d3c582346",
+   "kind": "business_rule",
+   "name": "Require cost centre on data access",
+   "plan": "declare",
+   "why": "The rule is a validation constraint on cost_centre: required, format CC-nnnn. LinkML expresses it as required plus pattern on the Contoso request class, and the schema validator enforces it instead of the script.",
+   "usage_180d": 651,
+   "meaning": "business_meaning",
+   "proposed_by_agent": "declare",
+   "target_term": "org:ContosoAccessRequest.cost_centre",
+   "replay": {
+    "replayed": 0,
+    "diffs": null,
+    "note": "No approval logic in the model, so the replay cannot test its effect. Replaced by the compiled request-fields rule, which enforces cost_centre from the model."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "1adf4963dbbf24829128870552dc88f2",
+   "kind": "business_rule",
+   "name": "Close request item when tasks complete",
+   "plan": "revert_to_base",
+   "why": "Closing a request item once its last task closes is what the platform's request fulfilment flow already does; this copy also calls update() inside an after rule, re-entering the rule chain. The completed event is a WorkEvent of kind completed on the request.",
+   "usage_180d": -1,
+   "meaning": "duplicates_platform",
+   "proposed_by_agent": "revert_to_base",
+   "target_term": "work:WorkEvent",
+   "replay": {
+    "replayed": 0,
+    "diffs": null,
+    "note": "No approval logic in the model, so the replay cannot test its effect."
+   },
+   "status": "held",
+   "held_because": "The replay cannot test it. Usage is unknown, so nothing proves the change safe."
+  },
+  {
+   "id": "4804590adb9ae3c6ccaafe916b38645e",
+   "kind": "business_rule",
+   "name": "Escalate VIP data requests",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "outside_vocabulary",
+   "proposed_by_agent": "keep",
+   "target_term": null,
+   "replay": {
+    "replayed": 0,
+    "diffs": null,
+    "note": "No approval logic in the model, so the replay cannot test its effect."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "5342fd0cf463bf0108a04a732536a706",
+   "kind": "business_rule",
+   "name": "Sync access request to Snowflake (legacy",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "integration_glue",
+   "proposed_by_agent": "replace_with_adapter",
+   "target_term": "access:Grant",
+   "replay": {
+    "replayed": 0,
+    "diffs": null,
+    "note": "No approval logic in the model, so the replay cannot test its effect."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "624e69b410b3dfc1cab03cbfb79008ef",
+   "kind": "business_rule",
+   "name": "Copy dataset into description (2022)",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "duplicates_platform",
+   "proposed_by_agent": "revert_to_base",
+   "target_term": "access:AccessRequest.dataset",
+   "replay": {
+    "replayed": 0,
+    "diffs": null,
+    "note": "No approval logic in the model, so the replay cannot test its effect."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "7484ac5069d1c0419700a00e33166a37",
+   "kind": "business_rule",
+   "name": "Security approval for restricted data",
+   "plan": "declare",
+   "why": "A second approver for a fixed list of sensitive datasets is an ApprovalRule keyed on min_classification restricted, with the list becoming the datasets' classification and the individual becoming a role.",
+   "usage_180d": 61,
+   "meaning": "business_meaning",
+   "proposed_by_agent": "declare",
+   "target_term": "org:ContosoApprovalRule",
+   "replay": {
+    "replayed": 2649,
+    "diffs": 0,
+    "note": "Reproduced by the full model's replay."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "873937971757a9ca284b1898da024ae1",
+   "kind": "business_rule",
+   "name": "Data owner approval",
+   "plan": "declare",
+   "why": "Dataset-owner approval is the profile's approver_kind dataset_owner; the two hand-edited maps are Dataset.domain and Dataset.owner, which the authority systems keep current instead of a script.",
+   "usage_180d": 651,
+   "meaning": "business_meaning",
+   "proposed_by_agent": "declare",
+   "target_term": "org:ContosoApprovalRule",
+   "replay": {
+    "replayed": 2649,
+    "diffs": 0,
+    "note": "Reproduced by the full model's replay."
+   },
+   "status": "approved"
+  },
+  {
+   "id": "e3aeefc1904406b20dadf3bc8e068853",
+   "kind": "business_rule",
+   "name": "Finance year-end approval",
+   "plan": "retire",
+   "why": "No effect in the record in 180 days.",
+   "usage_180d": 0,
+   "meaning": "business_meaning",
+   "proposed_by_agent": "declare",
+   "target_term": "org:ContosoApprovalRule.year_end_close_days",
+   "replay": {
+    "replayed": 2649,
+    "diffs": 9,
+    "examples": [
+     {
+      "request": "RITM1001861",
+      "opened": "2026-03-26T13:55:07+00:00",
+      "dataset": "budget_forecast",
+      "was": [
+       "finance-controller",
+       "owner"
+      ],
+      "model": [
+       "owner"
+      ]
+     },
+     {
+      "request": "RITM1001862",
+      "opened": "2026-03-26T14:34:11+00:00",
+      "dataset": "budget_forecast",
+      "was": [
+       "finance-controller",
+       "owner"
+      ],
+      "model": [
+       "owner"
+      ]
+     },
+     {
+      "request": "RITM1001866",
+      "opened": "2026-03-27T08:21:38+00:00",
+      "dataset": "budget_forecast",
+      "was": [
+       "finance-controller",
+       "owner"
+      ],
+      "model": [
+       "owner"
+      ]
+     },
+     {
+      "request": "RITM1000533",
+      "opened": "2025-03-25T12:04:37+00:00",
+      "dataset": "budget_forecast",
+      "was": [
+       "finance-controller",
+       "owner"
+      ],
+      "model": [
+       "owner"
+      ]
+     },
+     {
+      "request": "RITM1000541",
+      "opened": "2025-03-27T13:45:25+00:00",
+      "dataset": "budget_forecast",
+      "was": [
+       "finance-controller",
+       "owner"
+      ],
+      "model": [
+       "owner"
+      ]
+     }
+    ]
+   },
+   "status": "held",
+   "held_because": "Retiring it changes 9 past decisions: the record shows it still acts, though not in the last 180 days."
+  },
+  {
+   "id": "eb572408ecf8fb4bb2edc498dfa01c44",
+   "kind": "business_rule",
+   "name": "Allocate data access chargeback",
+   "plan": "keep",
+   "why": "Real Contoso practice: Finance bills each cost centre a per-dataset monthly rate (FY2024 tariff), tripled for write or admin. The vocabulary knows the paying cost_centre but has no rate, multiplier or amount. Missing: a monthly_rate on access:Dataset, a privilege multiplier policy, and chargeback_amount on org:ContosoAccessRequest.",
+   "usage_180d": 651,
+   "meaning": "outside_vocabulary",
+   "proposed_by_agent": "keep",
+   "target_term": null,
+   "replay": {
+    "replayed": 0,
+    "diffs": 0
+   },
+   "status": "kept"
+  }
+ ],
+ "replayed": 2649,
+ "full_model_diffs": 0,
+ "full_model_examples": [],
+ "summary": {
+  "retire:approved": 13,
+  "declare:approved": 12,
+  "keep:kept": 2,
+  "revert_to_base:held": 1,
+  "retire:held": 1
+ },
+ "declarations": {
+  "approval_rules": [
+   {
+    "id": "security-approval-restricted",
+    "approver_kind": "role",
+    "approver_role": "security-analyst",
+    "min_classification": "restricted",
+    "description": "Restricted datasets also need approval from a security analyst. Translated from ServiceNow business rule 7484ac5069d1c0419700a00e33166a37."
+   },
+   {
+    "id": "data-owner-approval",
+    "approver_kind": "dataset_owner",
+    "description": "Every data access request needs approval from the dataset's owner. Translated from ServiceNow business rule 873937971757a9ca284b1898da024ae1."
+   },
+   {
+    "id": "finance-year-end-approval",
+    "approver_kind": "role",
+    "approver_role": "finance-controller",
+    "domain": "finance",
+    "year_end_close_days": 10,
+    "description": "During the financial year-end close (22 to 31 March), finance data also needs approval from a finance controller. Translated from ServiceNow business rule e3aeefc1904406b20dadf3bc8e068853."
+   }
+  ],
+  "source_rules": [
+   {
+    "rule": "1a2ba59e0efa1abc8a96750d3c582346",
+    "approval_rule": null,
+    "note": "Not an approval rule. It rejects data access requests unless u_cost_centre matches CC-1234. ContosoAccessRequest.cost_centre already expresses this: it is declared from u_cost_centre and has the pattern ^CC-[0-9]{4}$. Schema validation enforces it, so the script can be retired. One difference to note: the script makes the field mandatory, but the slot is not marked required in the model. To keep that behaviour, mark cost_centre as required on ContosoAccessRequest."
+   },
+   {
+    "rule": "7484ac5069d1c0419700a00e33166a37",
+    "approval_rule": "security-approval-restricted",
+    "note": "The script's hard-coded list (client_master, counterparty_exposure, gl_actuals, payroll) is exactly the set of restricted datasets, so it becomes min_classification: restricted. That way a dataset reclassified to restricted is covered automatically. The script names one person, sys_id 5bb1f05607167c49e249269b9e713986 (una.mensah, the 'security team lead'). Policy is written over roles, so this becomes approver_role security-analyst. As a result, una.mensah, amaya.kim and fay.doyle can all approve, not just una.mensah. If only the lead should approve, that needs a narrower role."
+   },
+   {
+    "rule": "873937971757a9ca284b1898da024ae1",
+    "approval_rule": "data-owner-approval",
+    "note": "The script builds an approver from two hand-maintained maps: dataset to domain, then domain to owner sys_id. Both maps agree with the record today: each dataset's domain and owner match its domain and owner fields. All 12 datasets are mapped, so there is no domain or classification limit. This becomes approver_kind dataset_owner, which reads the owner from the record. The 'updated by hand when owners change' drift risk goes away."
+   },
+   {
+    "rule": "e3aeefc1904406b20dadf3bc8e068853",
+    "approval_rule": "finance-year-end-approval",
+    "note": "The script's list (budget_forecast, gl_actuals) is exactly the finance domain, so it becomes domain: finance. The window is 22 to 31 March inclusive, which is 10 days, so year_end_close_days: 10. The script compares dates in UTC. The hard-coded approver ba7c24798865d7a0e8f81525b07211d3 (una.tanaka) becomes approver_role finance-controller, so olu.lindqvist, max.kim, zane.doyle and una.tanaka can approve. This rule acts only once a year, so its usage data looks dead. Keep it, don't retire it."
+   }
+  ]
+ },
+ "datasets": [
+  {
+   "id": "loan_book",
+   "name": "Loan book",
+   "platform": "snowflake",
+   "classification": "confidential",
+   "domain": "credit",
+   "owner": "yusuf.garcia"
+  },
+  {
+   "id": "credit_risk_mart",
+   "name": "Credit risk mart",
+   "platform": "snowflake",
+   "classification": "confidential",
+   "domain": "credit",
+   "owner": "yusuf.garcia"
+  },
+  {
+   "id": "counterparty_exposure",
+   "name": "Counterparty exposure",
+   "platform": "snowflake",
+   "classification": "restricted",
+   "domain": "credit",
+   "owner": "yusuf.garcia"
+  },
+  {
+   "id": "market_data_eod",
+   "name": "Market data (end of day)",
+   "platform": "databricks",
+   "classification": "internal",
+   "domain": "markets",
+   "owner": "grace.iyer"
+  },
+  {
+   "id": "trade_blotter",
+   "name": "Trade blotter",
+   "platform": "databricks",
+   "classification": "confidential",
+   "domain": "markets",
+   "owner": "grace.iyer"
+  },
+  {
+   "id": "research_notes",
+   "name": "Research notes",
+   "platform": "databricks",
+   "classification": "internal",
+   "domain": "markets",
+   "owner": "grace.iyer"
+  },
+  {
+   "id": "fx_rates",
+   "name": "FX rates",
+   "platform": "snowflake",
+   "classification": "public",
+   "domain": "markets",
+   "owner": "grace.iyer"
+  },
+  {
+   "id": "esg_scores",
+   "name": "ESG scores",
+   "platform": "snowflake",
+   "classification": "public",
+   "domain": "markets",
+   "owner": "grace.iyer"
+  },
+  {
+   "id": "gl_actuals",
+   "name": "General ledger actuals",
+   "platform": "snowflake",
+   "classification": "restricted",
+   "domain": "finance",
+   "owner": "zane.silva"
+  },
+  {
+   "id": "budget_forecast",
+   "name": "Budget forecast",
+   "platform": "snowflake",
+   "classification": "confidential",
+   "domain": "finance",
+   "owner": "zane.silva"
+  },
+  {
+   "id": "client_master",
+   "name": "Client master",
+   "platform": "snowflake",
+   "classification": "restricted",
+   "domain": "operations",
+   "owner": "yara.novak"
+  },
+  {
+   "id": "payroll",
+   "name": "Payroll",
+   "platform": "snowflake",
+   "classification": "restricted",
+   "domain": "hr",
+   "owner": "zane.moreau"
+  }
+ ],
+ "roles": [
+  {
+   "id": "access-administrator",
+   "name": "Access administrator"
+  },
+  {
+   "id": "access-fulfilment-agent",
+   "name": "Access fulfilment agent"
+  },
+  {
+   "id": "contract-analyst",
+   "name": "Contract analyst"
+  },
+  {
+   "id": "credit-analyst",
+   "name": "Credit analyst"
+  },
+  {
+   "id": "data-engineer",
+   "name": "Data engineer"
+  },
+  {
+   "id": "data-owner",
+   "name": "Data owner"
+  },
+  {
+   "id": "finance-controller",
+   "name": "Finance controller"
+  },
+  {
+   "id": "quantitative-researcher",
+   "name": "Quantitative researcher"
+  },
+  {
+   "id": "security-analyst",
+   "name": "Security analyst"
+  }
+ ],
+ "proposal": {
+  "id": "repair:cleanup:dc527e957d83",
+  "change_kind": "repair",
+  "summary": "Clean-up: 25 changes. Approval rules proved against 2,649 past requests; catalogue items and fields decided by usage; 2 approval rules compiled into the platform; held for a person: Close request item when tasks complete, Finance year-end approval. The replay cannot test these, which carry no approval logic: Require cost centre on data access, Escalate VIP data requests, Sync access request to Snowflake (legacy, Copy dataset into description (2022). Read the 3 translation notes: the replay compares roles, not people.",
+  "evidence": {
+   "replayed": 2649,
+   "full_model_diffs": 0,
+   "changes": [
+    "retire catalogue_item 03570a9ec618e8796f6f00b7531e03de",
+    "retire custom_field 0bd75d7abc30c69e8a76f5af814e89c9",
+    "declare business_rule 1a2ba59e0efa1abc8a96750d3c582346",
+    "retire catalogue_item 243bd45b69b849e99ee000770cbe022b",
+    "retire business_rule 4804590adb9ae3c6ccaafe916b38645e",
+    "retire business_rule 5342fd0cf463bf0108a04a732536a706",
+    "declare catalogue_item 57ea65f5729b2b613f06d0a5704cbc05",
+    "retire catalogue_item 58ba5b00b85e49cc68ec69c855919867",
+    "retire business_rule 624e69b410b3dfc1cab03cbfb79008ef",
+    "retire catalogue_item 6e3f2f9c6757107be9d5bfa51f006864",
+    "declare business_rule 7484ac5069d1c0419700a00e33166a37",
+    "declare catalogue_item 793bf7d8b9d23eb6a162dd0727515cd3",
+    "declare business_rule 873937971757a9ca284b1898da024ae1",
+    "retire catalogue_item 89f979ae1a83358eff7bd358df2d9576",
+    "retire catalogue_item 8babff98e0dcb7519fc143df049ccbfb",
+    "declare catalogue_item 8ff3aec6bc5847d67a44bb126e7894fa",
+    "declare catalogue_item 933baebb896904781a643b4f32910c32",
+    "declare catalogue_item 958ae1884933a74079793fa019ee4138",
+    "declare custom_field 972bc91be6e0e724b2e29033179d1799",
+    "retire custom_field adb0c7af1c9a84754c1ea7fc91cb46f7",
+    "declare custom_field bf2b761c7be119e1a1f2ccc32756855e",
+    "declare catalogue_item c44d123966d7463a8d9f297b3e2c9db2",
+    "retire catalogue_item cd12a56df0a817508928c91363c1d821",
+    "declare custom_field ceda2714c25f71f14f546fa64fd82a7e",
+    "retire catalogue_item f48fc7d55a8f6e859406a80444e63fe0"
+   ],
+   "compiled": [
+    "security-approval-restricted",
+    "data-owner-approval"
+   ],
+   "not_testable_by_replay": [
+    "Require cost centre on data access",
+    "Escalate VIP data requests",
+    "Sync access request to Snowflake (legacy",
+    "Copy dataset into description (2022)"
+   ],
+   "translation_notes": [
+    "The script's hard-coded list (client_master, counterparty_exposure, gl_actuals, payroll) is exactly the set of restricted datasets, so it becomes min_classification: restricted. That way a dataset reclassified to restricted is covered automatically. The script names one person, sys_id 5bb1f05607167c49e249269b9e713986 (una.mensah, the 'security team lead'). Policy is written over roles, so this becomes approver_role security-analyst. As a result, una.mensah, amaya.kim and fay.doyle can all approve, not just una.mensah. If only the lead should approve, that needs a narrower role.",
+    "The script builds an approver from two hand-maintained maps: dataset to domain, then domain to owner sys_id. Both maps agree with the record today: each dataset's domain and owner match its domain and owner fields. All 12 datasets are mapped, so there is no domain or classification limit. This becomes approver_kind dataset_owner, which reads the owner from the record. The 'updated by hand when owners change' drift risk goes away.",
+    "The script's list (budget_forecast, gl_actuals) is exactly the finance domain, so it becomes domain: finance. The window is 22 to 31 March inclusive, which is 10 days, so year_end_close_days: 10. The script compares dates in UTC. The hard-coded approver ba7c24798865d7a0e8f81525b07211d3 (una.tanaka) becomes approver_role finance-controller, so olu.lindqvist, max.kim, zane.doyle and una.tanaka can approve. This rule acts only once a year, so its usage data looks dead. Keep it, don't retire it."
+   ]
+  },
+  "verdict": "approve"
+ },
+ "applied": {
+  "applied": true,
+  "compiled": [
+   "Approval rules (compiled from the model)",
+   "Request fields (compiled from the model)"
+  ],
+  "deactivated": 20,
+  "hidden_fields": [
+   "u_approval_level",
+   "u_legacy_ticket_ref"
+  ],
+  "drop_after": "a retention window the data owner sets; not done by the demo",
+  "new_item": "780af595c42e2dd72254210ae85c969a",
+  "variables": [
+   "dataset",
+   "privilege",
+   "justification",
+   "cost_centre",
+   "duration_days"
+  ],
+  "undo": "undo [\"compiled:5eec4d9fc20045a933f2b6ae8a03947c\",\"compiled:395850f56e3f4d5214318db478dfda5f\",\"sys_script:1a2ba59e0efa1abc8a96750d3c582346\",\"sys_script:4804590adb9ae3c6ccaafe916b38645e\",\"sys_script:5342fd0cf463bf0108a04a732536a706\",\"sys_script:624e69b410b3dfc1cab03cbfb79008ef\",\"sys_script:7484ac5069d1c0419700a00e33166a37\",\"sys_script:873937971757a9ca284b1898da024ae1\",\"sc_cat_item:03570a9ec618e8796f6f00b7531e03de\",\"sc_cat_item:243bd45b69b849e99ee000770cbe022b\",\"sc_cat_item:57ea65f5729b2b613f06d0a5704cbc05\",\"sc_cat_item:58ba5b00b85e49cc68ec69c855919867\",\"sc_cat_item:6e3f2f9c6757107be9d5bfa51f006864\",\"sc_cat_item:793bf7d8b9d23eb6a162dd0727515cd3\",\"sc_cat_item:89f979ae1a83358eff7bd358df2d9576\",\"sc_cat_item:8babff98e0dcb7519fc143df049ccbfb\",\"sc_cat_item:8ff3aec6bc5847d67a44bb126e7894fa\",\"sc_cat_item:933baebb896904781a643b4f32910c32\",\"sc_cat_item:958ae1884933a74079793fa019ee4138\",\"sc_cat_item:c44d123966d7463a8d9f297b3e2c9db2\",\"sc_cat_item:cd12a56df0a817508928c91363c1d821\",\"sc_cat_item:f48fc7d55a8f6e859406a80444e63fe0\",\"hidden:u_approval_level\",\"hidden:u_legacy_ticket_ref\"]"
+ }
+}

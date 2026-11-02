@@ -1,0 +1,19 @@
+# mapping_set_id: https://example.org/work/mappings/ocsf
+# mapping_set_description: "The work vocabulary to OCSF 1.9.0. Gaps and stops project to Compliance Finding (class 2003). Object ids are OCSF attribute paths; [] appends to an array. Anything unmapped goes to OCSF's `unmapped` object under its OpenTelemetry attribute name."
+# license: https://www.apache.org/licenses/LICENSE-2.0
+# curie_map:
+#   work: https://example.org/work/
+#   ocsf: https://schema.ocsf.io/1.9.0/
+#   skos: http://www.w3.org/2004/02/skos/core#
+#   semapv: https://w3id.org/semapv/vocab/
+subject_id	predicate_id	object_id	mapping_justification	comment
+work:Gap.id	skos:exactMatch	ocsf:finding_info.uid	semapv:ManualMappingCuration	
+work:Gap.gap_kind	skos:exactMatch	ocsf:finding_info.types[]	semapv:ManualMappingCuration	
+work:Gap.subject	skos:closeMatch	ocsf:resources[].uid	semapv:ManualMappingCuration	The thing the gap is about.
+work:Gap.proposes	skos:exactMatch	ocsf:remediation.desc	semapv:ManualMappingCuration	The remedy, in the vocabulary's terms.
+work:WorkEvent.id	skos:exactMatch	ocsf:finding_info.uid	semapv:ManualMappingCuration	
+work:WorkEvent.at	skos:exactMatch	ocsf:time	semapv:ManualMappingCuration	Epoch milliseconds.
+work:WorkEvent.reason	skos:exactMatch	ocsf:finding_info.desc	semapv:ManualMappingCuration	The same words the operator sees.
+work:WorkEvent.request	skos:exactMatch	ocsf:metadata.correlation_uid	semapv:ManualMappingCuration	The join key across every lens.
+work:WorkEvent.kind	skos:closeMatch	ocsf:finding_info.types[]	semapv:ManualMappingCuration	
+work:Decision.rule	skos:exactMatch	ocsf:compliance.control	semapv:ManualMappingCuration	

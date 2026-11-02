@@ -1,0 +1,1171 @@
+version: 0.2.0.dev0
+name: Work record
+description: The record of governed work, generated from the work vocabulary. Do not edit by hand.
+ai_context:
+  instructions: 'Every table joins on request (the work request id). Autonomy levels are a closed ladder: assist,
+    act_with_checkpoint, act, act_and_report. A promotion compares lower_bound, never a raw rate.'
+datasets:
+- name: roles
+  source: record.main.roles
+  primary_key:
+  - id
+  description: A kind of person or agent, by job. Policy is written over roles, never over individuals.
+  ai_context:
+    instructions: Rows are Role records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: name
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: name
+    datatype: String
+  - name: department
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: department
+    datatype: String
+- name: datasets
+  source: record.main.datasets
+  primary_key:
+  - id
+  description: Data that people and agents ask to use.
+  ai_context:
+    instructions: Rows are Dataset records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: name
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: name
+    datatype: String
+  - name: platform
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: platform
+    datatype: String
+    description: The data platform holding the dataset.
+  - name: classification
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: classification
+    datatype: String
+    ai_context:
+      instructions: 'One of: public, internal, confidential, restricted'
+  - name: domain
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: domain
+    datatype: String
+    description: The business domain accountable for the data.
+  - name: owner
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: owner
+    datatype: String
+    description: The actor accountable.
+- name: grants
+  source: record.main.grants
+  primary_key:
+  - id
+  description: Standing access to a dataset, as held in an authority system.
+  ai_context:
+    instructions: Rows are Grant records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: actor
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: actor
+    datatype: String
+  - name: dataset
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: dataset
+    datatype: String
+  - name: privilege
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: privilege
+    datatype: String
+    ai_context:
+      instructions: 'One of: read, write, admin'
+  - name: held_in
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: held_in
+    datatype: String
+    description: The authority system holding the grant, e.g. Veza or Immuta.
+  - name: granted_at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: granted_at
+    datatype: DateTimeTz
+  - name: request
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: request
+    datatype: String
+  - name: last_used_at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: last_used_at
+    datatype: DateTimeTz
+- name: policies
+  source: record.main.policies
+  primary_key:
+  - id
+  description: Contoso's access policy, as the profile defines it.
+  ai_context:
+    instructions: Rows are ContosoAccessPolicy records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: description
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: description
+    datatype: String
+  - name: role
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: role
+    datatype: String
+  - name: domain
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: domain
+    datatype: String
+    description: The business domain accountable for the data.
+  - name: max_classification
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: max_classification
+    datatype: String
+    ai_context:
+      instructions: 'One of: public, internal, confidential, restricted'
+  - name: privilege
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: privilege
+    datatype: String
+    ai_context:
+      instructions: 'One of: read, write, admin'
+  - name: effect
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: effect
+    datatype: String
+    ai_context:
+      instructions: 'One of: allow, deny, checkpoint'
+  - name: requires_approval
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: requires_approval
+    datatype: Boolean
+- name: approval_rules
+  source: record.main.approval_rules
+  primary_key:
+  - id
+  description: Contoso's approval rule. Can be limited to the financial year-end close, when finance data needs
+    a second approver. That rule used to live in a platform script and acts once a year, which is why usage data
+    alone says it is dead.
+  ai_context:
+    instructions: Rows are ContosoApprovalRule records of the work vocabulary.
+  fields:
+  - name: year_end_close_days
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: year_end_close_days
+    datatype: Integer
+    description: If set, the rule applies only this many days before the financial year end (31 March).
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: description
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: description
+    datatype: String
+  - name: approver_kind
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: approver_kind
+    datatype: String
+    ai_context:
+      instructions: 'One of: dataset_owner, role'
+  - name: approver_role
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: approver_role
+    datatype: String
+    description: 'When approver_kind is role: which role approves.'
+  - name: min_classification
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: min_classification
+    datatype: String
+    description: Applies to datasets at or above this classification.
+    ai_context:
+      instructions: 'One of: public, internal, confidential, restricted'
+  - name: domain
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: domain
+    datatype: String
+    description: The business domain accountable for the data.
+- name: customisations
+  source: record.main.customisations
+  primary_key:
+  - id
+  description: Something a customer added to the platform instead of to the model. Retired, reverted, declared into
+    the customer's model, replaced by an adapter, or kept with a reason.
+  ai_context:
+    instructions: Rows are Customisation records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: name
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: name
+    datatype: String
+  - name: customisation_kind
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: customisation_kind
+    datatype: String
+    ai_context:
+      instructions: 'One of: catalogue_item, business_rule, client_script, custom_field, approval_rule'
+  - name: host_table
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: host_table
+    datatype: String
+    description: The platform table the customisation acts on.
+  - name: executions_180d
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: executions_180d
+    datatype: Integer
+  - name: last_executed_at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: last_executed_at
+    datatype: DateTimeTz
+  - name: plan
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: plan
+    datatype: String
+    ai_context:
+      instructions: 'One of: retire, revert_to_base, declare, replace_with_adapter, keep'
+  - name: plan_reason
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: plan_reason
+    datatype: String
+- name: work_definitions
+  source: record.main.work_definitions
+  primary_key:
+  - id
+  description: A kind of work the organisation does, as a sequence of steps.
+  ai_context:
+    instructions: Rows are WorkDefinition records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: name
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: name
+    datatype: String
+  - name: description
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: description
+    datatype: String
+  - name: steps
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: steps
+    datatype: Opaque
+  - name: owner
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: owner
+    datatype: String
+    description: The actor accountable.
+- name: actors
+  source: record.main.actors
+  primary_key:
+  - id
+  description: A person, agent, service account or system that can take part in work.
+  ai_context:
+    instructions: Rows are Actor records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: name
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: name
+    datatype: String
+  - name: actor_kind
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: actor_kind
+    datatype: String
+    ai_context:
+      instructions: 'One of: person, agent, service_account, system'
+  - name: registered
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: registered
+    datatype: Boolean
+    description: Whether the actor is known to the registry of agents and identities.
+  - name: owner
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: owner
+    datatype: String
+    description: The actor accountable.
+  - name: title
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: title
+    datatype: String
+    description: The actor's job title, as the directory holds it. Policy is written over roles derived from it.
+- name: capabilities
+  source: record.main.capabilities
+  primary_key:
+  - id
+  description: 'An actor''s standing to perform a step: the autonomy level it holds now and the evidence behind
+    it. Permission comes from the authority systems; proven ability comes from outcomes in the record.'
+  ai_context:
+    instructions: Rows are Capability records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: actor
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: actor
+    datatype: String
+  - name: step
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: step
+    datatype: String
+  - name: autonomy_level
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: autonomy_level
+    datatype: String
+    ai_context:
+      instructions: 'One of: assist, act_with_checkpoint, act, act_and_report'
+  - name: evidence_count
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: evidence_count
+    datatype: Integer
+  - name: accepted_count
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: accepted_count
+    datatype: Integer
+  - name: lower_bound
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: lower_bound
+    datatype: Float
+    description: Wilson lower bound of the acceptance rate. Promotion compares this, not the raw rate.
+- name: requests
+  source: record.main.requests
+  primary_key:
+  - id
+  description: An access request at Contoso, which carries the cost centre that pays for the platform usage.
+  ai_context:
+    instructions: Rows are ContosoAccessRequest records of the work vocabulary.
+  fields:
+  - name: cost_centre
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: cost_centre
+    datatype: String
+    description: Declared from the platform's custom field u_cost_centre.
+  - name: dataset
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: dataset
+    datatype: String
+  - name: privilege
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: privilege
+    datatype: String
+    ai_context:
+      instructions: 'One of: read, write, admin'
+  - name: justification
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: justification
+    datatype: String
+  - name: duration_days
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: duration_days
+    datatype: Integer
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: work_definition
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: work_definition
+    datatype: String
+  - name: requested_by
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: requested_by
+    datatype: String
+  - name: on_behalf_of
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: on_behalf_of
+    datatype: String
+  - name: requested_at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: requested_at
+    datatype: DateTimeTz
+  - name: channel
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: channel
+    datatype: String
+    description: Where the request came in, e.g. a chat assistant or a portal.
+  - name: external_ref
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: external_ref
+    datatype: String
+    description: The record's identifier in the system that holds it, e.g. a ticket number.
+- name: tasks
+  source: record.main.tasks
+  primary_key:
+  - id
+  description: 'One step performed under a request. A task with no request is not a task: it is an orphan action,
+    and fails validation by construction.'
+  ai_context:
+    instructions: Rows are TaskRecord records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: request
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: request
+    datatype: String
+  - name: step
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: step
+    datatype: String
+  - name: actor
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: actor
+    datatype: String
+  - name: on_behalf_of
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: on_behalf_of
+    datatype: String
+  - name: autonomy_level
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: autonomy_level
+    datatype: String
+    ai_context:
+      instructions: 'One of: assist, act_with_checkpoint, act, act_and_report'
+  - name: started_at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: started_at
+    datatype: DateTimeTz
+  - name: ended_at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: ended_at
+    datatype: DateTimeTz
+  - name: decision_effect
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: decision_effect
+    datatype: String
+    ai_context:
+      instructions: 'One of: allow, deny, checkpoint'
+  - name: decision_rule
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: decision_rule
+    datatype: String
+    description: The rule that decided.
+  - name: decision_decided_by
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: decision_decided_by
+    datatype: String
+    description: The system or person that decided.
+  - name: decision_reason
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: decision_reason
+    datatype: String
+    description: Why, in words an operator can read.
+  - name: outcome_status
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: outcome_status
+    datatype: String
+    ai_context:
+      instructions: 'One of: accepted, reversed, reopened, reassigned, failed, abandoned'
+  - name: outcome_decided_at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: outcome_decided_at
+    datatype: DateTimeTz
+  - name: outcome_decided_by
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: outcome_decided_by
+    datatype: String
+    description: The system or person that decided.
+  - name: external_ref
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: external_ref
+    datatype: String
+    description: The record's identifier in the system that holds it, e.g. a ticket number.
+- name: actions
+  source: record.main.actions
+  primary_key:
+  - id
+  description: Something an actor did to a system, as observed in telemetry. Governed actions belong to a request;
+    an action without one is the first kind of gap.
+  ai_context:
+    instructions: Rows are Action records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: actor
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: actor
+    datatype: String
+  - name: target_system
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: target_system
+    datatype: String
+    description: The system acted on.
+  - name: operation
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: operation
+    datatype: String
+    description: What was done, in the target system's terms.
+  - name: resource
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: resource
+    datatype: String
+    description: The thing acted on, in the target system's terms.
+  - name: at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: at
+    datatype: DateTimeTz
+  - name: request
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: request
+    datatype: String
+  - name: source
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: source
+    datatype: String
+    description: The system that reported this.
+- name: events
+  source: record.main.events
+  primary_key:
+  - id
+  description: 'Something that happened to a request or a task. The one record every lens projects from: security
+    (OCSF), operations (OpenTelemetry), analytics and agents (Ossie), and chat. Events are hash-chained.'
+  ai_context:
+    instructions: Rows are WorkEvent records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: kind
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: kind
+    datatype: String
+    ai_context:
+      instructions: 'One of: requested, decided, started, stopped, approved, rejected, overridden, completed, reversed,
+        promoted, demoted'
+  - name: at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: at
+    datatype: DateTimeTz
+  - name: request
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: request
+    datatype: String
+  - name: task
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: task
+    datatype: String
+  - name: actor
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: actor
+    datatype: String
+  - name: reason
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: reason
+    datatype: String
+    description: Why, in words an operator can read.
+  - name: source
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: source
+    datatype: String
+    description: The system that reported this.
+  - name: via
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: via
+    datatype: String
+    description: The surface an action was taken through, e.g. a chat card.
+  - name: prev_hash
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: prev_hash
+    datatype: String
+    description: Hash of the previous event in the chain.
+  - name: hash
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: hash
+    datatype: String
+    description: Hash of this event and the previous hash.
+- name: changes
+  source: record.main.changes
+  primary_key:
+  - id
+  description: A promotion or demotion of a capability, with the evidence that justified it.
+  ai_context:
+    instructions: Rows are AutonomyChange records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: capability
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: capability
+    datatype: String
+  - name: from_level
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: from_level
+    datatype: String
+    ai_context:
+      instructions: 'One of: assist, act_with_checkpoint, act, act_and_report'
+  - name: to_level
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: to_level
+    datatype: String
+    ai_context:
+      instructions: 'One of: assist, act_with_checkpoint, act, act_and_report'
+  - name: at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: at
+    datatype: DateTimeTz
+  - name: reason
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: reason
+    datatype: String
+    description: Why, in words an operator can read.
+  - name: evidence
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: evidence
+    datatype: Opaque
+    description: Identifiers of the records that justify this.
+  - name: confirmation
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: confirmation
+    datatype: String
+    description: The person's confirmation a promotion rests on. A demotion has none.
+- name: gaps
+  source: record.main.gaps
+  primary_key:
+  - id
+  description: Something observed that does not fit the vocabulary, or fits with a required part missing. A gap
+    is written in the same terms as its remedy.
+  ai_context:
+    instructions: Rows are Gap records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: gap_kind
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: gap_kind
+    datatype: String
+    ai_context:
+      instructions: 'One of: orphan_action, idle_privilege, unregistered_actor, policy_candidate, duplicate_definition,
+        dead_customisation, drift, vocabulary'
+  - name: subject
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: subject
+    datatype: String
+    description: Identifier of the thing the gap is about.
+  - name: evidence
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: evidence
+    datatype: Opaque
+    description: Identifiers of the records that justify this.
+  - name: proposes
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: proposes
+    datatype: String
+    description: The remedy, in the vocabulary's terms.
+- name: confirmations
+  source: record.main.confirmations
+  primary_key:
+  - id
+  description: 'A person''s decision on a proposed change: a repair, a declared policy or an autonomy promotion.
+    Nothing proposed is applied without one. Bound to the proposal''s content by a digest in its id, so a changed
+    proposal needs a new confirmation. In a deployment, written by a person; a demo may write labelled stand-ins.'
+  ai_context:
+    instructions: Rows are Confirmation records of the work vocabulary.
+  fields:
+  - name: id
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: id
+    datatype: String
+  - name: change_kind
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: change_kind
+    datatype: String
+    ai_context:
+      instructions: 'One of: repair, declared_policy, autonomy'
+  - name: verdict
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: verdict
+    datatype: String
+    ai_context:
+      instructions: 'One of: approve, reject'
+  - name: decided_by
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: decided_by
+    datatype: String
+    description: The system or person that decided.
+  - name: decided_at
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: decided_at
+    datatype: DateTimeTz
+  - name: reason
+    expression:
+      dialects:
+      - dialect: ANSI_SQL
+        expression: reason
+    datatype: String
+    description: Why, in words an operator can read.
+relationships:
+- name: datasets_owner
+  from: datasets
+  to: actors
+  from_columns:
+  - owner
+  to_columns:
+  - id
+- name: grants_actor
+  from: grants
+  to: actors
+  from_columns:
+  - actor
+  to_columns:
+  - id
+- name: grants_dataset
+  from: grants
+  to: datasets
+  from_columns:
+  - dataset
+  to_columns:
+  - id
+- name: grants_request
+  from: grants
+  to: requests
+  from_columns:
+  - request
+  to_columns:
+  - id
+- name: policies_role
+  from: policies
+  to: roles
+  from_columns:
+  - role
+  to_columns:
+  - id
+- name: approval_rules_approver_role
+  from: approval_rules
+  to: roles
+  from_columns:
+  - approver_role
+  to_columns:
+  - id
+- name: work_definitions_owner
+  from: work_definitions
+  to: actors
+  from_columns:
+  - owner
+  to_columns:
+  - id
+- name: actors_owner
+  from: actors
+  to: actors
+  from_columns:
+  - owner
+  to_columns:
+  - id
+- name: capabilities_actor
+  from: capabilities
+  to: actors
+  from_columns:
+  - actor
+  to_columns:
+  - id
+- name: requests_dataset
+  from: requests
+  to: datasets
+  from_columns:
+  - dataset
+  to_columns:
+  - id
+- name: requests_work_definition
+  from: requests
+  to: work_definitions
+  from_columns:
+  - work_definition
+  to_columns:
+  - id
+- name: requests_requested_by
+  from: requests
+  to: actors
+  from_columns:
+  - requested_by
+  to_columns:
+  - id
+- name: requests_on_behalf_of
+  from: requests
+  to: actors
+  from_columns:
+  - on_behalf_of
+  to_columns:
+  - id
+- name: tasks_request
+  from: tasks
+  to: requests
+  from_columns:
+  - request
+  to_columns:
+  - id
+- name: tasks_actor
+  from: tasks
+  to: actors
+  from_columns:
+  - actor
+  to_columns:
+  - id
+- name: tasks_on_behalf_of
+  from: tasks
+  to: actors
+  from_columns:
+  - on_behalf_of
+  to_columns:
+  - id
+- name: actions_actor
+  from: actions
+  to: actors
+  from_columns:
+  - actor
+  to_columns:
+  - id
+- name: actions_request
+  from: actions
+  to: requests
+  from_columns:
+  - request
+  to_columns:
+  - id
+- name: events_request
+  from: events
+  to: requests
+  from_columns:
+  - request
+  to_columns:
+  - id
+- name: events_task
+  from: events
+  to: tasks
+  from_columns:
+  - task
+  to_columns:
+  - id
+- name: events_actor
+  from: events
+  to: actors
+  from_columns:
+  - actor
+  to_columns:
+  - id
+- name: changes_capability
+  from: changes
+  to: capabilities
+  from_columns:
+  - capability
+  to_columns:
+  - id
+- name: changes_confirmation
+  from: changes
+  to: confirmations
+  from_columns:
+  - confirmation
+  to_columns:
+  - id
+metrics:
+- name: first_pass_yield
+  description: Share of completed tasks accepted without being reversed, reopened or reassigned.
+  datatype: Decimal
+  expression:
+    dialects:
+    - dialect: ANSI_SQL
+      expression: AVG(CASE WHEN tasks.outcome_status = 'accepted' THEN 1.0 ELSE 0.0 END)
+- name: reversal_rate
+  description: Share of completed tasks reversed within their window.
+  datatype: Decimal
+  expression:
+    dialects:
+    - dialect: ANSI_SQL
+      expression: AVG(CASE WHEN tasks.outcome_status = 'reversed' THEN 1.0 ELSE 0.0 END)
+- name: agent_share
+  description: Share of tasks performed by agents rather than people.
+  datatype: Decimal
+  expression:
+    dialects:
+    - dialect: ANSI_SQL
+      expression: AVG(CASE WHEN actors.actor_kind = 'agent' THEN 1.0 ELSE 0.0 END)
+- name: orphan_actions
+  description: Number of observed actions with no request.
+  datatype: Decimal
+  expression:
+    dialects:
+    - dialect: ANSI_SQL
+      expression: COALESCE(SUM(CASE WHEN actions.request IS NULL THEN 1 ELSE 0 END), 0)
+- name: stops
+  description: Number of steps halted by an authority outside the performer.
+  datatype: Decimal
+  expression:
+    dialects:
+    - dialect: ANSI_SQL
+      expression: COALESCE(SUM(CASE WHEN events.kind = 'stopped' THEN 1 ELSE 0 END), 0)

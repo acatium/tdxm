@@ -1,0 +1,1990 @@
+{
+    "$defs": {
+        "AcceptanceCriterion": {
+            "additionalProperties": false,
+            "description": "How an outcome of a step is judged right. Judged after the reversal window closes.",
+            "properties": {
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "reversal_window_days": {
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "AcceptanceCriterion",
+            "type": "object"
+        },
+        "AccessPolicy": {
+            "additionalProperties": false,
+            "description": "Access declared once, by role and classification, and compiled into the authority systems. When a declared policy covers a request, the request need not exist.",
+            "properties": {
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "domain": {
+                    "description": "The business domain accountable for the data.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effect": {
+                    "$ref": "#/$defs/DecisionEffect"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "max_classification": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Classification"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "privilege": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Privilege"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "requires_approval": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "role": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "effect"
+            ],
+            "title": "AccessPolicy",
+            "type": "object"
+        },
+        "AccessRecord": {
+            "additionalProperties": false,
+            "description": "The record, with the access profile.",
+            "properties": {
+                "actions": {
+                    "items": {
+                        "$ref": "#/$defs/Action"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "actors": {
+                    "items": {
+                        "$ref": "#/$defs/Actor"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "approval_rules": {
+                    "items": {
+                        "$ref": "#/$defs/ApprovalRule"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "capabilities": {
+                    "items": {
+                        "$ref": "#/$defs/Capability"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "changes": {
+                    "items": {
+                        "$ref": "#/$defs/AutonomyChange"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "confirmations": {
+                    "items": {
+                        "$ref": "#/$defs/Confirmation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "customisations": {
+                    "items": {
+                        "$ref": "#/$defs/Customisation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "datasets": {
+                    "items": {
+                        "$ref": "#/$defs/Dataset"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "events": {
+                    "items": {
+                        "$ref": "#/$defs/WorkEvent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gaps": {
+                    "items": {
+                        "$ref": "#/$defs/Gap"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "grants": {
+                    "items": {
+                        "$ref": "#/$defs/Grant"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "policies": {
+                    "items": {
+                        "$ref": "#/$defs/AccessPolicy"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "requests": {
+                    "items": {
+                        "$ref": "#/$defs/WorkRequest"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "roles": {
+                    "items": {
+                        "$ref": "#/$defs/Role"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "tasks": {
+                    "items": {
+                        "$ref": "#/$defs/TaskRecord"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "work_definitions": {
+                    "items": {
+                        "$ref": "#/$defs/WorkDefinition"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "title": "AccessRecord",
+            "type": "object"
+        },
+        "AccessRequest": {
+            "additionalProperties": false,
+            "description": "A request to use a dataset.",
+            "properties": {
+                "channel": {
+                    "description": "Where the request came in, e.g. a chat assistant or a portal.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "dataset": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "duration_days": {
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "external_ref": {
+                    "description": "The record's identifier in the system that holds it, e.g. a ticket number.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "justification": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "on_behalf_of": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "privilege": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Privilege"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "requested_at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "requested_by": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "work_definition": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "AccessRequest",
+            "type": "object"
+        },
+        "Action": {
+            "additionalProperties": false,
+            "description": "Something an actor did to a system, as observed in telemetry. Governed actions belong to a request; an action without one is the first kind of gap.",
+            "properties": {
+                "actor": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "operation": {
+                    "description": "What was done, in the target system's terms.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "request": {
+                    "type": "string"
+                },
+                "resource": {
+                    "description": "The thing acted on, in the target system's terms.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "source": {
+                    "description": "The system that reported this.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "target_system": {
+                    "description": "The system acted on.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "request"
+            ],
+            "title": "Action",
+            "type": "object"
+        },
+        "Actor": {
+            "additionalProperties": false,
+            "description": "A person, agent, service account or system that can take part in work.",
+            "properties": {
+                "actor_kind": {
+                    "$ref": "#/$defs/ActorKind"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "owner": {
+                    "description": "The actor accountable.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "registered": {
+                    "description": "Whether the actor is known to the registry of agents and identities.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The actor's job title, as the directory holds it. Policy is written over roles derived from it.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "actor_kind"
+            ],
+            "title": "Actor",
+            "type": "object"
+        },
+        "ActorKind": {
+            "description": "",
+            "enum": [
+                "person",
+                "agent",
+                "service_account",
+                "system"
+            ],
+            "title": "ActorKind",
+            "type": "string"
+        },
+        "ApprovalRule": {
+            "additionalProperties": false,
+            "description": "Who must approve a request, and when. Declared once, compiled into the platform that holds the requests, and checked by the replay against what the platform actually did.",
+            "properties": {
+                "approver_kind": {
+                    "$ref": "#/$defs/ApproverKind"
+                },
+                "approver_role": {
+                    "description": "When approver_kind is role: which role approves.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "domain": {
+                    "description": "The business domain accountable for the data.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "min_classification": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Classification"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Applies to datasets at or above this classification."
+                }
+            },
+            "required": [
+                "id",
+                "approver_kind"
+            ],
+            "title": "ApprovalRule",
+            "type": "object"
+        },
+        "ApproverKind": {
+            "description": "",
+            "enum": [
+                "dataset_owner",
+                "role"
+            ],
+            "title": "ApproverKind",
+            "type": "string"
+        },
+        "AutonomyChange": {
+            "additionalProperties": false,
+            "description": "A promotion or demotion of a capability, with the evidence that justified it.",
+            "properties": {
+                "at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "capability": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "confirmation": {
+                    "description": "The person's confirmation a promotion rests on. A demotion has none.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence": {
+                    "description": "Identifiers of the records that justify this.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "from_level": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AutonomyLevel"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "reason": {
+                    "description": "Why, in words an operator can read.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "to_level": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AutonomyLevel"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "AutonomyChange",
+            "type": "object"
+        },
+        "AutonomyLevel": {
+            "description": "The earned autonomy ladder. Promotion follows evidence; demotion is immediate.",
+            "enum": [
+                "assist",
+                "act_with_checkpoint",
+                "act",
+                "act_and_report"
+            ],
+            "title": "AutonomyLevel",
+            "type": "string"
+        },
+        "Capability": {
+            "additionalProperties": false,
+            "description": "An actor's standing to perform a step: the autonomy level it holds now and the evidence behind it. Permission comes from the authority systems; proven ability comes from outcomes in the record.",
+            "properties": {
+                "accepted_count": {
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "actor": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "autonomy_level": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AutonomyLevel"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "evidence_count": {
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "lower_bound": {
+                    "description": "Wilson lower bound of the acceptance rate. Promotion compares this, not the raw rate.",
+                    "maximum": 1,
+                    "minimum": 0,
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "step": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Capability",
+            "type": "object"
+        },
+        "ChangeKind": {
+            "description": "The three things whose change is earned on evidence.",
+            "enum": [
+                "repair",
+                "declared_policy",
+                "autonomy"
+            ],
+            "title": "ChangeKind",
+            "type": "string"
+        },
+        "Classification": {
+            "description": "Ordered from least to most sensitive.",
+            "enum": [
+                "public",
+                "internal",
+                "confidential",
+                "restricted"
+            ],
+            "title": "Classification",
+            "type": "string"
+        },
+        "CleanupPlan": {
+            "description": "",
+            "enum": [
+                "retire",
+                "revert_to_base",
+                "declare",
+                "replace_with_adapter",
+                "keep"
+            ],
+            "title": "CleanupPlan",
+            "type": "string"
+        },
+        "Confirmation": {
+            "additionalProperties": false,
+            "description": "A person's decision on a proposed change: a repair, a declared policy or an autonomy promotion. Nothing proposed is applied without one. Bound to the proposal's content by a digest in its id, so a changed proposal needs a new confirmation. In a deployment, written by a person; a demo may write labelled stand-ins.",
+            "properties": {
+                "change_kind": {
+                    "$ref": "#/$defs/ChangeKind"
+                },
+                "decided_at": {
+                    "format": "date-time",
+                    "type": "string"
+                },
+                "decided_by": {
+                    "description": "The system or person that decided.",
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "reason": {
+                    "description": "Why, in words an operator can read.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "verdict": {
+                    "$ref": "#/$defs/Verdict"
+                }
+            },
+            "required": [
+                "id",
+                "change_kind",
+                "verdict",
+                "decided_by",
+                "decided_at"
+            ],
+            "title": "Confirmation",
+            "type": "object"
+        },
+        "ContosoAccessPolicy": {
+            "additionalProperties": false,
+            "description": "Contoso's access policy, as the profile defines it.",
+            "properties": {
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "domain": {
+                    "description": "The business domain accountable for the data.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effect": {
+                    "$ref": "#/$defs/DecisionEffect"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "max_classification": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Classification"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "privilege": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Privilege"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "requires_approval": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "role": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "effect"
+            ],
+            "title": "ContosoAccessPolicy",
+            "type": "object"
+        },
+        "ContosoAccessRequest": {
+            "additionalProperties": false,
+            "description": "An access request at Contoso, which carries the cost centre that pays for the platform usage.",
+            "properties": {
+                "channel": {
+                    "description": "Where the request came in, e.g. a chat assistant or a portal.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "cost_centre": {
+                    "description": "Declared from the platform's custom field u_cost_centre.",
+                    "pattern": "^CC-[0-9]{4}$",
+                    "type": "string"
+                },
+                "dataset": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "duration_days": {
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "external_ref": {
+                    "description": "The record's identifier in the system that holds it, e.g. a ticket number.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "justification": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "on_behalf_of": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "privilege": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Privilege"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "requested_at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "requested_by": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "work_definition": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "cost_centre",
+                "id"
+            ],
+            "title": "ContosoAccessRequest",
+            "type": "object"
+        },
+        "ContosoApprovalRule": {
+            "additionalProperties": false,
+            "description": "Contoso's approval rule. Can be limited to the financial year-end close, when finance data needs a second approver. That rule used to live in a platform script and acts once a year, which is why usage data alone says it is dead.",
+            "properties": {
+                "approver_kind": {
+                    "$ref": "#/$defs/ApproverKind"
+                },
+                "approver_role": {
+                    "description": "When approver_kind is role: which role approves.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "domain": {
+                    "description": "The business domain accountable for the data.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "min_classification": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Classification"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "Applies to datasets at or above this classification."
+                },
+                "year_end_close_days": {
+                    "description": "If set, the rule applies only this many days before the financial year end (31 March).",
+                    "maximum": 31,
+                    "minimum": 1,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "approver_kind"
+            ],
+            "title": "ContosoApprovalRule",
+            "type": "object"
+        },
+        "ContosoRecord": {
+            "additionalProperties": false,
+            "description": "Contoso's record. Requests and policies are Contoso's own extensions of the profile's classes.",
+            "properties": {
+                "actions": {
+                    "items": {
+                        "$ref": "#/$defs/Action"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "actors": {
+                    "items": {
+                        "$ref": "#/$defs/Actor"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "approval_rules": {
+                    "items": {
+                        "$ref": "#/$defs/ContosoApprovalRule"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "capabilities": {
+                    "items": {
+                        "$ref": "#/$defs/Capability"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "changes": {
+                    "items": {
+                        "$ref": "#/$defs/AutonomyChange"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "confirmations": {
+                    "items": {
+                        "$ref": "#/$defs/Confirmation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "customisations": {
+                    "items": {
+                        "$ref": "#/$defs/Customisation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "datasets": {
+                    "items": {
+                        "$ref": "#/$defs/Dataset"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "events": {
+                    "items": {
+                        "$ref": "#/$defs/WorkEvent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gaps": {
+                    "items": {
+                        "$ref": "#/$defs/Gap"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "grants": {
+                    "items": {
+                        "$ref": "#/$defs/Grant"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "policies": {
+                    "items": {
+                        "$ref": "#/$defs/ContosoAccessPolicy"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "requests": {
+                    "items": {
+                        "$ref": "#/$defs/ContosoAccessRequest"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "roles": {
+                    "items": {
+                        "$ref": "#/$defs/Role"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "tasks": {
+                    "items": {
+                        "$ref": "#/$defs/TaskRecord"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "work_definitions": {
+                    "items": {
+                        "$ref": "#/$defs/WorkDefinition"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "title": "ContosoRecord",
+            "type": "object"
+        },
+        "Customisation": {
+            "additionalProperties": false,
+            "description": "Something a customer added to the platform instead of to the model. Retired, reverted, declared into the customer's model, replaced by an adapter, or kept with a reason.",
+            "properties": {
+                "customisation_kind": {
+                    "$ref": "#/$defs/CustomisationKind"
+                },
+                "executions_180d": {
+                    "minimum": 0,
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "host_table": {
+                    "description": "The platform table the customisation acts on.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "last_executed_at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "plan": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/CleanupPlan"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "plan_reason": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "customisation_kind"
+            ],
+            "title": "Customisation",
+            "type": "object"
+        },
+        "CustomisationKind": {
+            "description": "",
+            "enum": [
+                "catalogue_item",
+                "business_rule",
+                "client_script",
+                "custom_field",
+                "approval_rule"
+            ],
+            "title": "CustomisationKind",
+            "type": "string"
+        },
+        "Dataset": {
+            "additionalProperties": false,
+            "description": "Data that people and agents ask to use.",
+            "properties": {
+                "classification": {
+                    "$ref": "#/$defs/Classification"
+                },
+                "domain": {
+                    "description": "The business domain accountable for the data.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "owner": {
+                    "description": "The actor accountable.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "platform": {
+                    "description": "The data platform holding the dataset.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "classification"
+            ],
+            "title": "Dataset",
+            "type": "object"
+        },
+        "Decision": {
+            "additionalProperties": false,
+            "description": "An authority decision on a step, taken outside the model that proposed the action.",
+            "properties": {
+                "decided_by": {
+                    "description": "The system or person that decided.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effect": {
+                    "$ref": "#/$defs/DecisionEffect"
+                },
+                "reason": {
+                    "description": "Why, in words an operator can read.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "rule": {
+                    "description": "The rule that decided.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "effect"
+            ],
+            "title": "Decision",
+            "type": "object"
+        },
+        "DecisionEffect": {
+            "description": "",
+            "enum": [
+                "allow",
+                "deny",
+                "checkpoint"
+            ],
+            "title": "DecisionEffect",
+            "type": "string"
+        },
+        "Gap": {
+            "additionalProperties": false,
+            "description": "Something observed that does not fit the vocabulary, or fits with a required part missing. A gap is written in the same terms as its remedy.",
+            "properties": {
+                "evidence": {
+                    "description": "Identifiers of the records that justify this.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gap_kind": {
+                    "$ref": "#/$defs/GapKind"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "proposes": {
+                    "description": "The remedy, in the vocabulary's terms.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "subject": {
+                    "description": "Identifier of the thing the gap is about.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "gap_kind"
+            ],
+            "title": "Gap",
+            "type": "object"
+        },
+        "GapKind": {
+            "description": "",
+            "enum": [
+                "orphan_action",
+                "idle_privilege",
+                "unregistered_actor",
+                "policy_candidate",
+                "duplicate_definition",
+                "dead_customisation",
+                "drift",
+                "vocabulary"
+            ],
+            "title": "GapKind",
+            "type": "string"
+        },
+        "Grant": {
+            "additionalProperties": false,
+            "description": "Standing access to a dataset, as held in an authority system.",
+            "properties": {
+                "actor": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "dataset": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "granted_at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "held_in": {
+                    "description": "The authority system holding the grant, e.g. Veza or Immuta.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "last_used_at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "privilege": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Privilege"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "request": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Grant",
+            "type": "object"
+        },
+        "Outcome": {
+            "additionalProperties": false,
+            "description": "How a step turned out, judged against its acceptance criteria.",
+            "properties": {
+                "decided_at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "decided_by": {
+                    "description": "The system or person that decided.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "status": {
+                    "$ref": "#/$defs/OutcomeStatus"
+                }
+            },
+            "required": [
+                "status"
+            ],
+            "title": "Outcome",
+            "type": "object"
+        },
+        "OutcomeStatus": {
+            "description": "",
+            "enum": [
+                "accepted",
+                "reversed",
+                "reopened",
+                "reassigned",
+                "failed",
+                "abandoned"
+            ],
+            "title": "OutcomeStatus",
+            "type": "string"
+        },
+        "Privilege": {
+            "description": "",
+            "enum": [
+                "read",
+                "write",
+                "admin"
+            ],
+            "title": "Privilege",
+            "type": "string"
+        },
+        "Record": {
+            "additionalProperties": false,
+            "description": "A container for exchanging the record.",
+            "properties": {
+                "actions": {
+                    "items": {
+                        "$ref": "#/$defs/Action"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "actors": {
+                    "items": {
+                        "$ref": "#/$defs/Actor"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "capabilities": {
+                    "items": {
+                        "$ref": "#/$defs/Capability"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "changes": {
+                    "items": {
+                        "$ref": "#/$defs/AutonomyChange"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "confirmations": {
+                    "items": {
+                        "$ref": "#/$defs/Confirmation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "events": {
+                    "items": {
+                        "$ref": "#/$defs/WorkEvent"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gaps": {
+                    "items": {
+                        "$ref": "#/$defs/Gap"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "requests": {
+                    "items": {
+                        "$ref": "#/$defs/WorkRequest"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "tasks": {
+                    "items": {
+                        "$ref": "#/$defs/TaskRecord"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "work_definitions": {
+                    "items": {
+                        "$ref": "#/$defs/WorkDefinition"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "title": "Record",
+            "type": "object"
+        },
+        "RiskClass": {
+            "description": "",
+            "enum": [
+                "low",
+                "medium",
+                "high"
+            ],
+            "title": "RiskClass",
+            "type": "string"
+        },
+        "Role": {
+            "additionalProperties": false,
+            "description": "A kind of person or agent, by job. Policy is written over roles, never over individuals.",
+            "properties": {
+                "department": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "Role",
+            "type": "object"
+        },
+        "StepDefinition": {
+            "additionalProperties": false,
+            "description": "One step of a kind of work. Autonomy is earned per step, not per agent.",
+            "properties": {
+                "acceptance": {
+                    "items": {
+                        "$ref": "#/$defs/AcceptanceCriterion"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "requires_approval": {
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "risk_class": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/RiskClass"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "StepDefinition",
+            "type": "object"
+        },
+        "TaskRecord": {
+            "additionalProperties": false,
+            "description": "One step performed under a request. A task with no request is not a task: it is an orphan action, and fails validation by construction.",
+            "properties": {
+                "actor": {
+                    "type": "string"
+                },
+                "autonomy_level": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AutonomyLevel"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "decision": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Decision"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "ended_at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_ref": {
+                    "description": "The record's identifier in the system that holds it, e.g. a ticket number.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "on_behalf_of": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "outcome": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/Outcome"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "request": {
+                    "type": "string"
+                },
+                "started_at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "step": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "request",
+                "step",
+                "actor"
+            ],
+            "title": "TaskRecord",
+            "type": "object"
+        },
+        "Verdict": {
+            "description": "",
+            "enum": [
+                "approve",
+                "reject"
+            ],
+            "title": "Verdict",
+            "type": "string"
+        },
+        "WorkDefinition": {
+            "additionalProperties": false,
+            "description": "A kind of work the organisation does, as a sequence of steps.",
+            "properties": {
+                "description": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "owner": {
+                    "description": "The actor accountable.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "steps": {
+                    "items": {
+                        "$ref": "#/$defs/StepDefinition"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "WorkDefinition",
+            "type": "object"
+        },
+        "WorkEvent": {
+            "additionalProperties": false,
+            "description": "Something that happened to a request or a task. The one record every lens projects from: security (OCSF), operations (OpenTelemetry), analytics and agents (Ossie), and chat. Events are hash-chained.",
+            "properties": {
+                "actor": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "hash": {
+                    "description": "Hash of this event and the previous hash.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "kind": {
+                    "$ref": "#/$defs/WorkEventKind"
+                },
+                "prev_hash": {
+                    "description": "Hash of the previous event in the chain.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "reason": {
+                    "description": "Why, in words an operator can read.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "request": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "source": {
+                    "description": "The system that reported this.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "task": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "via": {
+                    "description": "The surface an action was taken through, e.g. a chat card.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "kind"
+            ],
+            "title": "WorkEvent",
+            "type": "object"
+        },
+        "WorkEventKind": {
+            "description": "",
+            "enum": [
+                "requested",
+                "decided",
+                "started",
+                "stopped",
+                "approved",
+                "rejected",
+                "overridden",
+                "completed",
+                "reversed",
+                "promoted",
+                "demoted"
+            ],
+            "title": "WorkEventKind",
+            "type": "string"
+        },
+        "WorkMetric": {
+            "description": "The measures of work performance (ISA-95 production performance; ISO 22400 in spirit). Each value carries its definition as SQL over the record's tables, so every consumer computes it the same way.",
+            "enum": [
+                "first_pass_yield",
+                "reversal_rate",
+                "agent_share",
+                "orphan_actions",
+                "stops"
+            ],
+            "title": "WorkMetric",
+            "type": "string"
+        },
+        "WorkRequest": {
+            "additionalProperties": false,
+            "description": "A request for a kind of work, from a person or an agent, on someone's behalf.",
+            "properties": {
+                "channel": {
+                    "description": "Where the request came in, e.g. a chat assistant or a portal.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "external_ref": {
+                    "description": "The record's identifier in the system that holds it, e.g. a ticket number.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "type": "string"
+                },
+                "on_behalf_of": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "requested_at": {
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "requested_by": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "work_definition": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id"
+            ],
+            "title": "WorkRequest",
+            "type": "object"
+        }
+    },
+    "$id": "https://example.org/contoso",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": false,
+    "description": "A container for exchanging the record.",
+    "metamodel_version": "1.12.0",
+    "properties": {
+        "actions": {
+            "items": {
+                "$ref": "#/$defs/Action"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "actors": {
+            "items": {
+                "$ref": "#/$defs/Actor"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "capabilities": {
+            "items": {
+                "$ref": "#/$defs/Capability"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "changes": {
+            "items": {
+                "$ref": "#/$defs/AutonomyChange"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "confirmations": {
+            "items": {
+                "$ref": "#/$defs/Confirmation"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "events": {
+            "items": {
+                "$ref": "#/$defs/WorkEvent"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "gaps": {
+            "items": {
+                "$ref": "#/$defs/Gap"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "requests": {
+            "items": {
+                "$ref": "#/$defs/WorkRequest"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "tasks": {
+            "items": {
+                "$ref": "#/$defs/TaskRecord"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "work_definitions": {
+            "items": {
+                "$ref": "#/$defs/WorkDefinition"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        }
+    },
+    "title": "contoso",
+    "type": "object",
+    "version": "0.1.0"
+}
+

@@ -1,0 +1,13 @@
+# mapping_set_id: https://example.org/work/mappings/armis
+# mapping_set_description: "The work vocabulary to Armis asset search (POST /v3/assets/_search). Object ids are response paths as documented in Armis's developer guide (Extracting device information). Armis sees the host an agent runs on, not the agent's identity, so the actor mappings are close, not exact."
+# license: https://www.apache.org/licenses/LICENSE-2.0
+# curie_map:
+#   work: https://example.org/work/
+#   armis: https://example.org/armis/v3/
+#   skos: http://www.w3.org/2004/02/skos/core#
+#   semapv: https://w3id.org/semapv/vocab/
+subject_id	predicate_id	object_id	mapping_justification	comment
+work:Actor.id	skos:closeMatch	armis:fields.device_id	semapv:ManualMappingCuration	https://dev.armis.com/docs/extracting-device-information
+work:Actor.name	skos:closeMatch	armis:fields.display	semapv:ManualMappingCuration	https://dev.armis.com/docs/extracting-device-information
+work:Actor.registered	skos:relatedMatch	armis:fields.tags	semapv:ManualMappingCuration	Registered agents carry the registry's tag; an unregistered actor lacks it.
+work:Action.at	skos:relatedMatch	armis:fields.last_seen	semapv:ManualMappingCuration	https://dev.armis.com/docs/extracting-device-information

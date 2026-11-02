@@ -1,0 +1,53 @@
+{
+ "gaps": {
+  "orphan_action": 2,
+  "unregistered_actor": 1,
+  "idle_privilege": 93,
+  "drift": 10,
+  "dead_customisation": 3,
+  "vocabulary": 2,
+  "policy_candidate": 6
+ },
+ "customisation_gaps": [
+  {
+   "kind": "dead_customisation",
+   "name": "sc_req_item.u_approval_level",
+   "subject": "0bd75d7abc30c69e8a76f5af814e89c9"
+  },
+  {
+   "kind": "dead_customisation",
+   "name": "sc_req_item.u_legacy_ticket_ref",
+   "subject": "adb0c7af1c9a84754c1ea7fc91cb46f7"
+  },
+  {
+   "kind": "dead_customisation",
+   "name": "Finance year-end approval",
+   "subject": "e3aeefc1904406b20dadf3bc8e068853"
+  },
+  {
+   "kind": "vocabulary",
+   "name": "sc_req_item.u_chargeback_amount",
+   "subject": "1bf12a1855a00b21187a05bfa590a434"
+  },
+  {
+   "kind": "vocabulary",
+   "name": "Allocate data access chargeback",
+   "subject": "eb572408ecf8fb4bb2edc498dfa01c44"
+  }
+ ],
+ "active_items": [],
+ "generated_item": "780af595c42e2dd72254210ae85c969a",
+ "active_rules": [
+  "Close request item when tasks complete",
+  "Finance year-end approval",
+  "Allocate data access chargeback"
+ ],
+ "fields": [
+  "u_approval_level",
+  "u_chargeback_amount",
+  "u_privilege",
+  "u_legacy_ticket_ref",
+  "u_cost_centre",
+  "u_dataset"
+ ]
+}

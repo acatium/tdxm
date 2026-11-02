@@ -1,0 +1,16 @@
+{
+ "mapping_rows": {
+  "ServiceNow": 29,
+  "Veza": 8,
+  "Armis": 4,
+  "Moveworks": 6
+ },
+ "read_through_mappings": [
+  "ServiceNow",
+  "Veza"
+ ],
+ "checked_not_used": [
+  "Armis",
+  "Moveworks"
+ ]
+}

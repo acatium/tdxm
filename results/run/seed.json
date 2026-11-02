@@ -1,0 +1,28 @@
+{
+ "expected": {
+  "sys_script": 9,
+  "sys_user": 52,
+  "sc_category": 1,
+  "sc_cat_item": 14,
+  "sc_req_item": 2649,
+  "sysapproval_approver": 3340,
+  "sc_task": 2528
+ },
+ "found": {
+  "sys_script": 9,
+  "sys_user": 52,
+  "sc_category": 1,
+  "sc_cat_item": 14,
+  "sc_req_item": 2649,
+  "sysapproval_approver": 3340,
+  "sc_task": 2528
+ },
+ "fields": {
+  "u_cost_centre": true,
+  "u_dataset": true,
+  "u_privilege": true,
+  "u_approval_level": true,
+  "u_legacy_ticket_ref": true,
+  "u_chargeback_amount": true
+ }
+}

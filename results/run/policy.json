@@ -1,0 +1,225 @@
+{
+ "bar": {
+  "lower_bound": 0.95,
+  "min_requests": 73,
+  "cap": "confidential"
+ },
+ "derived_from": "requests before 2025-11-01T00:00:00Z",
+ "measured_on": "requests from 2025-11-01T00:00:00Z",
+ "derived": [
+  {
+   "id": "pol-credit-analyst-credit-read",
+   "max_classification": "confidential"
+  },
+  {
+   "id": "pol-quantitative-researcher-markets-read",
+   "max_classification": "internal"
+  }
+ ],
+ "measured": {
+  "avoidable": {
+   "requests_approved": 1248,
+   "covered": 400,
+   "share": 0.321,
+   "covered_but_rejected": 1
+  },
+  "answer_key": {
+   "requests_approved": 1248,
+   "covered": 637,
+   "share": 0.51
+  },
+  "granted_beyond_key": 0
+ },
+ "proposals": [
+  {
+   "id": "declared_policy:pol-credit-analyst-credit-read:f4e41fc36539",
+   "summary": "credit-analyst may read credit data up to confidential: every approver approved 224 of 224 such requests (each classification's lower bound >= 0.95). Measured on the year after: the proposed policies together cover 400 of 1248 approved requests, and 1 that a person rejected.",
+   "verdict": "approve"
+  },
+  {
+   "id": "declared_policy:pol-quantitative-researcher-markets-read:4d82b94ef17c",
+   "summary": "quantitative-researcher may read markets data up to internal: every approver approved 184 of 184 such requests (each classification's lower bound >= 0.95). Measured on the year after: the proposed policies together cover 400 of 1248 approved requests, and 1 that a person rejected.",
+   "verdict": "approve"
+  }
+ ],
+ "confirmed": [
+  {
+   "id": "pol-credit-analyst-credit-read",
+   "role": "credit-analyst",
+   "domain": "credit",
+   "max_classification": "confidential",
+   "privilege": "read",
+   "effect": "allow",
+   "requires_approval": false,
+   "description": "credit-analyst may read credit data up to confidential: every approver approved 224 of 224 such requests (each classification's lower bound >= 0.95)."
+  },
+  {
+   "id": "pol-quantitative-researcher-markets-read",
+   "role": "quantitative-researcher",
+   "domain": "markets",
+   "max_classification": "internal",
+   "privilege": "read",
+   "effect": "allow",
+   "requires_approval": false,
+   "description": "quantitative-researcher may read markets data up to internal: every approver approved 184 of 184 such requests (each classification's lower bound >= 0.95)."
+  }
+ ],
+ "policy_errors": [],
+ "immuta": [
+  {
+   "policyKey": "pol-credit-analyst-credit-read-public",
+   "name": "pol-credit-analyst-credit-read (public)",
+   "type": "subscription",
+   "actions": {
+    "type": "entitlements",
+    "accessGrant": "READ",
+    "automaticSubscription": true,
+    "allowDiscovery": true,
+    "description": "credit-analyst may read credit data up to confidential: every approver approved 224 of 224 such requests (each classification's lower bound >= 0.95).",
+    "entitlements": {
+     "operator": "any",
+     "groups": [
+      "credit-analyst"
+     ]
+    }
+   },
+   "circumstanceOperator": "all",
+   "circumstances": [
+    {
+     "type": "tags",
+     "tag": "Contoso.Domain.credit"
+    },
+    {
+     "type": "tags",
+     "tag": "Contoso.Classification.public"
+    }
+   ],
+   "staged": true
+  },
+  {
+   "policyKey": "pol-credit-analyst-credit-read-internal",
+   "name": "pol-credit-analyst-credit-read (internal)",
+   "type": "subscription",
+   "actions": {
+    "type": "entitlements",
+    "accessGrant": "READ",
+    "automaticSubscription": true,
+    "allowDiscovery": true,
+    "description": "credit-analyst may read credit data up to confidential: every approver approved 224 of 224 such requests (each classification's lower bound >= 0.95).",
+    "entitlements": {
+     "operator": "any",
+     "groups": [
+      "credit-analyst"
+     ]
+    }
+   },
+   "circumstanceOperator": "all",
+   "circumstances": [
+    {
+     "type": "tags",
+     "tag": "Contoso.Domain.credit"
+    },
+    {
+     "type": "tags",
+     "tag": "Contoso.Classification.internal"
+    }
+   ],
+   "staged": true
+  },
+  {
+   "policyKey": "pol-credit-analyst-credit-read-confidential",
+   "name": "pol-credit-analyst-credit-read (confidential)",
+   "type": "subscription",
+   "actions": {
+    "type": "entitlements",
+    "accessGrant": "READ",
+    "automaticSubscription": true,
+    "allowDiscovery": true,
+    "description": "credit-analyst may read credit data up to confidential: every approver approved 224 of 224 such requests (each classification's lower bound >= 0.95).",
+    "entitlements": {
+     "operator": "any",
+     "groups": [
+      "credit-analyst"
+     ]
+    }
+   },
+   "circumstanceOperator": "all",
+   "circumstances": [
+    {
+     "type": "tags",
+     "tag": "Contoso.Domain.credit"
+    },
+    {
+     "type": "tags",
+     "tag": "Contoso.Classification.confidential"
+    }
+   ],
+   "staged": true
+  },
+  {
+   "policyKey": "pol-quantitative-researcher-markets-read-public",
+   "name": "pol-quantitative-researcher-markets-read (public)",
+   "type": "subscription",
+   "actions": {
+    "type": "entitlements",
+    "accessGrant": "READ",
+    "automaticSubscription": true,
+    "allowDiscovery": true,
+    "description": "quantitative-researcher may read markets data up to internal: every approver approved 184 of 184 such requests (each classification's lower bound >= 0.95).",
+    "entitlements": {
+     "operator": "any",
+     "groups": [
+      "quantitative-researcher"
+     ]
+    }
+   },
+   "circumstanceOperator": "all",
+   "circumstances": [
+    {
+     "type": "tags",
+     "tag": "Contoso.Domain.markets"
+    },
+    {
+     "type": "tags",
+     "tag": "Contoso.Classification.public"
+    }
+   ],
+   "staged": true
+  },
+  {
+   "policyKey": "pol-quantitative-researcher-markets-read-internal",
+   "name": "pol-quantitative-researcher-markets-read (internal)",
+   "type": "subscription",
+   "actions": {
+    "type": "entitlements",
+    "accessGrant": "READ",
+    "automaticSubscription": true,
+    "allowDiscovery": true,
+    "description": "quantitative-researcher may read markets data up to internal: every approver approved 184 of 184 such requests (each classification's lower bound >= 0.95).",
+    "entitlements": {
+     "operator": "any",
+     "groups": [
+      "quantitative-researcher"
+     ]
+    }
+   },
+   "circumstanceOperator": "all",
+   "circumstances": [
+    {
+     "type": "tags",
+     "tag": "Contoso.Domain.markets"
+    },
+    {
+     "type": "tags",
+     "tag": "Contoso.Classification.internal"
+    }
+   ],
+   "staged": true
+  }
+ ],
+ "immuta_errors": [],
+ "veza_roles": {
+  "databricks": 1,
+  "snowflake": 2
+ }
+}

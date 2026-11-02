@@ -1,0 +1,18 @@
+# mapping_set_id: https://example.org/work/mappings/veza
+# mapping_set_description: "The work vocabulary to Veza's Open Authorization API (OAA) custom application template. Object ids are payload paths as produced by Veza's own SDK (oaaclient 1.2.1); a test builds a payload with the SDK and checks every path exists."
+# license: https://www.apache.org/licenses/LICENSE-2.0
+# curie_map:
+#   work: https://example.org/work/
+#   access: https://example.org/work/access/
+#   veza: https://example.org/veza/oaa/
+#   skos: http://www.w3.org/2004/02/skos/core#
+#   semapv: https://w3id.org/semapv/vocab/
+subject_id	predicate_id	object_id	mapping_justification	comment
+work:Actor.id	skos:exactMatch	veza:applications.local_users.name	semapv:ManualMappingCuration	People.
+work:Actor.id	skos:exactMatch	veza:applications.local_agents.id	semapv:ManualMappingCuration	Agents have a native place in OAA.
+work:Actor.name	skos:exactMatch	veza:applications.local_agents.name	semapv:ManualMappingCuration	
+work:Actor.owner	skos:exactMatch	veza:applications.local_agents.owners	semapv:ManualMappingCuration	
+access:Dataset.id	skos:exactMatch	veza:applications.resources.name	semapv:ManualMappingCuration	resource_type dataset.
+access:Grant.actor	skos:exactMatch	veza:identity_to_permissions.identity	semapv:ManualMappingCuration	
+access:Grant.dataset	skos:exactMatch	veza:identity_to_permissions.application_permissions.resources	semapv:ManualMappingCuration	
+access:Grant.privilege	skos:exactMatch	veza:identity_to_permissions.application_permissions.permission	semapv:ManualMappingCuration	read -> DataRead; write -> DataWrite; admin -> NonData.

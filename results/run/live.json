@@ -1,0 +1,495 @@
+{
+ "declared_policy": {
+  "request": {
+   "id": "mw-a08cc021",
+   "requested_by": "bo.walsh",
+   "on_behalf_of": "bo.walsh",
+   "requested_at": "2026-11-02T02:49:17Z",
+   "channel": "moveworks",
+   "dataset": "market_data_eod",
+   "privilege": "read",
+   "justification": "Back-testing a pricing model",
+   "cost_centre": "CC-4120",
+   "work_definition": "wd-data-access"
+  },
+  "decision": {
+   "effect": "allow",
+   "rule": "declared_policy",
+   "decided_by": "gate",
+   "reason": "Covered by declared access policy; no approval needed."
+  },
+  "ticket_created": false
+ },
+ "request": {
+  "number": "RITM0010309",
+  "ritm": "e9629ba5839c1b1009867e95eeaad371",
+  "task": "SCTASK0010040"
+ },
+ "stop": {
+  "soc_ocsf": {
+   "class_uid": 2003,
+   "category_uid": 2,
+   "activity_id": 1,
+   "type_uid": 200301,
+   "time": 1793587761000,
+   "severity_id": 4,
+   "metadata": {
+    "version": "1.9.0",
+    "product": {
+     "name": "Work record",
+     "vendor_name": "shopfloor (concept demo)"
+    },
+    "correlation_uid": "RITM0010309"
+   },
+   "finding_info": {
+    "title": "Work stopped",
+    "uid": "ev-011",
+    "desc": "bo.walsh's workstation failed device posture (Armis risk: high). Hold restricted grants until it is remediated.",
+    "types": [
+     "stopped"
+    ]
+   },
+   "compliance": {
+    "status_id": 3,
+    "control": "device-posture"
+   },
+   "unmapped": {
+    "work.task.id": "SCTASK0010040",
+    "work.actor.id": "soc",
+    "work.event.source": "soc",
+    "work.decision.effect": "deny",
+    "work.decision.decided_by": "soc",
+    "work.decision.reason": "bo.walsh's workstation failed device posture (Armis risk: high). Hold restricted grants until it is remediated."
+   }
+  },
+  "operator_card": {
+   "surface": "moveworks",
+   "title": "Work stopped: RITM0010309",
+   "text": "bo.walsh's workstation failed device posture (Armis risk: high). Hold restricted grants until it is remediated.",
+   "rule": "device-posture",
+   "decided_by": "soc",
+   "actions": [
+    {
+     "label": "Ask security",
+     "value": "ask_security"
+    },
+    {
+     "label": "Notify requester",
+     "value": "notify_requester"
+    }
+   ],
+   "context": {
+    "work.request.id": "RITM0010309",
+    "event": "ev-011"
+   }
+  },
+  "rendered_from_one_decision": true,
+  "ocsf_errors": 0
+ },
+ "ledger": {
+  "changes": [
+   {
+    "id": "chg-cap-svc.access.agent-st-provision-0-act_with_checkpoint",
+    "capability": "cap-svc.access.agent-st-provision",
+    "from_level": "assist",
+    "to_level": "act_with_checkpoint",
+    "at": "2026-11-02T02:49:17Z",
+    "reason": "1086 of 1113 accepted; lower bound 0.965 >= 0.95.",
+    "evidence": [
+     "SCTASK1002626",
+     "SCTASK1002627",
+     "SCTASK1002630",
+     "SCTASK1002633",
+     "SCTASK1002629",
+     "SCTASK1002632",
+     "SCTASK1002631",
+     "SCTASK1002634",
+     "SCTASK1002628",
+     "SCTASK1002636",
+     "SCTASK1002637",
+     "SCTASK1002635",
+     "SCTASK1002638",
+     "SCTASK1002641",
+     "SCTASK1002643",
+     "SCTASK1002642",
+     "SCTASK1002646",
+     "SCTASK1002649",
+     "SCTASK1002645",
+     "SCTASK1002647"
+    ],
+    "confirmation": "autonomy:cap-svc.access.agent-st-provision:act_with_checkpoint:d7ca6ef880c6"
+   },
+   {
+    "id": "chg-cap-svc.access.agent-st-provision-breach-assist-2026-11-02T02:49:21Z",
+    "capability": "cap-svc.access.agent-st-provision",
+    "from_level": "act_with_checkpoint",
+    "to_level": "assist",
+    "at": "2026-11-02T02:49:21Z",
+    "reason": "Breach: SCTASK0010040 reversed: the grant was revoked within its window by the data owner. Demoted at once; evidence resets.",
+    "evidence": [
+     "SCTASK0010040 reversed: the grant was revoked within its window by the data owner"
+    ]
+   }
+  ],
+  "capability": {
+   "id": "cap-svc.access.agent-st-provision",
+   "actor": "svc.access.agent",
+   "step": "st-provision",
+   "autonomy_level": "assist",
+   "evidence_count": 0,
+   "accepted_count": 0,
+   "lower_bound": 0.0
+  }
+ },
+ "chain": {
+  "events": 18,
+  "anchor": "5e0cfc9447fdc9c794dbde40ae54b99c2125061c37f8cc43e9429eb90a0bf0d5",
+  "anchor_on_instance": "5e0cfc9447fdc9c794dbde40ae54b99c2125061c37f8cc43e9429eb90a0bf0d5",
+  "verify": [],
+  "verify_rebuilt_without_anchor": [],
+  "verify_rebuilt_against_anchor": [
+   "anchor"
+  ]
+ },
+ "platform_approvals": {
+  "approvals_created": 4,
+  "roles": [
+   "owner",
+   "security-analyst"
+  ],
+  "matches_gate": true
+ },
+ "open_promotion": null,
+ "otel": {
+  "spans": 3,
+  "violations": []
+ },
+ "record_conforms": [],
+ "events": [
+  {
+   "id": "ev-001",
+   "kind": "promoted",
+   "at": "2026-11-02T02:49:17Z",
+   "request": null,
+   "actor": "svc.access.agent",
+   "reason": "1086 of 1113 accepted; lower bound 0.965 >= 0.95. Confirmed: autonomy:cap-svc.access.agent-st-provision:act_with_checkpoint:d7ca6ef880c6.",
+   "source": "ledger",
+   "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+   "hash": "2970bd9fd89acde7d24ae1b289baf55cdf9751a4df59896d0bbbeb8cd20f53d3"
+  },
+  {
+   "id": "ev-002",
+   "kind": "requested",
+   "at": "2026-11-02T02:49:17Z",
+   "request": "mw-a08cc021",
+   "actor": "bo.walsh",
+   "source": "moveworks",
+   "via": "chat",
+   "prev_hash": "2970bd9fd89acde7d24ae1b289baf55cdf9751a4df59896d0bbbeb8cd20f53d3",
+   "hash": "c6dee0b0aa098317e76c0b23d0ff14071926754e2695f7a4466ef9a1e04767c2"
+  },
+  {
+   "id": "ev-003",
+   "kind": "decided",
+   "at": "2026-11-02T02:49:17Z",
+   "request": "mw-a08cc021",
+   "actor": "svc.access.agent",
+   "reason": "Covered by declared access policy; no approval needed.",
+   "source": "gate",
+   "prev_hash": "c6dee0b0aa098317e76c0b23d0ff14071926754e2695f7a4466ef9a1e04767c2",
+   "hash": "fe882c13c7c8bc9ed5cabf72b211cbef8e6b1c9a5ce1df06e006f8ff30b1cbc3"
+  },
+  {
+   "id": "ev-004",
+   "kind": "requested",
+   "at": "2026-11-02T02:49:19Z",
+   "request": "RITM0010309",
+   "actor": "bo.walsh",
+   "source": "moveworks",
+   "via": "chat",
+   "prev_hash": "fe882c13c7c8bc9ed5cabf72b211cbef8e6b1c9a5ce1df06e006f8ff30b1cbc3",
+   "hash": "01b9ce27902d3699d891acd4474fe0087316e52af6d0e802d346f528989a309e"
+  },
+  {
+   "id": "ev-005",
+   "kind": "decided",
+   "at": "2026-11-02T02:49:19Z",
+   "request": "RITM0010309",
+   "actor": "svc.access.agent",
+   "reason": "Waiting for approval from: owner, security-analyst.",
+   "source": "gate",
+   "prev_hash": "01b9ce27902d3699d891acd4474fe0087316e52af6d0e802d346f528989a309e",
+   "hash": "7497f020f2fb869c4462120990575d994d72f0bde952b66a902e51dc7cf311c9"
+  },
+  {
+   "id": "ev-006",
+   "kind": "decided",
+   "at": "2026-11-02T02:49:19Z",
+   "request": "RITM0010309",
+   "actor": "yara.novak",
+   "reason": "Approval requested from owner by the platform.",
+   "source": "servicenow",
+   "prev_hash": "7497f020f2fb869c4462120990575d994d72f0bde952b66a902e51dc7cf311c9",
+   "hash": "0bd2150378d984b06bdac9fed2347d8fd19c2d0982deeacff25e4f28a4962218"
+  },
+  {
+   "id": "ev-007",
+   "kind": "approved",
+   "at": "2026-11-02T02:49:19Z",
+   "request": "RITM0010309",
+   "actor": "yara.novak",
+   "reason": "Approved in chat (script (stands in for a person)).",
+   "source": "script (stands in for a person)",
+   "via": "chat",
+   "prev_hash": "0bd2150378d984b06bdac9fed2347d8fd19c2d0982deeacff25e4f28a4962218",
+   "hash": "1a4c7fc1a55d118936adf46aefd971bb859c4864d54f96070f747e29ce945705"
+  },
+  {
+   "id": "ev-008",
+   "kind": "decided",
+   "at": "2026-11-02T02:49:19Z",
+   "request": "RITM0010309",
+   "actor": "fay.doyle",
+   "reason": "Approval requested from security-analyst by the platform.",
+   "source": "servicenow",
+   "prev_hash": "1a4c7fc1a55d118936adf46aefd971bb859c4864d54f96070f747e29ce945705",
+   "hash": "5e10a966c339f881f81a8aea0066a7e8686ec20ca5f70941a819c838b348553c"
+  },
+  {
+   "id": "ev-009",
+   "kind": "approved",
+   "at": "2026-11-02T02:49:20Z",
+   "request": "RITM0010309",
+   "actor": "fay.doyle",
+   "reason": "Approved in chat (script (stands in for a person)).",
+   "source": "script (stands in for a person)",
+   "via": "chat",
+   "prev_hash": "5e10a966c339f881f81a8aea0066a7e8686ec20ca5f70941a819c838b348553c",
+   "hash": "58c9c5c898b1f47609f1835f238c6dafc7ea2433679698a84b87e549921d3260"
+  },
+  {
+   "id": "ev-010",
+   "kind": "decided",
+   "at": "2026-11-02T02:49:20Z",
+   "request": "RITM0010309",
+   "actor": "svc.access.agent",
+   "reason": "All required approvals given.",
+   "source": "gate",
+   "prev_hash": "58c9c5c898b1f47609f1835f238c6dafc7ea2433679698a84b87e549921d3260",
+   "hash": "d66343ff25e5c41d78764056dc9c387c83fd47ecbb50bf26bbd0e0460b41b13d"
+  },
+  {
+   "id": "ev-011",
+   "kind": "stopped",
+   "at": "2026-11-02T02:49:21Z",
+   "request": "RITM0010309",
+   "task": "SCTASK0010040",
+   "actor": "soc",
+   "reason": "bo.walsh's workstation failed device posture (Armis risk: high). Hold restricted grants until it is remediated.",
+   "source": "soc",
+   "prev_hash": "d66343ff25e5c41d78764056dc9c387c83fd47ecbb50bf26bbd0e0460b41b13d",
+   "hash": "56bb98236154076b8c55f68cb5b2175cce02373ea6257adf8732a7260bca8f37"
+  },
+  {
+   "id": "ev-012",
+   "kind": "approved",
+   "at": "2026-11-02T02:49:21Z",
+   "request": "RITM0010309",
+   "task": "SCTASK0010040",
+   "actor": "soc",
+   "reason": "Device remediated; hold cleared (script (stands in for a person)).",
+   "source": "script (stands in for a person)",
+   "prev_hash": "56bb98236154076b8c55f68cb5b2175cce02373ea6257adf8732a7260bca8f37",
+   "hash": "4b75bd9da3bf9f7ac72be24c9d674d822a11046ef1053cc9d27516e35d908781"
+  },
+  {
+   "id": "ev-013",
+   "kind": "decided",
+   "at": "2026-11-02T02:49:21Z",
+   "request": "RITM0010309",
+   "task": "SCTASK0010040",
+   "actor": "svc.access.agent",
+   "reason": "Autonomy is act with checkpoint: a person approves first.",
+   "source": "gate",
+   "prev_hash": "4b75bd9da3bf9f7ac72be24c9d674d822a11046ef1053cc9d27516e35d908781",
+   "hash": "3a371d25e92e00bd8d8508345fc78d7ac6b7db5f15015b6aabfa2fa965448641"
+  },
+  {
+   "id": "ev-014",
+   "kind": "approved",
+   "at": "2026-11-02T02:49:21Z",
+   "request": "RITM0010309",
+   "task": "SCTASK0010040",
+   "actor": "max.iyer",
+   "reason": "Provisioning approved at the checkpoint (script (stands in for a person)).",
+   "source": "script (stands in for a person)",
+   "via": "chat",
+   "prev_hash": "3a371d25e92e00bd8d8508345fc78d7ac6b7db5f15015b6aabfa2fa965448641",
+   "hash": "770f2454c3676b623b0b89f7fe6065d92c5cc91301119aee887c4bdd68916d69"
+  },
+  {
+   "id": "ev-015",
+   "kind": "started",
+   "at": "2026-11-02T02:49:21Z",
+   "request": "RITM0010309",
+   "task": "SCTASK0010040",
+   "actor": "svc.access.agent",
+   "source": "servicenow",
+   "prev_hash": "770f2454c3676b623b0b89f7fe6065d92c5cc91301119aee887c4bdd68916d69",
+   "hash": "4a7947c4ac738be05a054423f0fa14721df3b2b6854326eadca892bf34e4d7ec"
+  },
+  {
+   "id": "ev-016",
+   "kind": "completed",
+   "at": "2026-11-02T02:49:21Z",
+   "request": "RITM0010309",
+   "task": "SCTASK0010040",
+   "actor": "svc.access.agent",
+   "source": "servicenow",
+   "prev_hash": "4a7947c4ac738be05a054423f0fa14721df3b2b6854326eadca892bf34e4d7ec",
+   "hash": "e928c36bd870ea39044ef24f1b7994fce51dfdbde94d799dbb27c04255bb10ef"
+  },
+  {
+   "id": "ev-017",
+   "kind": "reversed",
+   "at": "2026-11-02T02:49:21Z",
+   "request": "RITM0010309",
+   "task": "SCTASK0010040",
+   "actor": "yara.novak",
+   "reason": "SCTASK0010040 reversed: the grant was revoked within its window by the data owner",
+   "source": "veza",
+   "prev_hash": "e928c36bd870ea39044ef24f1b7994fce51dfdbde94d799dbb27c04255bb10ef",
+   "hash": "1cb5583676e4b38026b027b3a5eff5d2d93edf2948aac248ff361aab2bf1ede6"
+  },
+  {
+   "id": "ev-018",
+   "kind": "demoted",
+   "at": "2026-11-02T02:49:21Z",
+   "request": null,
+   "actor": "svc.access.agent",
+   "reason": "Breach: SCTASK0010040 reversed: the grant was revoked within its window by the data owner. Demoted at once; evidence resets.",
+   "source": "ledger",
+   "prev_hash": "1cb5583676e4b38026b027b3a5eff5d2d93edf2948aac248ff361aab2bf1ede6",
+   "hash": "5e0cfc9447fdc9c794dbde40ae54b99c2125061c37f8cc43e9429eb90a0bf0d5"
+  }
+ ],
+ "tasks": [
+  {
+   "id": "fd629ba5839c1b1009867e95eeaad3a3",
+   "request": "RITM0010309",
+   "step": "st-approve",
+   "actor": "yara.novak",
+   "autonomy_level": "assist",
+   "decision": {
+    "effect": "allow",
+    "rule": "approval_rules",
+    "decided_by": "yara.novak"
+   },
+   "outcome": {
+    "status": "accepted"
+   }
+  },
+  {
+   "id": "3d629ba5839c1b1009867e95eeaad383",
+   "request": "RITM0010309",
+   "step": "st-approve",
+   "actor": "fay.doyle",
+   "autonomy_level": "assist",
+   "decision": {
+    "effect": "allow",
+    "rule": "approval_rules",
+    "decided_by": "fay.doyle"
+   },
+   "outcome": {
+    "status": "accepted"
+   }
+  },
+  {
+   "id": "SCTASK0010040",
+   "request": "RITM0010309",
+   "step": "st-provision",
+   "actor": "svc.access.agent",
+   "on_behalf_of": "bo.walsh",
+   "autonomy_level": "act_with_checkpoint",
+   "decision": {
+    "effect": "checkpoint",
+    "rule": "autonomy",
+    "decided_by": "gate",
+    "reason": "Autonomy is act with checkpoint: a person approves first."
+   },
+   "outcome": {
+    "status": "reversed"
+   },
+   "external_ref": "SCTASK0010040"
+  }
+ ],
+ "cards": [
+  {
+   "surface": "moveworks",
+   "title": "Work decided: RITM0010309",
+   "text": "bo.walsh asks to read Client master (restricted): Counterparty mapping for the model.",
+   "rule": "approval_rules",
+   "decided_by": "gate",
+   "actions": [
+    {
+     "label": "Approve",
+     "value": "approve"
+    },
+    {
+     "label": "Reject",
+     "value": "reject"
+    }
+   ],
+   "context": {
+    "work.request.id": "RITM0010309",
+    "event": "ev-006"
+   }
+  },
+  {
+   "surface": "moveworks",
+   "title": "Work decided: RITM0010309",
+   "text": "bo.walsh asks to read Client master (restricted): Counterparty mapping for the model.",
+   "rule": "approval_rules",
+   "decided_by": "gate",
+   "actions": [
+    {
+     "label": "Approve",
+     "value": "approve"
+    },
+    {
+     "label": "Reject",
+     "value": "reject"
+    }
+   ],
+   "context": {
+    "work.request.id": "RITM0010309",
+    "event": "ev-008"
+   }
+  },
+  {
+   "surface": "moveworks",
+   "title": "Work stopped: RITM0010309",
+   "text": "bo.walsh's workstation failed device posture (Armis risk: high). Hold restricted grants until it is remediated.",
+   "rule": "device-posture",
+   "decided_by": "soc",
+   "actions": [
+    {
+     "label": "Ask security",
+     "value": "ask_security"
+    },
+    {
+     "label": "Notify requester",
+     "value": "notify_requester"
+    }
+   ],
+   "context": {
+    "work.request.id": "RITM0010309",
+    "event": "ev-011"
+   }
+  }
+ ],
+ "held_rules_kept": [
+  "1adf4963dbbf24829128870552dc88f2",
+  "e3aeefc1904406b20dadf3bc8e068853"
+ ]
+}

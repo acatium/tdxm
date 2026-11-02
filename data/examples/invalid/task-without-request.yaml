@@ -1,0 +1,3 @@
+# A task with no request is an orphan action: invalid by construction.
+actors: [{id: a-x, actor_kind: agent}]
+tasks: [{id: t-9, step: st-provision, actor: a-x}]

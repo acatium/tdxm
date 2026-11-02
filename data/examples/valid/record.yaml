@@ -1,0 +1,37 @@
+# A minimal valid Contoso record: one request, its two steps, the events, and a gap.
+work_definitions:
+  - id: wd-data-access
+    name: Grant access to data
+    steps:
+      - {id: st-approve, name: Approve, risk_class: medium, requires_approval: true,
+         acceptance: [{id: ac-not-revoked, description: Not revoked within 30 days, reversal_window_days: 30}]}
+      - {id: st-provision, name: Provision, risk_class: high, requires_approval: false}
+actors:
+  - {id: p-amaya, name: Amaya Okafor, actor_kind: person, registered: true}
+  - {id: a-access-agent, name: Access agent, actor_kind: agent, registered: true, owner: p-amaya}
+roles:
+  - {id: r-analyst, name: Credit analyst, department: Credit}
+  - {id: r-controller, name: Finance controller, department: Finance}
+datasets:
+  - {id: ds-loan-book, name: Loan book, platform: snowflake, classification: confidential, domain: credit}
+requests:
+  - {id: req-1, work_definition: wd-data-access, requested_by: p-amaya, on_behalf_of: p-amaya,
+     requested_at: "2026-10-30T09:00:00Z", channel: moveworks, external_ref: RITM0010001,
+     dataset: ds-loan-book, privilege: read, justification: Quarterly review, cost_centre: CC-4120}
+tasks:
+  - {id: t-1, request: req-1, step: st-approve, actor: p-amaya, autonomy_level: act_with_checkpoint,
+     decision: {effect: allow, rule: pol-analyst-confidential, decided_by: gate}, outcome: {status: accepted}}
+  - {id: t-2, request: req-1, step: st-provision, actor: a-access-agent, on_behalf_of: p-amaya, autonomy_level: act,
+     decision: {effect: allow, rule: pol-analyst-confidential, decided_by: gate}, outcome: {status: accepted}}
+policies:
+  - {id: pol-analyst-confidential, description: Analysts read confidential credit data, role: r-analyst,
+     max_classification: confidential, privilege: read, effect: allow, requires_approval: false}
+approval_rules:
+  - {id: ar-owner, description: The data owner approves, approver_kind: dataset_owner}
+  - {id: ar-year-end, description: Finance data needs the controller in the year-end close, approver_kind: role,
+     approver_role: r-controller, domain: finance, year_end_close_days: 10}
+events:
+  - {id: e-1, kind: requested, at: "2026-10-30T09:00:00Z", request: req-1, actor: p-amaya, source: moveworks, via: chat}
+  - {id: e-2, kind: completed, at: "2026-10-30T09:04:00Z", request: req-1, task: t-2, actor: a-access-agent, source: servicenow}
+gaps:
+  - {id: g-1, gap_kind: idle_privilege, subject: grant-77, evidence: [grant-77], proposes: Revoke the grant or route it through a request}

@@ -1,0 +1,50 @@
+{
+ "perturbations": [
+  {
+   "error": "drop_window",
+   "full_model_diffs": 344,
+   "statuses": [
+    "held",
+    "kept"
+   ],
+   "held": true
+  },
+  {
+   "error": "shrink_window",
+   "full_model_diffs": 9,
+   "statuses": [
+    "held",
+    "kept"
+   ],
+   "held": true
+  },
+  {
+   "error": "drop_classification",
+   "full_model_diffs": 1885,
+   "statuses": [
+    "held",
+    "kept"
+   ],
+   "held": true
+  },
+  {
+   "error": "wrong_role",
+   "full_model_diffs": 682,
+   "statuses": [
+    "held",
+    "kept"
+   ],
+   "held": true
+  },
+  {
+   "error": "miss_a_rule",
+   "full_model_diffs": 9,
+   "statuses": [
+    "held",
+    "kept"
+   ],
+   "held": true
+  }
+ ],
+ "all_held": true
+}

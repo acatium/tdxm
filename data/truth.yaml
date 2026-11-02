@@ -1,0 +1,474 @@
+# The answer key. Only the scorer reads this.
+now: '2026-10-30 00:00:00'
+gaps:
+- kind: duplicate_definition
+  subject: 89f979ae1a83358eff7bd358df2d9576
+  name: Request access to Snowflake
+- kind: duplicate_definition
+  subject: cd12a56df0a817508928c91363c1d821
+  name: Snowflake access request
+- kind: duplicate_definition
+  subject: 958ae1884933a74079793fa019ee4138
+  name: Data access - Loan book
+- kind: duplicate_definition
+  subject: 933baebb896904781a643b4f32910c32
+  name: Request read access (Finance data)
+- kind: duplicate_definition
+  subject: c44d123966d7463a8d9f297b3e2c9db2
+  name: Databricks workspace access
+- kind: duplicate_definition
+  subject: 8babff98e0dcb7519fc143df049ccbfb
+  name: Access to Credit Risk data mart
+- kind: duplicate_definition
+  subject: 03570a9ec618e8796f6f00b7531e03de
+  name: Tableau / data access
+- kind: duplicate_definition
+  subject: 6e3f2f9c6757107be9d5bfa51f006864
+  name: New data access request (2023)
+- kind: duplicate_definition
+  subject: 243bd45b69b849e99ee000770cbe022b
+  name: Data access request - DO NOT USE
+- kind: duplicate_definition
+  subject: 793bf7d8b9d23eb6a162dd0727515cd3
+  name: Request access to restricted data
+- kind: duplicate_definition
+  subject: 57ea65f5729b2b613f06d0a5704cbc05
+  name: Analytics platform access
+- kind: duplicate_definition
+  subject: 8ff3aec6bc5847d67a44bb126e7894fa
+  name: 'Access request: market data'
+- kind: duplicate_definition
+  subject: f48fc7d55a8f6e859406a80444e63fe0
+  name: Data share request
+- kind: duplicate_definition
+  subject: 58ba5b00b85e49cc68ec69c855919867
+  name: Request Power BI dataset access
+- kind: dead_customisation
+  subject: 89f979ae1a83358eff7bd358df2d9576
+  name: Request access to Snowflake
+- kind: dead_customisation
+  subject: cd12a56df0a817508928c91363c1d821
+  name: Snowflake access request
+- kind: dead_customisation
+  subject: 8babff98e0dcb7519fc143df049ccbfb
+  name: Access to Credit Risk data mart
+- kind: dead_customisation
+  subject: 03570a9ec618e8796f6f00b7531e03de
+  name: Tableau / data access
+- kind: dead_customisation
+  subject: 6e3f2f9c6757107be9d5bfa51f006864
+  name: New data access request (2023)
+- kind: dead_customisation
+  subject: 243bd45b69b849e99ee000770cbe022b
+  name: Data access request - DO NOT USE
+- kind: dead_customisation
+  subject: f48fc7d55a8f6e859406a80444e63fe0
+  name: Data share request
+- kind: dead_customisation
+  subject: 58ba5b00b85e49cc68ec69c855919867
+  name: Request Power BI dataset access
+- kind: dead_customisation
+  subject: 0bd75d7abc30c69e8a76f5af814e89c9
+  name: sc_req_item.u_approval_level
+- kind: dead_customisation
+  subject: adb0c7af1c9a84754c1ea7fc91cb46f7
+  name: sc_req_item.u_legacy_ticket_ref
+- kind: vocabulary
+  subject: 1bf12a1855a00b21187a05bfa590a434
+  name: sc_req_item.u_chargeback_amount
+- kind: dead_customisation
+  subject: e3aeefc1904406b20dadf3bc8e068853
+  name: Finance year-end approval
+- kind: dead_customisation
+  subject: 5342fd0cf463bf0108a04a732536a706
+  name: Sync access request to Snowflake (legacy)
+- kind: dead_customisation
+  subject: 4804590adb9ae3c6ccaafe916b38645e
+  name: Escalate VIP data requests
+- kind: dead_customisation
+  subject: 624e69b410b3dfc1cab03cbfb79008ef
+  name: Copy dataset into description (2022)
+- kind: vocabulary
+  subject: eb572408ecf8fb4bb2edc498dfa01c44
+  name: Allocate data access chargeback
+- kind: idle_privilege
+  subject: ivo.novak:fx_rates:read
+- kind: idle_privilege
+  subject: yara.haddad:client_master:read
+- kind: idle_privilege
+  subject: jade.berg:budget_forecast:write
+- kind: idle_privilege
+  subject: ivo.okafor:counterparty_exposure:write
+- kind: idle_privilege
+  subject: gus.patel:research_notes:read
+- kind: idle_privilege
+  subject: sia.tanaka:market_data_eod:read
+- kind: idle_privilege
+  subject: grace.kim:esg_scores:read
+- kind: idle_privilege
+  subject: olu.lindqvist:esg_scores:read
+- kind: idle_privilege
+  subject: yara.rossi:market_data_eod:read
+- kind: idle_privilege
+  subject: gus.patel:credit_risk_mart:write
+- kind: idle_privilege
+  subject: omar.garcia:research_notes:read
+- kind: idle_privilege
+  subject: zane.shah:credit_risk_mart:write
+- kind: idle_privilege
+  subject: nia.tanaka:counterparty_exposure:write
+- kind: idle_privilege
+  subject: max.garcia:market_data_eod:read
+- kind: idle_privilege
+  subject: zane.shah:payroll:read
+- kind: idle_privilege
+  subject: gus.patel:market_data_eod:read
+- kind: idle_privilege
+  subject: zane.shah:budget_forecast:read
+- kind: idle_privilege
+  subject: bo.walsh:payroll:read
+- kind: idle_privilege
+  subject: wen.haddad:gl_actuals:read
+- kind: idle_privilege
+  subject: sia.berg:client_master:read
+- kind: idle_privilege
+  subject: noah.tanaka:budget_forecast:read
+- kind: idle_privilege
+  subject: max.kim:research_notes:read
+- kind: idle_privilege
+  subject: gus.patel:counterparty_exposure:write
+- kind: idle_privilege
+  subject: sam.kim:esg_scores:write
+- kind: idle_privilege
+  subject: xia.reid:trade_blotter:admin
+- kind: idle_privilege
+  subject: ivo.garcia:trade_blotter:write
+- kind: idle_privilege
+  subject: sia.tanaka:research_notes:write
+- kind: idle_privilege
+  subject: xia.iyer:esg_scores:write
+- kind: idle_privilege
+  subject: omar.garcia:budget_forecast:write
+- kind: idle_privilege
+  subject: yusuf.cohen:esg_scores:write
+- kind: idle_privilege
+  subject: elena.iyer:research_notes:read
+- kind: idle_privilege
+  subject: xia.iyer:trade_blotter:admin
+- kind: idle_privilege
+  subject: priya.adeyemi:trade_blotter:read
+- kind: idle_privilege
+  subject: wen.doyle:esg_scores:write
+- kind: idle_privilege
+  subject: ivo.novak:payroll:read
+- kind: idle_privilege
+  subject: elena.iyer:credit_risk_mart:write
+- kind: idle_privilege
+  subject: sia.tanaka:esg_scores:read
+- kind: idle_privilege
+  subject: priya.patel:fx_rates:admin
+- kind: idle_privilege
+  subject: gus.patel:client_master:write
+- kind: idle_privilege
+  subject: sia.berg:research_notes:write
+- kind: idle_privilege
+  subject: sam.kim:market_data_eod:admin
+- kind: idle_privilege
+  subject: una.garcia:research_notes:admin
+- kind: idle_privilege
+  subject: wen.haddad:fx_rates:read
+- kind: idle_privilege
+  subject: yusuf.cohen:research_notes:read
+- kind: idle_privilege
+  subject: zane.shah:trade_blotter:read
+- kind: idle_privilege
+  subject: una.tanaka:budget_forecast:admin
+- kind: idle_privilege
+  subject: elena.iyer:client_master:read
+- kind: idle_privilege
+  subject: priya.adeyemi:client_master:write
+- kind: idle_privilege
+  subject: xia.moreau:payroll:read
+- kind: idle_privilege
+  subject: una.garcia:counterparty_exposure:read
+- kind: idle_privilege
+  subject: sam.kim:esg_scores:admin
+- kind: idle_privilege
+  subject: ivo.novak:client_master:admin
+- kind: idle_privilege
+  subject: jade.berg:budget_forecast:read
+- kind: idle_privilege
+  subject: nia.tanaka:trade_blotter:read
+- kind: idle_privilege
+  subject: nia.tanaka:credit_risk_mart:admin
+- kind: idle_privilege
+  subject: yara.haddad:research_notes:read
+- kind: idle_privilege
+  subject: ivo.moreau:market_data_eod:read
+- kind: idle_privilege
+  subject: omar.garcia:budget_forecast:read
+- kind: idle_privilege
+  subject: zane.shah:counterparty_exposure:write
+- kind: idle_privilege
+  subject: ivo.garcia:budget_forecast:read
+- kind: idle_privilege
+  subject: max.kim:budget_forecast:admin
+- kind: idle_privilege
+  subject: yara.haddad:payroll:write
+- kind: idle_privilege
+  subject: dev.berg:esg_scores:write
+- kind: idle_privilege
+  subject: bo.walsh:market_data_eod:write
+- kind: idle_privilege
+  subject: grace.kim:payroll:read
+- kind: idle_privilege
+  subject: una.garcia:credit_risk_mart:read
+- kind: idle_privilege
+  subject: max.garcia:research_notes:read
+- kind: idle_privilege
+  subject: ivo.garcia:credit_risk_mart:write
+- kind: idle_privilege
+  subject: olu.lindqvist:loan_book:read
+- kind: idle_privilege
+  subject: gus.haddad:budget_forecast:read
+- kind: idle_privilege
+  subject: jade.berg:fx_rates:read
+- kind: idle_privilege
+  subject: yusuf.cohen:client_master:write
+- kind: idle_privilege
+  subject: sia.tanaka:fx_rates:read
+- kind: idle_privilege
+  subject: ivo.novak:gl_actuals:write
+- kind: idle_privilege
+  subject: ivo.garcia:loan_book:admin
+- kind: idle_privilege
+  subject: ivo.novak:client_master:read
+- kind: idle_privilege
+  subject: una.walsh:loan_book:write
+- kind: idle_privilege
+  subject: dev.berg:fx_rates:admin
+- kind: idle_privilege
+  subject: una.garcia:loan_book:read
+- kind: idle_privilege
+  subject: ivo.okafor:research_notes:read
+- kind: idle_privilege
+  subject: xia.moreau:payroll:write
+- kind: idle_privilege
+  subject: sia.tanaka:counterparty_exposure:write
+- kind: idle_privilege
+  subject: xia.iyer:market_data_eod:write
+- kind: idle_privilege
+  subject: gus.haddad:market_data_eod:write
+- kind: idle_privilege
+  subject: yara.haddad:esg_scores:read
+- kind: idle_privilege
+  subject: ivo.novak:trade_blotter:read
+- kind: idle_privilege
+  subject: una.cohen:loan_book:write
+- kind: drift
+  subject: svc_data_pipeline:counterparty_exposure:admin
+- kind: drift
+  subject: svc_data_pipeline:gl_actuals:write
+- kind: drift
+  subject: svc_data_pipeline:client_master:admin
+- kind: drift
+  subject: svc_data_pipeline:trade_blotter:write
+- kind: idle_privilege
+  subject: svc_data_pipeline:trade_blotter:write
+- kind: drift
+  subject: svc_data_pipeline:loan_book:admin
+- kind: idle_privilege
+  subject: svc_data_pipeline:loan_book:admin
+- kind: drift
+  subject: svc_data_pipeline:payroll:write
+- kind: idle_privilege
+  subject: svc_data_pipeline:payroll:write
+- kind: drift
+  subject: svc_data_pipeline:budget_forecast:admin
+- kind: idle_privilege
+  subject: svc_data_pipeline:budget_forecast:admin
+- kind: drift
+  subject: svc_data_pipeline:credit_risk_mart:write
+- kind: idle_privilege
+  subject: svc_data_pipeline:credit_risk_mart:write
+- kind: drift
+  subject: nia.tanaka:esg_scores:read
+- kind: idle_privilege
+  subject: nia.tanaka:esg_scores:read
+- kind: drift
+  subject: una.garcia:client_master:read
+- kind: orphan_action
+  subject: svc_data_pipeline
+- kind: orphan_action
+  subject: nb-research-agent
+- kind: unregistered_actor
+  subject: nb-research-agent
+- kind: policy_candidate
+  subject: approve:analyst:credit:confidential:read
+  volume: 446
+- kind: policy_candidate
+  subject: approve:controller:finance:confidential:read
+  volume: 95
+- kind: policy_candidate
+  subject: approve:controller:finance:restricted:read
+  volume: 98
+- kind: policy_candidate
+  subject: approve:quant:markets:confidential:read
+  volume: 99
+- kind: policy_candidate
+  subject: approve:quant:markets:internal:read
+  volume: 189
+- kind: policy_candidate
+  subject: approve:quant:markets:public:read
+  volume: 174
+plans:
+  89f979ae1a83358eff7bd358df2d9576:
+    name: Request access to Snowflake
+    plan: retire
+    trap: false
+  cd12a56df0a817508928c91363c1d821:
+    name: Snowflake access request
+    plan: retire
+    trap: false
+  958ae1884933a74079793fa019ee4138:
+    name: Data access - Loan book
+    plan: declare
+    trap: false
+  933baebb896904781a643b4f32910c32:
+    name: Request read access (Finance data)
+    plan: declare
+    trap: false
+  c44d123966d7463a8d9f297b3e2c9db2:
+    name: Databricks workspace access
+    plan: declare
+    trap: false
+  8babff98e0dcb7519fc143df049ccbfb:
+    name: Access to Credit Risk data mart
+    plan: retire
+    trap: false
+  03570a9ec618e8796f6f00b7531e03de:
+    name: Tableau / data access
+    plan: retire
+    trap: false
+  6e3f2f9c6757107be9d5bfa51f006864:
+    name: New data access request (2023)
+    plan: retire
+    trap: false
+  243bd45b69b849e99ee000770cbe022b:
+    name: Data access request - DO NOT USE
+    plan: retire
+    trap: false
+  793bf7d8b9d23eb6a162dd0727515cd3:
+    name: Request access to restricted data
+    plan: declare
+    trap: false
+  57ea65f5729b2b613f06d0a5704cbc05:
+    name: Analytics platform access
+    plan: declare
+    trap: false
+  8ff3aec6bc5847d67a44bb126e7894fa:
+    name: 'Access request: market data'
+    plan: declare
+    trap: false
+  f48fc7d55a8f6e859406a80444e63fe0:
+    name: Data share request
+    plan: retire
+    trap: false
+  58ba5b00b85e49cc68ec69c855919867:
+    name: Request Power BI dataset access
+    plan: retire
+    trap: false
+  bf2b761c7be119e1a1f2ccc32756855e:
+    name: sc_req_item.u_cost_centre
+    plan: declare
+    trap: false
+  ceda2714c25f71f14f546fa64fd82a7e:
+    name: sc_req_item.u_dataset
+    plan: declare
+    trap: false
+  972bc91be6e0e724b2e29033179d1799:
+    name: sc_req_item.u_privilege
+    plan: declare
+    trap: false
+  0bd75d7abc30c69e8a76f5af814e89c9:
+    name: sc_req_item.u_approval_level
+    plan: retire
+    trap: false
+  adb0c7af1c9a84754c1ea7fc91cb46f7:
+    name: sc_req_item.u_legacy_ticket_ref
+    plan: retire
+    trap: false
+  1bf12a1855a00b21187a05bfa590a434:
+    name: sc_req_item.u_chargeback_amount
+    plan: keep
+    trap: false
+  1a2ba59e0efa1abc8a96750d3c582346:
+    name: Require cost centre on data access
+    plan: declare
+    trap: false
+  873937971757a9ca284b1898da024ae1:
+    name: Data owner approval
+    plan: declare
+    trap: false
+  7484ac5069d1c0419700a00e33166a37:
+    name: Security approval for restricted data
+    plan: declare
+    trap: false
+  e3aeefc1904406b20dadf3bc8e068853:
+    name: Finance year-end approval
+    plan: declare
+    trap: true
+  1adf4963dbbf24829128870552dc88f2:
+    name: Close request item when tasks complete
+    plan: revert_to_base
+    trap: false
+  5342fd0cf463bf0108a04a732536a706:
+    name: Sync access request to Snowflake (legacy)
+    plan: retire
+    trap: false
+  4804590adb9ae3c6ccaafe916b38645e:
+    name: Escalate VIP data requests
+    plan: retire
+    trap: false
+  624e69b410b3dfc1cab03cbfb79008ef:
+    name: Copy dataset into description (2022)
+    plan: retire
+    trap: false
+  eb572408ecf8fb4bb2edc498dfa01c44:
+    name: Allocate data access chargeback
+    plan: keep
+    trap: false
+requests: 2649
+requests_covered_by_policy: 1283
+policies:
+- id: pol-analyst-credit
+  role: analyst
+  domain: credit
+  max: confidential
+  privilege: read
+- id: pol-contractor-credit
+  role: contractor
+  domain: credit
+  max: internal
+  privilege: read
+- id: pol-quant-markets
+  role: quant
+  domain: markets
+  max: confidential
+  privilege: read
+- id: pol-engineer-internal
+  role: engineer
+  domain: '*'
+  max: internal
+  privilege: read
+- id: pol-controller-finance
+  role: controller
+  domain: finance
+  max: restricted
+  privilege: read
+- id: pol-public
+  role: '*'
+  domain: '*'
+  max: public
+  privilege: read
+year_end_close_days: 10

@@ -1,0 +1,29 @@
+[project]
+name = "shopfloor"
+version = "0.1.0"
+description = "Task Data Exchange Model (TDXM): a concept demo of one data model for task data across systems, people and agents."
+readme = "README.md"
+license = "Apache-2.0"
+authors = [{ name = "Acatium, Inc." }]
+requires-python = ">=3.12"
+dependencies = [
+  "linkml==1.12.0",
+  "duckdb>=1.1",
+  "pyyaml>=6.0",
+  "jsonschema>=4.23",
+  "oaaclient==1.2.1",
+  "sqlglot>=25",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["shopfloor"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

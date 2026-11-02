@@ -1,0 +1,17 @@
+# mapping_set_id: https://example.org/work/mappings/moveworks
+# mapping_set_description: "The work vocabulary to a Moveworks Agent Studio HTTP action. meta_info paths are Moveworks's data bank; data.* slots are the plugin's own and are generated from the vocabulary, so the assistant asks for exactly what the request needs."
+# license: https://www.apache.org/licenses/LICENSE-2.0
+# curie_map:
+#   work: https://example.org/work/
+#   access: https://example.org/work/access/
+#   org: https://example.org/contoso/
+#   moveworks: https://example.org/moveworks/
+#   skos: http://www.w3.org/2004/02/skos/core#
+#   semapv: https://w3id.org/semapv/vocab/
+subject_id	predicate_id	object_id	mapping_justification	comment
+work:WorkRequest.requested_by	skos:exactMatch	moveworks:meta_info.user.email_addr	semapv:ManualMappingCuration	https://docs.moveworks.com/agent-studio/actions/http-actions/http-action-data-bank
+work:WorkRequest.id	skos:closeMatch	moveworks:meta_info.action_instance_id	semapv:ManualMappingCuration	A per-execution id, used as the idempotency key.
+access:AccessRequest.dataset	skos:exactMatch	moveworks:data.dataset	semapv:ManualMappingCuration	Plugin slot, generated.
+access:AccessRequest.privilege	skos:exactMatch	moveworks:data.privilege	semapv:ManualMappingCuration	Plugin slot, generated.
+access:AccessRequest.justification	skos:exactMatch	moveworks:data.justification	semapv:ManualMappingCuration	Plugin slot, generated.
+org:ContosoAccessRequest.cost_centre	skos:exactMatch	moveworks:data.cost_centre	semapv:ManualMappingCuration	Plugin slot, generated from Contoso's model.

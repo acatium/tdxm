@@ -1,0 +1,584 @@
+version: 0.2.0.dev0
+name: work_mapping
+description: Maps the Work ontology onto the work record's semantic model. Generated.
+ontology_ref:
+  name: Work
+  iri: ./work.ontology.yaml
+semantic_model_ref:
+  name: Work record
+  iri: ./work.semantic_model.yaml
+concept_mappings:
+- concept: Role
+  object_mappings:
+  - &id001
+    referent_mappings:
+    - relationship: id
+      expression: roles.id
+  link_mappings:
+  - object_mapping: *id001
+    children:
+    - object_mapping:
+        concept: String
+        expression: roles.name
+      relationship: name
+    - object_mapping:
+        concept: String
+        expression: roles.department
+      relationship: department
+- concept: Dataset
+  object_mappings:
+  - &id002
+    referent_mappings:
+    - relationship: id
+      expression: datasets.id
+  link_mappings:
+  - object_mapping: *id002
+    children:
+    - object_mapping:
+        concept: String
+        expression: datasets.name
+      relationship: name
+    - object_mapping:
+        concept: String
+        expression: datasets.platform
+      relationship: platform
+    - object_mapping:
+        concept: Classification
+        expression: datasets.classification
+      relationship: classification
+    - object_mapping:
+        concept: String
+        expression: datasets.domain
+      relationship: domain
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: datasets.owner
+        concept: Actor
+      relationship: owner
+- concept: Grant
+  object_mappings:
+  - &id003
+    referent_mappings:
+    - relationship: id
+      expression: grants.id
+  link_mappings:
+  - object_mapping: *id003
+    children:
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: grants.actor
+        concept: Actor
+      relationship: actor
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: grants.dataset
+        concept: Dataset
+      relationship: dataset
+    - object_mapping:
+        concept: Privilege
+        expression: grants.privilege
+      relationship: privilege
+    - object_mapping:
+        concept: String
+        expression: grants.held_in
+      relationship: held_in
+    - object_mapping:
+        concept: DateTime
+        expression: grants.granted_at
+      relationship: granted_at
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: grants.request
+        concept: WorkRequest
+      relationship: request
+    - object_mapping:
+        concept: DateTime
+        expression: grants.last_used_at
+      relationship: last_used_at
+- concept: ContosoAccessPolicy
+  object_mappings:
+  - &id004
+    referent_mappings:
+    - relationship: id
+      expression: policies.id
+  link_mappings:
+  - object_mapping: *id004
+    children:
+    - object_mapping:
+        concept: String
+        expression: policies.description
+      relationship: description
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: policies.role
+        concept: Role
+      relationship: role
+    - object_mapping:
+        concept: String
+        expression: policies.domain
+      relationship: domain
+    - object_mapping:
+        concept: Classification
+        expression: policies.max_classification
+      relationship: max_classification
+    - object_mapping:
+        concept: Privilege
+        expression: policies.privilege
+      relationship: privilege
+    - object_mapping:
+        concept: DecisionEffect
+        expression: policies.effect
+      relationship: effect
+    - object_mapping:
+        concept: Boolean
+        expression: policies.requires_approval
+      relationship: requires_approval
+- concept: ContosoApprovalRule
+  object_mappings:
+  - &id005
+    referent_mappings:
+    - relationship: id
+      expression: approval_rules.id
+  link_mappings:
+  - object_mapping: *id005
+    children:
+    - object_mapping:
+        concept: Integer
+        expression: approval_rules.year_end_close_days
+      relationship: year_end_close_days
+    - object_mapping:
+        concept: String
+        expression: approval_rules.description
+      relationship: description
+    - object_mapping:
+        concept: ApproverKind
+        expression: approval_rules.approver_kind
+      relationship: approver_kind
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: approval_rules.approver_role
+        concept: Role
+      relationship: approver_role
+    - object_mapping:
+        concept: Classification
+        expression: approval_rules.min_classification
+      relationship: min_classification
+    - object_mapping:
+        concept: String
+        expression: approval_rules.domain
+      relationship: domain
+- concept: Customisation
+  object_mappings:
+  - &id006
+    referent_mappings:
+    - relationship: id
+      expression: customisations.id
+  link_mappings:
+  - object_mapping: *id006
+    children:
+    - object_mapping:
+        concept: String
+        expression: customisations.name
+      relationship: name
+    - object_mapping:
+        concept: CustomisationKind
+        expression: customisations.customisation_kind
+      relationship: customisation_kind
+    - object_mapping:
+        concept: String
+        expression: customisations.host_table
+      relationship: host_table
+    - object_mapping:
+        concept: Integer
+        expression: customisations.executions_180d
+      relationship: executions_180d
+    - object_mapping:
+        concept: DateTime
+        expression: customisations.last_executed_at
+      relationship: last_executed_at
+    - object_mapping:
+        concept: CleanupPlan
+        expression: customisations.plan
+      relationship: plan
+    - object_mapping:
+        concept: String
+        expression: customisations.plan_reason
+      relationship: plan_reason
+- concept: WorkDefinition
+  object_mappings:
+  - &id007
+    referent_mappings:
+    - relationship: id
+      expression: work_definitions.id
+  link_mappings:
+  - object_mapping: *id007
+    children:
+    - object_mapping:
+        concept: String
+        expression: work_definitions.name
+      relationship: name
+    - object_mapping:
+        concept: String
+        expression: work_definitions.description
+      relationship: description
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: work_definitions.owner
+        concept: Actor
+      relationship: owner
+- concept: Actor
+  object_mappings:
+  - &id008
+    referent_mappings:
+    - relationship: id
+      expression: actors.id
+  link_mappings:
+  - object_mapping: *id008
+    children:
+    - object_mapping:
+        concept: String
+        expression: actors.name
+      relationship: name
+    - object_mapping:
+        concept: ActorKind
+        expression: actors.actor_kind
+      relationship: actor_kind
+    - object_mapping:
+        concept: Boolean
+        expression: actors.registered
+      relationship: registered
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: actors.owner
+        concept: Actor
+      relationship: owner
+    - object_mapping:
+        concept: String
+        expression: actors.title
+      relationship: title
+- concept: Capability
+  object_mappings:
+  - &id009
+    referent_mappings:
+    - relationship: id
+      expression: capabilities.id
+  link_mappings:
+  - object_mapping: *id009
+    children:
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: capabilities.actor
+        concept: Actor
+      relationship: actor
+    - object_mapping:
+        concept: AutonomyLevel
+        expression: capabilities.autonomy_level
+      relationship: autonomy_level
+    - object_mapping:
+        concept: Integer
+        expression: capabilities.evidence_count
+      relationship: evidence_count
+    - object_mapping:
+        concept: Integer
+        expression: capabilities.accepted_count
+      relationship: accepted_count
+    - object_mapping:
+        concept: Float
+        expression: capabilities.lower_bound
+      relationship: lower_bound
+- concept: ContosoAccessRequest
+  object_mappings:
+  - &id010
+    referent_mappings:
+    - relationship: id
+      expression: requests.id
+  link_mappings:
+  - object_mapping: *id010
+    children:
+    - object_mapping:
+        concept: String
+        expression: requests.cost_centre
+      relationship: cost_centre
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: requests.dataset
+        concept: Dataset
+      relationship: dataset
+    - object_mapping:
+        concept: Privilege
+        expression: requests.privilege
+      relationship: privilege
+    - object_mapping:
+        concept: String
+        expression: requests.justification
+      relationship: justification
+    - object_mapping:
+        concept: Integer
+        expression: requests.duration_days
+      relationship: duration_days
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: requests.work_definition
+        concept: WorkDefinition
+      relationship: work_definition
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: requests.requested_by
+        concept: Actor
+      relationship: requested_by
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: requests.on_behalf_of
+        concept: Actor
+      relationship: on_behalf_of
+    - object_mapping:
+        concept: DateTime
+        expression: requests.requested_at
+      relationship: requested_at
+    - object_mapping:
+        concept: String
+        expression: requests.channel
+      relationship: channel
+    - object_mapping:
+        concept: String
+        expression: requests.external_ref
+      relationship: external_ref
+- concept: TaskRecord
+  object_mappings:
+  - &id011
+    referent_mappings:
+    - relationship: id
+      expression: tasks.id
+  link_mappings:
+  - object_mapping: *id011
+    children:
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: tasks.request
+        concept: WorkRequest
+      relationship: request
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: tasks.actor
+        concept: Actor
+      relationship: actor
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: tasks.on_behalf_of
+        concept: Actor
+      relationship: on_behalf_of
+    - object_mapping:
+        concept: AutonomyLevel
+        expression: tasks.autonomy_level
+      relationship: autonomy_level
+    - object_mapping:
+        concept: DateTime
+        expression: tasks.started_at
+      relationship: started_at
+    - object_mapping:
+        concept: DateTime
+        expression: tasks.ended_at
+      relationship: ended_at
+    - object_mapping:
+        concept: String
+        expression: tasks.external_ref
+      relationship: external_ref
+- concept: Action
+  object_mappings:
+  - &id012
+    referent_mappings:
+    - relationship: id
+      expression: actions.id
+  link_mappings:
+  - object_mapping: *id012
+    children:
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: actions.actor
+        concept: Actor
+      relationship: actor
+    - object_mapping:
+        concept: String
+        expression: actions.target_system
+      relationship: target_system
+    - object_mapping:
+        concept: String
+        expression: actions.operation
+      relationship: operation
+    - object_mapping:
+        concept: String
+        expression: actions.resource
+      relationship: resource
+    - object_mapping:
+        concept: DateTime
+        expression: actions.at
+      relationship: at
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: actions.request
+        concept: WorkRequest
+      relationship: request
+    - object_mapping:
+        concept: String
+        expression: actions.source
+      relationship: source
+- concept: WorkEvent
+  object_mappings:
+  - &id013
+    referent_mappings:
+    - relationship: id
+      expression: events.id
+  link_mappings:
+  - object_mapping: *id013
+    children:
+    - object_mapping:
+        concept: WorkEventKind
+        expression: events.kind
+      relationship: kind
+    - object_mapping:
+        concept: DateTime
+        expression: events.at
+      relationship: at
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: events.request
+        concept: WorkRequest
+      relationship: request
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: events.task
+        concept: TaskRecord
+      relationship: task
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: events.actor
+        concept: Actor
+      relationship: actor
+    - object_mapping:
+        concept: String
+        expression: events.reason
+      relationship: reason
+    - object_mapping:
+        concept: String
+        expression: events.source
+      relationship: source
+    - object_mapping:
+        concept: String
+        expression: events.via
+      relationship: via
+    - object_mapping:
+        concept: String
+        expression: events.prev_hash
+      relationship: prev_hash
+    - object_mapping:
+        concept: String
+        expression: events.hash
+      relationship: hash
+- concept: AutonomyChange
+  object_mappings:
+  - &id014
+    referent_mappings:
+    - relationship: id
+      expression: changes.id
+  link_mappings:
+  - object_mapping: *id014
+    children:
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: changes.capability
+        concept: Capability
+      relationship: capability
+    - object_mapping:
+        concept: AutonomyLevel
+        expression: changes.from_level
+      relationship: from_level
+    - object_mapping:
+        concept: AutonomyLevel
+        expression: changes.to_level
+      relationship: to_level
+    - object_mapping:
+        concept: DateTime
+        expression: changes.at
+      relationship: at
+    - object_mapping:
+        concept: String
+        expression: changes.reason
+      relationship: reason
+    - object_mapping:
+        referent_mappings:
+        - relationship: id
+          expression: changes.confirmation
+        concept: Confirmation
+      relationship: confirmation
+- concept: Gap
+  object_mappings:
+  - &id015
+    referent_mappings:
+    - relationship: id
+      expression: gaps.id
+  link_mappings:
+  - object_mapping: *id015
+    children:
+    - object_mapping:
+        concept: GapKind
+        expression: gaps.gap_kind
+      relationship: gap_kind
+    - object_mapping:
+        concept: String
+        expression: gaps.subject
+      relationship: subject
+    - object_mapping:
+        concept: String
+        expression: gaps.proposes
+      relationship: proposes
+- concept: Confirmation
+  object_mappings:
+  - &id016
+    referent_mappings:
+    - relationship: id
+      expression: confirmations.id
+  link_mappings:
+  - object_mapping: *id016
+    children:
+    - object_mapping:
+        concept: ChangeKind
+        expression: confirmations.change_kind
+      relationship: change_kind
+    - object_mapping:
+        concept: Verdict
+        expression: confirmations.verdict
+      relationship: verdict
+    - object_mapping:
+        concept: String
+        expression: confirmations.decided_by
+      relationship: decided_by
+    - object_mapping:
+        concept: DateTime
+        expression: confirmations.decided_at
+      relationship: decided_at
+    - object_mapping:
+        concept: String
+        expression: confirmations.reason
+      relationship: reason

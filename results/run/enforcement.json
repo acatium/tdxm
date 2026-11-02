@@ -1,0 +1,24 @@
+{
+ "dataset": "counterparty_exposure",
+ "expected": [
+  "owner",
+  "security-analyst"
+ ],
+ "catalogue_order": {
+  "approvals_asked_by_platform": [
+   "owner",
+   "security-analyst"
+  ]
+ },
+ "direct_insert": {
+  "approvals_asked_by_platform": [
+   "owner",
+   "security-analyst"
+  ]
+ },
+ "malformed_cost_centre": {
+  "refused": true,
+  "how": "order of 780af595c42e2dd72254210ae85c969a refused: the platform aborted the request item"
+ },
+ "ok": true
+}

@@ -1,0 +1,2 @@
+# Contoso's declared rule: a cost centre looks like CC-1234.
+requests: [{id: req-9, cost_centre: "4120"}]

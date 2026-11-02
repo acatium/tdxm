@@ -1,0 +1,14 @@
+# mapping_set_id: https://example.org/contoso/mappings/servicenow
+# mapping_set_description: "Contoso's own layer to the custom fields on its ServiceNow instance. The customer's mapping, kept apart from the product mapping. Every row is checked against a live instance's data dictionary."
+# license: https://www.apache.org/licenses/LICENSE-2.0
+# curie_map:
+#   work: https://example.org/work/
+#   access: https://example.org/work/access/
+#   org: https://example.org/contoso/
+#   snow: https://example.org/servicenow/
+#   skos: http://www.w3.org/2004/02/skos/core#
+#   semapv: https://w3id.org/semapv/vocab/
+subject_id	predicate_id	object_id	mapping_justification	comment
+access:AccessRequest.dataset	skos:exactMatch	snow:sc_req_item.u_dataset	semapv:ManualMappingCuration	Declared from a custom field in the clean-up.
+access:AccessRequest.privilege	skos:exactMatch	snow:sc_req_item.u_privilege	semapv:ManualMappingCuration	Declared from a custom field in the clean-up.
+org:ContosoAccessRequest.cost_centre	skos:exactMatch	snow:sc_req_item.u_cost_centre	semapv:ManualMappingCuration	Declared from a custom field in the clean-up.

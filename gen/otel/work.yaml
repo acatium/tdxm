@@ -1,0 +1,236 @@
+groups:
+- id: registry.work
+  type: attribute_group
+  display_name: Work attributes
+  brief: Attributes of governed work, generated from the work vocabulary. Do not edit by hand.
+  attributes:
+  - id: work.actor.id
+    stability: development
+    brief: The actor.
+    type: string
+    examples:
+    - actor-1
+  - id: work.decision.decided_by
+    stability: development
+    brief: The system or person that decided.
+    type: string
+    examples:
+    - example
+  - id: work.decision.effect
+    stability: development
+    brief: The effect.
+    type:
+      members:
+      - id: allow
+        value: allow
+        stability: development
+        brief: allow
+      - id: deny
+        value: deny
+        stability: development
+        brief: deny
+      - id: checkpoint
+        value: checkpoint
+        stability: development
+        brief: checkpoint
+  - id: work.decision.reason
+    stability: development
+    brief: Why, in words an operator can read.
+    type: string
+    examples:
+    - example
+  - id: work.decision.rule
+    stability: development
+    brief: The rule that decided.
+    type: string
+    examples:
+    - example
+  - id: work.event.id
+    stability: development
+    brief: The id.
+    type: string
+    examples:
+    - event-1
+  - id: work.event.kind
+    stability: development
+    brief: The kind.
+    type:
+      members:
+      - id: requested
+        value: requested
+        stability: development
+        brief: requested
+      - id: decided
+        value: decided
+        stability: development
+        brief: decided
+      - id: started
+        value: started
+        stability: development
+        brief: started
+      - id: stopped
+        value: stopped
+        stability: development
+        brief: Halted by an authority outside the performer, e.g. security.
+      - id: approved
+        value: approved
+        stability: development
+        brief: approved
+      - id: rejected
+        value: rejected
+        stability: development
+        brief: rejected
+      - id: overridden
+        value: overridden
+        stability: development
+        brief: overridden
+      - id: completed
+        value: completed
+        stability: development
+        brief: completed
+      - id: reversed
+        value: reversed
+        stability: development
+        brief: reversed
+      - id: promoted
+        value: promoted
+        stability: development
+        brief: promoted
+      - id: demoted
+        value: demoted
+        stability: development
+        brief: demoted
+  - id: work.event.reason
+    stability: development
+    brief: Why, in words an operator can read.
+    type: string
+    examples:
+    - example
+  - id: work.event.source
+    stability: development
+    brief: The system that reported this.
+    type: string
+    examples:
+    - example
+  - id: work.event.via
+    stability: development
+    brief: The surface an action was taken through, e.g. a chat card.
+    type: string
+    examples:
+    - example
+  - id: work.outcome.decided_by
+    stability: development
+    brief: The system or person that decided.
+    type: string
+    examples:
+    - example
+  - id: work.outcome.status
+    stability: development
+    brief: The status.
+    type:
+      members:
+      - id: accepted
+        value: accepted
+        stability: development
+        brief: accepted
+      - id: reversed
+        value: reversed
+        stability: development
+        brief: Undone within the reversal window.
+      - id: reopened
+        value: reopened
+        stability: development
+        brief: reopened
+      - id: reassigned
+        value: reassigned
+        stability: development
+        brief: reassigned
+      - id: failed
+        value: failed
+        stability: development
+        brief: failed
+      - id: abandoned
+        value: abandoned
+        stability: development
+        brief: abandoned
+  - id: work.request.channel
+    stability: development
+    brief: Where the request came in, e.g. a chat assistant or a portal.
+    type: string
+    examples:
+    - example
+  - id: work.request.external_ref
+    stability: development
+    brief: The record's identifier in the system that holds it, e.g. a ticket number.
+    type: string
+    examples:
+    - example
+  - id: work.request.id
+    stability: development
+    brief: The id.
+    type: string
+    examples:
+    - request-1
+  - id: work.request.on_behalf_of.id
+    stability: development
+    brief: The on behalf of.
+    type: string
+    examples:
+    - request-1
+  - id: work.request.requested_by.id
+    stability: development
+    brief: The requested by.
+    type: string
+    examples:
+    - request-1
+  - id: work.step.id
+    stability: development
+    brief: The step.
+    type: string
+    examples:
+    - step-1
+  - id: work.task.autonomy_level
+    stability: development
+    brief: The autonomy level.
+    type:
+      members:
+      - id: assist
+        value: assist
+        stability: development
+        brief: Proposes; a person acts.
+      - id: act_with_checkpoint
+        value: act_with_checkpoint
+        stability: development
+        brief: Acts after a person approves.
+      - id: act
+        value: act
+        stability: development
+        brief: Acts; a person can review.
+      - id: act_and_report
+        value: act_and_report
+        stability: development
+        brief: Acts and reports in aggregate.
+  - id: work.task.external_ref
+    stability: development
+    brief: The record's identifier in the system that holds it, e.g. a ticket number.
+    type: string
+    examples:
+    - example
+  - id: work.task.id
+    stability: development
+    brief: The id.
+    type: string
+    examples:
+    - task-1
+  - id: work.task.on_behalf_of.id
+    stability: development
+    brief: The on behalf of.
+    type: string
+    examples:
+    - task-1
+  - id: work.work_definition.id
+    stability: development
+    brief: The work definition.
+    type: string
+    examples:
+    - work_definition-1

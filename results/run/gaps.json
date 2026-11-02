@@ -1,0 +1,1668 @@
+[
+ {
+  "id": "gap-orphan_action-1",
+  "gap_kind": "orphan_action",
+  "subject": "nb-research-agent",
+  "evidence": [
+   "000000000000007b",
+   "000000000000007c",
+   "000000000000007d",
+   "000000000000007e",
+   "000000000000007f",
+   "0000000000000080",
+   "0000000000000081",
+   "0000000000000082",
+   "0000000000000083",
+   "0000000000000084",
+   "0000000000000085",
+   "0000000000000086",
+   "0000000000000087",
+   "0000000000000088",
+   "0000000000000089",
+   "000000000000008a",
+   "000000000000008b",
+   "000000000000008c",
+   "000000000000008d",
+   "000000000000008e"
+  ],
+  "proposes": "Route this agent's actions through a request (work.request.id).",
+  "count": 25
+ },
+ {
+  "id": "gap-orphan_action-2",
+  "gap_kind": "orphan_action",
+  "subject": "svc_data_pipeline",
+  "evidence": [
+   "0000000000000053",
+   "0000000000000054",
+   "0000000000000055",
+   "0000000000000056",
+   "0000000000000057",
+   "0000000000000058",
+   "0000000000000059",
+   "000000000000005a",
+   "000000000000005b",
+   "000000000000005c",
+   "000000000000005d",
+   "000000000000005e",
+   "000000000000005f",
+   "0000000000000060",
+   "0000000000000061",
+   "0000000000000062",
+   "0000000000000063",
+   "0000000000000064",
+   "0000000000000065",
+   "0000000000000066"
+  ],
+  "proposes": "Route this agent's actions through a request (work.request.id).",
+  "count": 40
+ },
+ {
+  "id": "gap-unregistered_actor-3",
+  "gap_kind": "unregistered_actor",
+  "subject": "nb-research-agent",
+  "evidence": [
+   "ws-quant-07",
+   "armis:1002"
+  ],
+  "proposes": "Register the agent and give it an owner and a passport, or stop it."
+ },
+ {
+  "id": "gap-idle_privilege-4",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:gus.haddad:market_data_eod:write",
+  "evidence": [
+   "databricks:gus.haddad:market_data_eod:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-5",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:xia.reid:trade_blotter:admin",
+  "evidence": [
+   "databricks:xia.reid:trade_blotter:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-6",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:bo.walsh:market_data_eod:write",
+  "evidence": [
+   "databricks:bo.walsh:market_data_eod:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-04-07T23:14:03Z"
+ },
+ {
+  "id": "gap-idle_privilege-7",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:una.garcia:research_notes:admin",
+  "evidence": [
+   "databricks:una.garcia:research_notes:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-8",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:yara.rossi:market_data_eod:read",
+  "evidence": [
+   "databricks:yara.rossi:market_data_eod:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-01-22T22:28:43Z"
+ },
+ {
+  "id": "gap-idle_privilege-9",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:priya.adeyemi:trade_blotter:read",
+  "evidence": [
+   "databricks:priya.adeyemi:trade_blotter:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-10",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:gus.patel:research_notes:read",
+  "evidence": [
+   "databricks:gus.patel:research_notes:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-11",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:gus.patel:market_data_eod:read",
+  "evidence": [
+   "databricks:gus.patel:market_data_eod:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-12",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:sam.kim:market_data_eod:admin",
+  "evidence": [
+   "databricks:sam.kim:market_data_eod:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-10-09T13:22:52Z"
+ },
+ {
+  "id": "gap-idle_privilege-13",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:sia.tanaka:market_data_eod:read",
+  "evidence": [
+   "databricks:sia.tanaka:market_data_eod:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-01-22T20:17:41Z"
+ },
+ {
+  "id": "gap-idle_privilege-14",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:sia.tanaka:research_notes:write",
+  "evidence": [
+   "databricks:sia.tanaka:research_notes:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-05-31T08:53:11Z"
+ },
+ {
+  "id": "gap-idle_privilege-15",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:sia.berg:research_notes:write",
+  "evidence": [
+   "databricks:sia.berg:research_notes:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-16",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:xia.iyer:market_data_eod:write",
+  "evidence": [
+   "databricks:xia.iyer:market_data_eod:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-07-31T00:00:00Z"
+ },
+ {
+  "id": "gap-idle_privilege-17",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:xia.iyer:trade_blotter:admin",
+  "evidence": [
+   "databricks:xia.iyer:trade_blotter:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-08-01T02:27:49Z"
+ },
+ {
+  "id": "gap-idle_privilege-18",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:elena.iyer:research_notes:read",
+  "evidence": [
+   "databricks:elena.iyer:research_notes:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-19",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:omar.garcia:research_notes:read",
+  "evidence": [
+   "databricks:omar.garcia:research_notes:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-03-30T07:08:32Z"
+ },
+ {
+  "id": "gap-idle_privilege-20",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:max.garcia:market_data_eod:read",
+  "evidence": [
+   "databricks:max.garcia:market_data_eod:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-03-07T03:24:47Z"
+ },
+ {
+  "id": "gap-idle_privilege-21",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:max.garcia:research_notes:read",
+  "evidence": [
+   "databricks:max.garcia:research_notes:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-04-06T02:19:06Z"
+ },
+ {
+  "id": "gap-idle_privilege-22",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:ivo.moreau:market_data_eod:read",
+  "evidence": [
+   "databricks:ivo.moreau:market_data_eod:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-23",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:zane.shah:trade_blotter:read",
+  "evidence": [
+   "databricks:zane.shah:trade_blotter:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-24",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:yusuf.cohen:research_notes:read",
+  "evidence": [
+   "databricks:yusuf.cohen:research_notes:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-11-04T05:31:18Z"
+ },
+ {
+  "id": "gap-idle_privilege-25",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:nia.tanaka:trade_blotter:read",
+  "evidence": [
+   "databricks:nia.tanaka:trade_blotter:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-26",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:ivo.okafor:research_notes:read",
+  "evidence": [
+   "databricks:ivo.okafor:research_notes:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-27",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:max.kim:research_notes:read",
+  "evidence": [
+   "databricks:max.kim:research_notes:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-28",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:ivo.garcia:trade_blotter:write",
+  "evidence": [
+   "databricks:ivo.garcia:trade_blotter:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-29",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:yara.haddad:research_notes:read",
+  "evidence": [
+   "databricks:yara.haddad:research_notes:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-02-13T18:54:27Z"
+ },
+ {
+  "id": "gap-idle_privilege-30",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:ivo.novak:trade_blotter:read",
+  "evidence": [
+   "databricks:ivo.novak:trade_blotter:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-drift-31",
+  "gap_kind": "drift",
+  "subject": "databricks:svc_data_pipeline:trade_blotter:write",
+  "evidence": [
+   "databricks:svc_data_pipeline:trade_blotter:write"
+  ],
+  "proposes": "Revoke, or explain the grant with a request."
+ },
+ {
+  "id": "gap-idle_privilege-32",
+  "gap_kind": "idle_privilege",
+  "subject": "databricks:svc_data_pipeline:trade_blotter:write",
+  "evidence": [
+   "databricks:svc_data_pipeline:trade_blotter:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-33",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:max.kim:budget_forecast:admin",
+  "evidence": [
+   "snowflake:max.kim:budget_forecast:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-01-28T14:37:11Z"
+ },
+ {
+  "id": "gap-idle_privilege-34",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:ivo.novak:fx_rates:read",
+  "evidence": [
+   "snowflake:ivo.novak:fx_rates:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2024-11-20T01:12:33Z"
+ },
+ {
+  "id": "gap-idle_privilege-35",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:ivo.novak:payroll:read",
+  "evidence": [
+   "snowflake:ivo.novak:payroll:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-08-11T12:51:10Z"
+ },
+ {
+  "id": "gap-idle_privilege-36",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:ivo.novak:client_master:read",
+  "evidence": [
+   "snowflake:ivo.novak:client_master:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-37",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:ivo.novak:gl_actuals:write",
+  "evidence": [
+   "snowflake:ivo.novak:gl_actuals:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-38",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:ivo.novak:client_master:admin",
+  "evidence": [
+   "snowflake:ivo.novak:client_master:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-12-10T08:49:42Z"
+ },
+ {
+  "id": "gap-idle_privilege-39",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:yara.haddad:client_master:read",
+  "evidence": [
+   "snowflake:yara.haddad:client_master:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2024-12-29T17:51:02Z"
+ },
+ {
+  "id": "gap-idle_privilege-40",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:yara.haddad:esg_scores:read",
+  "evidence": [
+   "snowflake:yara.haddad:esg_scores:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-41",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:yara.haddad:payroll:write",
+  "evidence": [
+   "snowflake:yara.haddad:payroll:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-03-03T08:43:28Z"
+ },
+ {
+  "id": "gap-idle_privilege-42",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:priya.adeyemi:client_master:write",
+  "evidence": [
+   "snowflake:priya.adeyemi:client_master:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-43",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:wen.haddad:gl_actuals:read",
+  "evidence": [
+   "snowflake:wen.haddad:gl_actuals:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-44",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:wen.haddad:fx_rates:read",
+  "evidence": [
+   "snowflake:wen.haddad:fx_rates:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-07-31T00:00:00Z"
+ },
+ {
+  "id": "gap-idle_privilege-45",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:gus.haddad:budget_forecast:read",
+  "evidence": [
+   "snowflake:gus.haddad:budget_forecast:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-05-08T22:25:23Z"
+ },
+ {
+  "id": "gap-idle_privilege-46",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:nia.tanaka:counterparty_exposure:write",
+  "evidence": [
+   "snowflake:nia.tanaka:counterparty_exposure:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-drift-47",
+  "gap_kind": "drift",
+  "subject": "snowflake:nia.tanaka:esg_scores:read",
+  "evidence": [
+   "snowflake:nia.tanaka:esg_scores:read"
+  ],
+  "proposes": "Revoke, or explain the grant with a request."
+ },
+ {
+  "id": "gap-idle_privilege-48",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:nia.tanaka:esg_scores:read",
+  "evidence": [
+   "snowflake:nia.tanaka:esg_scores:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-49",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:nia.tanaka:credit_risk_mart:admin",
+  "evidence": [
+   "snowflake:nia.tanaka:credit_risk_mart:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-02-02T17:08:17Z"
+ },
+ {
+  "id": "gap-idle_privilege-50",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:zane.shah:payroll:read",
+  "evidence": [
+   "snowflake:zane.shah:payroll:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-01-29T18:24:11Z"
+ },
+ {
+  "id": "gap-idle_privilege-51",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:zane.shah:budget_forecast:read",
+  "evidence": [
+   "snowflake:zane.shah:budget_forecast:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-52",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:zane.shah:credit_risk_mart:write",
+  "evidence": [
+   "snowflake:zane.shah:credit_risk_mart:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-53",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:zane.shah:counterparty_exposure:write",
+  "evidence": [
+   "snowflake:zane.shah:counterparty_exposure:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-02-09T00:04:49Z"
+ },
+ {
+  "id": "gap-idle_privilege-54",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:xia.moreau:payroll:read",
+  "evidence": [
+   "snowflake:xia.moreau:payroll:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-55",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:xia.moreau:payroll:write",
+  "evidence": [
+   "snowflake:xia.moreau:payroll:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-56",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:ivo.okafor:counterparty_exposure:write",
+  "evidence": [
+   "snowflake:ivo.okafor:counterparty_exposure:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-57",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:una.cohen:loan_book:write",
+  "evidence": [
+   "snowflake:una.cohen:loan_book:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-58",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:jade.berg:budget_forecast:write",
+  "evidence": [
+   "snowflake:jade.berg:budget_forecast:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-59",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:jade.berg:budget_forecast:read",
+  "evidence": [
+   "snowflake:jade.berg:budget_forecast:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-01-23T15:37:50Z"
+ },
+ {
+  "id": "gap-idle_privilege-60",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:jade.berg:fx_rates:read",
+  "evidence": [
+   "snowflake:jade.berg:fx_rates:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-61",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:una.walsh:loan_book:write",
+  "evidence": [
+   "snowflake:una.walsh:loan_book:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-62",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:sia.berg:client_master:read",
+  "evidence": [
+   "snowflake:sia.berg:client_master:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-63",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:sam.kim:esg_scores:write",
+  "evidence": [
+   "snowflake:sam.kim:esg_scores:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-64",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:sam.kim:esg_scores:admin",
+  "evidence": [
+   "snowflake:sam.kim:esg_scores:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-65",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:priya.patel:fx_rates:admin",
+  "evidence": [
+   "snowflake:priya.patel:fx_rates:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-07-25T11:23:13Z"
+ },
+ {
+  "id": "gap-idle_privilege-66",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:bo.walsh:payroll:read",
+  "evidence": [
+   "snowflake:bo.walsh:payroll:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-67",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:olu.lindqvist:esg_scores:read",
+  "evidence": [
+   "snowflake:olu.lindqvist:esg_scores:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2024-12-24T08:20:24Z"
+ },
+ {
+  "id": "gap-idle_privilege-68",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:olu.lindqvist:loan_book:read",
+  "evidence": [
+   "snowflake:olu.lindqvist:loan_book:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-06-02T11:47:41Z"
+ },
+ {
+  "id": "gap-idle_privilege-69",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:xia.iyer:esg_scores:write",
+  "evidence": [
+   "snowflake:xia.iyer:esg_scores:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-06-05T03:56:48Z"
+ },
+ {
+  "id": "gap-idle_privilege-70",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:una.tanaka:budget_forecast:admin",
+  "evidence": [
+   "snowflake:una.tanaka:budget_forecast:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-71",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:yusuf.cohen:esg_scores:write",
+  "evidence": [
+   "snowflake:yusuf.cohen:esg_scores:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-08-08T01:28:54Z"
+ },
+ {
+  "id": "gap-idle_privilege-72",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:yusuf.cohen:client_master:write",
+  "evidence": [
+   "snowflake:yusuf.cohen:client_master:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-05-30T17:51:35Z"
+ },
+ {
+  "id": "gap-idle_privilege-73",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:grace.kim:esg_scores:read",
+  "evidence": [
+   "snowflake:grace.kim:esg_scores:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-74",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:grace.kim:payroll:read",
+  "evidence": [
+   "snowflake:grace.kim:payroll:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-75",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:elena.iyer:client_master:read",
+  "evidence": [
+   "snowflake:elena.iyer:client_master:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-76",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:elena.iyer:credit_risk_mart:write",
+  "evidence": [
+   "snowflake:elena.iyer:credit_risk_mart:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-09-22T05:39:58Z"
+ },
+ {
+  "id": "gap-idle_privilege-77",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:gus.patel:credit_risk_mart:write",
+  "evidence": [
+   "snowflake:gus.patel:credit_risk_mart:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-01-30T06:16:25Z"
+ },
+ {
+  "id": "gap-idle_privilege-78",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:gus.patel:counterparty_exposure:write",
+  "evidence": [
+   "snowflake:gus.patel:counterparty_exposure:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-05-31T19:56:47Z"
+ },
+ {
+  "id": "gap-idle_privilege-79",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:gus.patel:client_master:write",
+  "evidence": [
+   "snowflake:gus.patel:client_master:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-80",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:dev.berg:esg_scores:write",
+  "evidence": [
+   "snowflake:dev.berg:esg_scores:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-81",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:dev.berg:fx_rates:admin",
+  "evidence": [
+   "snowflake:dev.berg:fx_rates:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-82",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:ivo.garcia:budget_forecast:read",
+  "evidence": [
+   "snowflake:ivo.garcia:budget_forecast:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-05-09T02:54:43Z"
+ },
+ {
+  "id": "gap-idle_privilege-83",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:ivo.garcia:credit_risk_mart:write",
+  "evidence": [
+   "snowflake:ivo.garcia:credit_risk_mart:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-84",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:ivo.garcia:loan_book:admin",
+  "evidence": [
+   "snowflake:ivo.garcia:loan_book:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-85",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:omar.garcia:budget_forecast:read",
+  "evidence": [
+   "snowflake:omar.garcia:budget_forecast:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-86",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:omar.garcia:budget_forecast:write",
+  "evidence": [
+   "snowflake:omar.garcia:budget_forecast:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-07-16T17:00:34Z"
+ },
+ {
+  "id": "gap-idle_privilege-87",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:una.garcia:counterparty_exposure:read",
+  "evidence": [
+   "snowflake:una.garcia:counterparty_exposure:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-12-17T07:53:14Z"
+ },
+ {
+  "id": "gap-idle_privilege-88",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:una.garcia:credit_risk_mart:read",
+  "evidence": [
+   "snowflake:una.garcia:credit_risk_mart:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-04-22T21:39:55Z"
+ },
+ {
+  "id": "gap-idle_privilege-89",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:una.garcia:loan_book:read",
+  "evidence": [
+   "snowflake:una.garcia:loan_book:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-drift-90",
+  "gap_kind": "drift",
+  "subject": "snowflake:una.garcia:client_master:read",
+  "evidence": [
+   "snowflake:una.garcia:client_master:read"
+  ],
+  "proposes": "Revoke, or explain the grant with a request."
+ },
+ {
+  "id": "gap-idle_privilege-91",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:noah.tanaka:budget_forecast:read",
+  "evidence": [
+   "snowflake:noah.tanaka:budget_forecast:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-04-23T14:32:56Z"
+ },
+ {
+  "id": "gap-idle_privilege-92",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:sia.tanaka:esg_scores:read",
+  "evidence": [
+   "snowflake:sia.tanaka:esg_scores:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-93",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:sia.tanaka:fx_rates:read",
+  "evidence": [
+   "snowflake:sia.tanaka:fx_rates:read"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2026-07-03T04:38:26Z"
+ },
+ {
+  "id": "gap-idle_privilege-94",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:sia.tanaka:counterparty_exposure:write",
+  "evidence": [
+   "snowflake:sia.tanaka:counterparty_exposure:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-idle_privilege-95",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:wen.doyle:esg_scores:write",
+  "evidence": [
+   "snowflake:wen.doyle:esg_scores:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": "2025-08-13T22:07:14Z"
+ },
+ {
+  "id": "gap-drift-96",
+  "gap_kind": "drift",
+  "subject": "snowflake:svc_data_pipeline:counterparty_exposure:admin",
+  "evidence": [
+   "snowflake:svc_data_pipeline:counterparty_exposure:admin"
+  ],
+  "proposes": "Revoke, or explain the grant with a request."
+ },
+ {
+  "id": "gap-drift-97",
+  "gap_kind": "drift",
+  "subject": "snowflake:svc_data_pipeline:client_master:admin",
+  "evidence": [
+   "snowflake:svc_data_pipeline:client_master:admin"
+  ],
+  "proposes": "Revoke, or explain the grant with a request."
+ },
+ {
+  "id": "gap-drift-98",
+  "gap_kind": "drift",
+  "subject": "snowflake:svc_data_pipeline:loan_book:admin",
+  "evidence": [
+   "snowflake:svc_data_pipeline:loan_book:admin"
+  ],
+  "proposes": "Revoke, or explain the grant with a request."
+ },
+ {
+  "id": "gap-idle_privilege-99",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:svc_data_pipeline:loan_book:admin",
+  "evidence": [
+   "snowflake:svc_data_pipeline:loan_book:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-drift-100",
+  "gap_kind": "drift",
+  "subject": "snowflake:svc_data_pipeline:budget_forecast:admin",
+  "evidence": [
+   "snowflake:svc_data_pipeline:budget_forecast:admin"
+  ],
+  "proposes": "Revoke, or explain the grant with a request."
+ },
+ {
+  "id": "gap-idle_privilege-101",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:svc_data_pipeline:budget_forecast:admin",
+  "evidence": [
+   "snowflake:svc_data_pipeline:budget_forecast:admin"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-drift-102",
+  "gap_kind": "drift",
+  "subject": "snowflake:svc_data_pipeline:gl_actuals:write",
+  "evidence": [
+   "snowflake:svc_data_pipeline:gl_actuals:write"
+  ],
+  "proposes": "Revoke, or explain the grant with a request."
+ },
+ {
+  "id": "gap-drift-103",
+  "gap_kind": "drift",
+  "subject": "snowflake:svc_data_pipeline:payroll:write",
+  "evidence": [
+   "snowflake:svc_data_pipeline:payroll:write"
+  ],
+  "proposes": "Revoke, or explain the grant with a request."
+ },
+ {
+  "id": "gap-idle_privilege-104",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:svc_data_pipeline:payroll:write",
+  "evidence": [
+   "snowflake:svc_data_pipeline:payroll:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-drift-105",
+  "gap_kind": "drift",
+  "subject": "snowflake:svc_data_pipeline:credit_risk_mart:write",
+  "evidence": [
+   "snowflake:svc_data_pipeline:credit_risk_mart:write"
+  ],
+  "proposes": "Revoke, or explain the grant with a request."
+ },
+ {
+  "id": "gap-idle_privilege-106",
+  "gap_kind": "idle_privilege",
+  "subject": "snowflake:svc_data_pipeline:credit_risk_mart:write",
+  "evidence": [
+   "snowflake:svc_data_pipeline:credit_risk_mart:write"
+  ],
+  "proposes": "Revoke the unused grant.",
+  "last_used_at": null
+ },
+ {
+  "id": "gap-duplicate_definition-107",
+  "gap_kind": "duplicate_definition",
+  "subject": "03570a9ec618e8796f6f00b7531e03de",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Tableau / data access"
+ },
+ {
+  "id": "gap-duplicate_definition-108",
+  "gap_kind": "duplicate_definition",
+  "subject": "243bd45b69b849e99ee000770cbe022b",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Data access request - DO NOT USE"
+ },
+ {
+  "id": "gap-duplicate_definition-109",
+  "gap_kind": "duplicate_definition",
+  "subject": "57ea65f5729b2b613f06d0a5704cbc05",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Analytics platform access"
+ },
+ {
+  "id": "gap-duplicate_definition-110",
+  "gap_kind": "duplicate_definition",
+  "subject": "58ba5b00b85e49cc68ec69c855919867",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Request Power BI dataset access"
+ },
+ {
+  "id": "gap-duplicate_definition-111",
+  "gap_kind": "duplicate_definition",
+  "subject": "6e3f2f9c6757107be9d5bfa51f006864",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "New data access request (2023)"
+ },
+ {
+  "id": "gap-duplicate_definition-112",
+  "gap_kind": "duplicate_definition",
+  "subject": "793bf7d8b9d23eb6a162dd0727515cd3",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Request access to restricted data"
+ },
+ {
+  "id": "gap-duplicate_definition-113",
+  "gap_kind": "duplicate_definition",
+  "subject": "89f979ae1a83358eff7bd358df2d9576",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Request access to Snowflake"
+ },
+ {
+  "id": "gap-duplicate_definition-114",
+  "gap_kind": "duplicate_definition",
+  "subject": "8babff98e0dcb7519fc143df049ccbfb",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Access to Credit Risk data mart"
+ },
+ {
+  "id": "gap-duplicate_definition-115",
+  "gap_kind": "duplicate_definition",
+  "subject": "8ff3aec6bc5847d67a44bb126e7894fa",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Access request: market data"
+ },
+ {
+  "id": "gap-duplicate_definition-116",
+  "gap_kind": "duplicate_definition",
+  "subject": "933baebb896904781a643b4f32910c32",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Request read access (Finance data)"
+ },
+ {
+  "id": "gap-duplicate_definition-117",
+  "gap_kind": "duplicate_definition",
+  "subject": "958ae1884933a74079793fa019ee4138",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Data access - Loan book"
+ },
+ {
+  "id": "gap-duplicate_definition-118",
+  "gap_kind": "duplicate_definition",
+  "subject": "c44d123966d7463a8d9f297b3e2c9db2",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Databricks workspace access"
+ },
+ {
+  "id": "gap-duplicate_definition-119",
+  "gap_kind": "duplicate_definition",
+  "subject": "cd12a56df0a817508928c91363c1d821",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Snowflake access request"
+ },
+ {
+  "id": "gap-duplicate_definition-120",
+  "gap_kind": "duplicate_definition",
+  "subject": "f48fc7d55a8f6e859406a80444e63fe0",
+  "evidence": [
+   "03570a9ec618e8796f6f00b7531e03de",
+   "243bd45b69b849e99ee000770cbe022b",
+   "57ea65f5729b2b613f06d0a5704cbc05",
+   "58ba5b00b85e49cc68ec69c855919867",
+   "6e3f2f9c6757107be9d5bfa51f006864",
+   "793bf7d8b9d23eb6a162dd0727515cd3",
+   "89f979ae1a83358eff7bd358df2d9576",
+   "8babff98e0dcb7519fc143df049ccbfb",
+   "8ff3aec6bc5847d67a44bb126e7894fa",
+   "933baebb896904781a643b4f32910c32",
+   "958ae1884933a74079793fa019ee4138",
+   "c44d123966d7463a8d9f297b3e2c9db2",
+   "cd12a56df0a817508928c91363c1d821",
+   "f48fc7d55a8f6e859406a80444e63fe0"
+  ],
+  "proposes": "One work definition (wd-data-access) replaces these catalogue items.",
+  "name": "Data share request"
+ },
+ {
+  "id": "gap-dead_customisation-121",
+  "gap_kind": "dead_customisation",
+  "subject": "03570a9ec618e8796f6f00b7531e03de",
+  "evidence": [
+   "0 requests through this item since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Tableau / data access"
+ },
+ {
+  "id": "gap-dead_customisation-122",
+  "gap_kind": "dead_customisation",
+  "subject": "243bd45b69b849e99ee000770cbe022b",
+  "evidence": [
+   "0 requests through this item since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Data access request - DO NOT USE"
+ },
+ {
+  "id": "gap-dead_customisation-123",
+  "gap_kind": "dead_customisation",
+  "subject": "58ba5b00b85e49cc68ec69c855919867",
+  "evidence": [
+   "0 requests through this item since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Request Power BI dataset access"
+ },
+ {
+  "id": "gap-dead_customisation-124",
+  "gap_kind": "dead_customisation",
+  "subject": "6e3f2f9c6757107be9d5bfa51f006864",
+  "evidence": [
+   "0 requests through this item since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "New data access request (2023)"
+ },
+ {
+  "id": "gap-dead_customisation-125",
+  "gap_kind": "dead_customisation",
+  "subject": "89f979ae1a83358eff7bd358df2d9576",
+  "evidence": [
+   "0 requests through this item since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Request access to Snowflake"
+ },
+ {
+  "id": "gap-dead_customisation-126",
+  "gap_kind": "dead_customisation",
+  "subject": "8babff98e0dcb7519fc143df049ccbfb",
+  "evidence": [
+   "0 requests through this item since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Access to Credit Risk data mart"
+ },
+ {
+  "id": "gap-dead_customisation-127",
+  "gap_kind": "dead_customisation",
+  "subject": "cd12a56df0a817508928c91363c1d821",
+  "evidence": [
+   "0 requests through this item since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Snowflake access request"
+ },
+ {
+  "id": "gap-dead_customisation-128",
+  "gap_kind": "dead_customisation",
+  "subject": "f48fc7d55a8f6e859406a80444e63fe0",
+  "evidence": [
+   "0 requests through this item since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Data share request"
+ },
+ {
+  "id": "gap-dead_customisation-129",
+  "gap_kind": "dead_customisation",
+  "subject": "0bd75d7abc30c69e8a76f5af814e89c9",
+  "evidence": [
+   "0 requests with u_approval_level set since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "sc_req_item.u_approval_level"
+ },
+ {
+  "id": "gap-dead_customisation-130",
+  "gap_kind": "dead_customisation",
+  "subject": "adb0c7af1c9a84754c1ea7fc91cb46f7",
+  "evidence": [
+   "0 requests with u_legacy_ticket_ref set since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "sc_req_item.u_legacy_ticket_ref"
+ },
+ {
+  "id": "gap-dead_customisation-131",
+  "gap_kind": "dead_customisation",
+  "subject": "4804590adb9ae3c6ccaafe916b38645e",
+  "evidence": [
+   "0 sysevent records match the rule's effect since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Escalate VIP data requests"
+ },
+ {
+  "id": "gap-dead_customisation-132",
+  "gap_kind": "dead_customisation",
+  "subject": "5342fd0cf463bf0108a04a732536a706",
+  "evidence": [
+   "0 sys_journal_field records match the rule's effect since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Sync access request to Snowflake (legacy"
+ },
+ {
+  "id": "gap-dead_customisation-133",
+  "gap_kind": "dead_customisation",
+  "subject": "624e69b410b3dfc1cab03cbfb79008ef",
+  "evidence": [
+   "0 sc_req_item records match the rule's effect since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Copy dataset into description (2022)"
+ },
+ {
+  "id": "gap-dead_customisation-134",
+  "gap_kind": "dead_customisation",
+  "subject": "e3aeefc1904406b20dadf3bc8e068853",
+  "evidence": [
+   "0 sysapproval_approver records match the rule's effect since 2026-05-03 00:00:00"
+  ],
+  "proposes": "Retire it (replay first).",
+  "name": "Finance year-end approval"
+ },
+ {
+  "id": "gap-vocabulary-135",
+  "gap_kind": "vocabulary",
+  "subject": "1bf12a1855a00b21187a05bfa590a434",
+  "evidence": [
+   "Holds the monthly charge Finance levies per dataset per cost centre. The vocabulary carries the paying cost_centre on org:ContosoAccessRequest but has no tariff or amount. Missing: a monthly rate on access:Dataset, a privilege multiplier, and a chargeback_amount slot on the Contoso request."
+  ],
+  "proposes": "Extend the vocabulary; keep the customisation until then.",
+  "name": "sc_req_item.u_chargeback_amount"
+ },
+ {
+  "id": "gap-vocabulary-136",
+  "gap_kind": "vocabulary",
+  "subject": "eb572408ecf8fb4bb2edc498dfa01c44",
+  "evidence": [
+   "Real Contoso practice: Finance bills each cost centre a per-dataset monthly rate (FY2024 tariff), tripled for write or admin. The vocabulary knows the paying cost_centre but has no rate, multiplier or amount. Missing: a monthly_rate on access:Dataset, a privilege multiplier policy, and chargeback_amount on org:ContosoAccessRequest."
+  ],
+  "proposes": "Extend the vocabulary; keep the customisation until then.",
+  "name": "Allocate data access chargeback"
+ },
+ {
+  "id": "gap-policy_candidate-137",
+  "gap_kind": "policy_candidate",
+  "subject": "approve:Credit analyst:credit:confidential:read",
+  "evidence": [
+   "RITM1000174",
+   "RITM1000303",
+   "RITM1000313",
+   "RITM1000318",
+   "RITM1000425"
+  ],
+  "proposes": "Declare this as policy, so the request is not needed.",
+  "volume": 446,
+  "approved": 445,
+  "lower_bound": 0.987
+ },
+ {
+  "id": "gap-policy_candidate-138",
+  "gap_kind": "policy_candidate",
+  "subject": "approve:Quantitative researcher:markets:internal:read",
+  "evidence": [
+   "RITM1002127",
+   "RITM1002364",
+   "RITM1002507",
+   "RITM1000087",
+   "RITM1000091"
+  ],
+  "proposes": "Declare this as policy, so the request is not needed.",
+  "volume": 189,
+  "approved": 189,
+  "lower_bound": 0.98
+ },
+ {
+  "id": "gap-policy_candidate-139",
+  "gap_kind": "policy_candidate",
+  "subject": "approve:Quantitative researcher:markets:public:read",
+  "evidence": [
+   "RITM1002421",
+   "RITM1002595",
+   "RITM1002597",
+   "RITM1000353",
+   "RITM1000422"
+  ],
+  "proposes": "Declare this as policy, so the request is not needed.",
+  "volume": 174,
+  "approved": 174,
+  "lower_bound": 0.978
+ },
+ {
+  "id": "gap-policy_candidate-140",
+  "gap_kind": "policy_candidate",
+  "subject": "approve:Quantitative researcher:markets:confidential:read",
+  "evidence": [
+   "RITM1002108",
+   "RITM1002267",
+   "RITM1002643",
+   "RITM1000093",
+   "RITM1000383"
+  ],
+  "proposes": "Declare this as policy, so the request is not needed.",
+  "volume": 99,
+  "approved": 99,
+  "lower_bound": 0.963
+ },
+ {
+  "id": "gap-policy_candidate-141",
+  "gap_kind": "policy_candidate",
+  "subject": "approve:Finance controller:finance:restricted:read",
+  "evidence": [
+   "RITM1002424",
+   "RITM1002599",
+   "RITM1002609",
+   "RITM1000355",
+   "RITM1000437"
+  ],
+  "proposes": "Declare this as policy, so the request is not needed.",
+  "volume": 98,
+  "approved": 98,
+  "lower_bound": 0.962
+ },
+ {
+  "id": "gap-policy_candidate-142",
+  "gap_kind": "policy_candidate",
+  "subject": "approve:Finance controller:finance:confidential:read",
+  "evidence": [
+   "RITM1002148",
+   "RITM1002152",
+   "RITM1002244",
+   "RITM1002391",
+   "RITM1000023"
+  ],
+  "proposes": "Declare this as policy, so the request is not needed.",
+  "volume": 95,
+  "approved": 95,
+  "lower_bound": 0.961
+ }
+]

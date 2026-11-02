@@ -1,0 +1,59 @@
+id: https://example.org/contoso
+name: contoso
+title: Contoso Capital's own model
+description: >-
+  The customer's specifics, in the customer's namespace. Each class here extends a profile class; nothing
+  here edits the core or the profile. Customisations that carry business meaning are declared here instead
+  of living as scripts on the platform.
+version: 0.1.0
+license: Apache-2.0
+prefixes:
+  org: https://example.org/contoso/
+  access: https://example.org/work/access/
+  work: https://example.org/work/
+  linkml: https://w3id.org/linkml/
+default_prefix: org
+default_range: string
+imports:
+  - linkml:types
+  - access
+
+classes:
+
+  ContosoAccessRequest:
+    is_a: AccessRequest
+    description: An access request at Contoso, which carries the cost centre that pays for the platform usage.
+    slots: [cost_centre]
+    slot_usage:
+      cost_centre: {required: true}
+
+  ContosoAccessPolicy:
+    is_a: AccessPolicy
+    description: Contoso's access policy, as the profile defines it.
+
+  ContosoApprovalRule:
+    is_a: ApprovalRule
+    description: >-
+      Contoso's approval rule. Can be limited to the financial year-end close, when finance data needs a
+      second approver. That rule used to live in a platform script and acts once a year, which is why usage
+      data alone says it is dead.
+    slots: [year_end_close_days]
+
+  ContosoRecord:
+    is_a: AccessRecord
+    tree_root: true
+    description: Contoso's record. Requests and policies are Contoso's own extensions of the profile's classes.
+    slot_usage:
+      requests: {range: ContosoAccessRequest}
+      policies: {range: ContosoAccessPolicy}
+      approval_rules: {range: ContosoApprovalRule}
+
+slots:
+  cost_centre:
+    pattern: "^CC-[0-9]{4}$"
+    description: Declared from the platform's custom field u_cost_centre.
+  year_end_close_days:
+    range: integer
+    minimum_value: 1
+    maximum_value: 31
+    description: "If set, the rule applies only this many days before the financial year end (31 March)."

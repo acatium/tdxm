@@ -1,0 +1,300 @@
+{
+ "records": {
+  "work_definitions": 15,
+  "actors": 53,
+  "datasets": 12,
+  "grants": 584,
+  "requests": 2649,
+  "tasks": 5868,
+  "actions": 148
+ },
+ "loaded": {
+  "roles": 0,
+  "datasets": 12,
+  "grants": 584,
+  "policies": 0,
+  "approval_rules": 0,
+  "customisations": 0,
+  "work_definitions": 15,
+  "actors": 53,
+  "capabilities": 0,
+  "requests": 2649,
+  "tasks": 5868,
+  "actions": 148,
+  "events": 0,
+  "changes": 0,
+  "gaps": 142,
+  "confirmations": 0
+ },
+ "gaps": {
+  "orphan_action": 2,
+  "unregistered_actor": 1,
+  "idle_privilege": 93,
+  "drift": 10,
+  "duplicate_definition": 14,
+  "dead_customisation": 14,
+  "vocabulary": 2,
+  "policy_candidate": 6
+ },
+ "score": {
+  "dead_customisation": {
+   "expected": 14,
+   "found": 14,
+   "true_positives": 14,
+   "precision": 1.0,
+   "recall": 1.0,
+   "missed": [],
+   "spurious": []
+  },
+  "drift": {
+   "expected": 10,
+   "found": 10,
+   "true_positives": 10,
+   "precision": 1.0,
+   "recall": 1.0,
+   "missed": [],
+   "spurious": []
+  },
+  "duplicate_definition": {
+   "expected": 14,
+   "found": 14,
+   "true_positives": 14,
+   "precision": 1.0,
+   "recall": 1.0,
+   "missed": [],
+   "spurious": []
+  },
+  "idle_privilege": {
+   "expected": 93,
+   "found": 93,
+   "true_positives": 93,
+   "precision": 1.0,
+   "recall": 1.0,
+   "missed": [],
+   "spurious": []
+  },
+  "orphan_action": {
+   "expected": 2,
+   "found": 2,
+   "true_positives": 2,
+   "precision": 1.0,
+   "recall": 1.0,
+   "missed": [],
+   "spurious": []
+  },
+  "policy_candidate": {
+   "expected": 6,
+   "found": 6,
+   "true_positives": 6,
+   "precision": 1.0,
+   "recall": 1.0,
+   "missed": [],
+   "spurious": []
+  },
+  "unregistered_actor": {
+   "expected": 1,
+   "found": 1,
+   "true_positives": 1,
+   "precision": 1.0,
+   "recall": 1.0,
+   "missed": [],
+   "spurious": []
+  },
+  "vocabulary": {
+   "expected": 2,
+   "found": 2,
+   "true_positives": 2,
+   "precision": 1.0,
+   "recall": 1.0,
+   "missed": [],
+   "spurious": []
+  }
+ },
+ "ocsf_errors": {
+  "dead_customisation": 0,
+  "drift": 0,
+  "duplicate_definition": 0,
+  "idle_privilege": 0,
+  "orphan_action": 0,
+  "policy_candidate": 0,
+  "unregistered_actor": 0,
+  "vocabulary": 0
+ },
+ "usage": [
+  {
+   "id": "03570a9ec618e8796f6f00b7531e03de",
+   "name": "Tableau / data access",
+   "executions_180d": 0,
+   "how": "0 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "243bd45b69b849e99ee000770cbe022b",
+   "name": "Data access request - DO NOT USE",
+   "executions_180d": 0,
+   "how": "0 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "57ea65f5729b2b613f06d0a5704cbc05",
+   "name": "Analytics platform access",
+   "executions_180d": 227,
+   "how": "227 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "58ba5b00b85e49cc68ec69c855919867",
+   "name": "Request Power BI dataset access",
+   "executions_180d": 0,
+   "how": "0 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "6e3f2f9c6757107be9d5bfa51f006864",
+   "name": "New data access request (2023)",
+   "executions_180d": 0,
+   "how": "0 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "793bf7d8b9d23eb6a162dd0727515cd3",
+   "name": "Request access to restricted data",
+   "executions_180d": 77,
+   "how": "77 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "89f979ae1a83358eff7bd358df2d9576",
+   "name": "Request access to Snowflake",
+   "executions_180d": 0,
+   "how": "0 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "8babff98e0dcb7519fc143df049ccbfb",
+   "name": "Access to Credit Risk data mart",
+   "executions_180d": 0,
+   "how": "0 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "8ff3aec6bc5847d67a44bb126e7894fa",
+   "name": "Access request: market data",
+   "executions_180d": 78,
+   "how": "78 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "933baebb896904781a643b4f32910c32",
+   "name": "Request read access (Finance data)",
+   "executions_180d": 79,
+   "how": "79 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "958ae1884933a74079793fa019ee4138",
+   "name": "Data access - Loan book",
+   "executions_180d": 86,
+   "how": "86 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "c44d123966d7463a8d9f297b3e2c9db2",
+   "name": "Databricks workspace access",
+   "executions_180d": 104,
+   "how": "104 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "cd12a56df0a817508928c91363c1d821",
+   "name": "Snowflake access request",
+   "executions_180d": 0,
+   "how": "0 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "f48fc7d55a8f6e859406a80444e63fe0",
+   "name": "Data share request",
+   "executions_180d": 0,
+   "how": "0 requests through this item since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "0bd75d7abc30c69e8a76f5af814e89c9",
+   "name": "sc_req_item.u_approval_level",
+   "executions_180d": 0,
+   "how": "0 requests with u_approval_level set since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "1bf12a1855a00b21187a05bfa590a434",
+   "name": "sc_req_item.u_chargeback_amount",
+   "executions_180d": 651,
+   "how": "651 requests with u_chargeback_amount set since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "972bc91be6e0e724b2e29033179d1799",
+   "name": "sc_req_item.u_privilege",
+   "executions_180d": 651,
+   "how": "651 requests with u_privilege set since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "adb0c7af1c9a84754c1ea7fc91cb46f7",
+   "name": "sc_req_item.u_legacy_ticket_ref",
+   "executions_180d": 0,
+   "how": "0 requests with u_legacy_ticket_ref set since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "bf2b761c7be119e1a1f2ccc32756855e",
+   "name": "sc_req_item.u_cost_centre",
+   "executions_180d": 651,
+   "how": "651 requests with u_cost_centre set since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "ceda2714c25f71f14f546fa64fd82a7e",
+   "name": "sc_req_item.u_dataset",
+   "executions_180d": 651,
+   "how": "651 requests with u_dataset set since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "1a2ba59e0efa1abc8a96750d3c582346",
+   "name": "Require cost centre on data access",
+   "executions_180d": 651,
+   "how": "651 sc_req_item records match the rule's effect since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "1adf4963dbbf24829128870552dc88f2",
+   "name": "Close request item when tasks complete",
+   "executions_180d": -1,
+   "how": "effect query names fields that do not exist: ['RLQUERYsc_task', 'ENDRLQUERY']; usage unknown"
+  },
+  {
+   "id": "4804590adb9ae3c6ccaafe916b38645e",
+   "name": "Escalate VIP data requests",
+   "executions_180d": 0,
+   "how": "0 sysevent records match the rule's effect since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "5342fd0cf463bf0108a04a732536a706",
+   "name": "Sync access request to Snowflake (legacy",
+   "executions_180d": 0,
+   "how": "0 sys_journal_field records match the rule's effect since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "624e69b410b3dfc1cab03cbfb79008ef",
+   "name": "Copy dataset into description (2022)",
+   "executions_180d": 0,
+   "how": "0 sc_req_item records match the rule's effect since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "7484ac5069d1c0419700a00e33166a37",
+   "name": "Security approval for restricted data",
+   "executions_180d": 61,
+   "how": "61 sysapproval_approver records match the rule's effect since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "873937971757a9ca284b1898da024ae1",
+   "name": "Data owner approval",
+   "executions_180d": 651,
+   "how": "651 sysapproval_approver records match the rule's effect since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "e3aeefc1904406b20dadf3bc8e068853",
+   "name": "Finance year-end approval",
+   "executions_180d": 0,
+   "how": "0 sysapproval_approver records match the rule's effect since 2026-05-03 00:00:00"
+  },
+  {
+   "id": "eb572408ecf8fb4bb2edc498dfa01c44",
+   "name": "Allocate data access chargeback",
+   "executions_180d": 651,
+   "how": "651 sc_req_item records match the rule's effect since 2026-05-03 00:00:00"
+  }
+ ],
+ "classification_model": "claude-fable-5-1"
+}

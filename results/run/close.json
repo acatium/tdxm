@@ -1,0 +1,77 @@
+{
+ "stock_validate": {
+  "tool": "linkml-validate 1.12.0 from PyPI, isolated environment, no code from this repository",
+  "errors": 65,
+  "orphan_action_errors": 65,
+  "orphan_actions_in_record": 65,
+  "only_orphans": true,
+  "first": [
+   "[ERROR] [record.yaml/0] 'request' is a required property in /actions/83",
+   "[ERROR] [record.yaml/0] 'request' is a required property in /actions/84",
+   "[ERROR] [record.yaml/0] 'request' is a required property in /actions/85"
+  ]
+ },
+ "outside_agent": {
+  "answer": {
+   "candidates": [
+    {
+     "requester_title": "Credit analyst",
+     "domain": "credit",
+     "classification": "confidential",
+     "privilege": "read",
+     "requests": 446,
+     "lower_bound": 0.9874
+    },
+    {
+     "requester_title": "Quantitative researcher",
+     "domain": "markets",
+     "classification": "internal",
+     "privilege": "read",
+     "requests": 189,
+     "lower_bound": 0.9801
+    },
+    {
+     "requester_title": "Quantitative researcher",
+     "domain": "markets",
+     "classification": "public",
+     "privilege": "read",
+     "requests": 174,
+     "lower_bound": 0.9784
+    },
+    {
+     "requester_title": "Quantitative researcher",
+     "domain": "markets",
+     "classification": "confidential",
+     "privilege": "read",
+     "requests": 99,
+     "lower_bound": 0.9626
+    },
+    {
+     "requester_title": "Finance controller",
+     "domain": "finance",
+     "classification": "restricted",
+     "privilege": "read",
+     "requests": 98,
+     "lower_bound": 0.9623
+    },
+    {
+     "requester_title": "Finance controller",
+     "domain": "finance",
+     "classification": "confidential",
+     "privilege": "read",
+     "requests": 95,
+     "lower_bound": 0.9611
+    }
+   ],
+   "method": "Read model/*.yaml and ossie/*.yaml, then processed data/*.csv with python3 stdlib. Joined requests.requested_by -> actors.title and requests.dataset -> datasets.{domain,classification}; privilege from requests. Approvals are tasks with step=st-approve (3340 rows across 2649 requests; 1 to 3 per request). A request is approved iff every st-approve task on it has decision_effect=allow (2528 of 2649, matching the 2528 st-provision tasks). Grouped into (title, domain, classification, privilege) cells (108 cells), computed Wilson lower bound with z=1.96, and selected cells with n>=73 and lower_bound>=0.95. Six candidates. Closest non-candidates: Contract analyst/credit/confidential/read (n=185, lb=0.9457) and Data engineer/markets/internal/read (n=66, lb=0.9450). All joins resolved; no requests from untitled agent/service actors; gaps, policies and approval_rules tables are empty."
+  },
+  "cost_usd": 1.60626,
+  "model": "claude-fable-5-1",
+  "turns": 13,
+  "question": "You have a directory with a governed-work record exported in open formats:\n- model/: the LinkML vocabulary (work.yaml, access.yaml) and the customer's model (contoso.yaml);\n- ossie/: an Apache Ossie semantic model, ontology and mapping describing the CSV tables;\n- data/: the tables as CSV.\n\nUsing only these files (read them; you may run python3 with the standard library), answer: which approvals\nare candidates for declared policy? Follow the semantic model's ai_context. The definition is given, as a\nprocess owner would give it: a cell is (requester title, dataset domain, dataset classification, privilege) and\ncounts requests; a request counts as approved only if every approval on it was approved. A cell is a candidate\nwhen it has at least 73 requests and the Wilson lower bound (z = 1.96) of the share approved is at least\n0.95.\nList every candidate cell with its count and lower bound.",
+  "workdir": "a fresh temporary directory outside the repository",
+  "matches_diagnosis": true,
+  "only_ours": [],
+  "only_theirs": []
+ }
+}

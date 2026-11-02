@@ -1,0 +1,32 @@
+# SCENARIO DATA, not a real person's decision. Written by `make scenario`.
+# In the demo, Contoso's process owner is a scripted stand-in, like the approvers in chat and the security
+# stop. The mechanism is what the demo shows: without a confirmation of a proposal's exact id, nothing is
+# applied. In a deployment a person writes this file.
+confirmations:
+- id: repair:cleanup:dc527e957d83
+  change_kind: repair
+  verdict: approve
+  decided_by: contoso.process.owner (scenario stand-in)
+  decided_at: 2026-11-02T02:46:58Z
+  reason: Scenario stand-in for the process owner's decision.
+
+- id: declared_policy:pol-credit-analyst-credit-read:f4e41fc36539
+  change_kind: declared_policy
+  verdict: approve
+  decided_by: contoso.process.owner (scenario stand-in)
+  decided_at: 2026-11-02T02:46:58Z
+  reason: Scenario stand-in for the process owner's decision.
+
+- id: declared_policy:pol-quantitative-researcher-markets-read:4d82b94ef17c
+  change_kind: declared_policy
+  verdict: approve
+  decided_by: contoso.process.owner (scenario stand-in)
+  decided_at: 2026-11-02T02:46:58Z
+  reason: Scenario stand-in for the process owner's decision.
+
+- id: autonomy:cap-svc.access.agent-st-provision:act_with_checkpoint:d7ca6ef880c6
+  change_kind: autonomy
+  verdict: approve
+  decided_by: contoso.process.owner (scenario stand-in)
+  decided_at: 2026-11-02T02:46:58Z
+  reason: Scenario stand-in for the process owner's decision.

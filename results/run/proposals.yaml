@@ -1,0 +1,24 @@
+proposals:
+- id: repair:cleanup:dc527e957d83
+  change_kind: repair
+  summary: 'Clean-up: 25 changes. Approval rules proved against 2,649 past requests; catalogue items and fields
+    decided by usage; 2 approval rules compiled into the platform; held for a person: Close request item when tasks
+    complete, Finance year-end approval. The replay cannot test these, which carry no approval logic: Require cost
+    centre on data access, Escalate VIP data requests, Sync access request to Snowflake (legacy, Copy dataset into
+    description (2022). Read the 3 translation notes: the replay compares roles, not people.'
+  needs: null
+  verdict: approve
+- id: declared_policy:pol-credit-analyst-credit-read:f4e41fc36539
+  change_kind: declared_policy
+  summary: 'credit-analyst may read credit data up to confidential: every approver approved 224 of 224 such requests
+    (each classification''s lower bound >= 0.95). Measured on the year after: the proposed policies together cover
+    400 of 1248 approved requests, and 1 that a person rejected.'
+  needs: null
+  verdict: approve
+- id: declared_policy:pol-quantitative-researcher-markets-read:4d82b94ef17c
+  change_kind: declared_policy
+  summary: 'quantitative-researcher may read markets data up to internal: every approver approved 184 of 184 such
+    requests (each classification''s lower bound >= 0.95). Measured on the year after: the proposed policies together
+    cover 400 of 1248 approved requests, and 1 that a person rejected.'
+  needs: null
+  verdict: approve

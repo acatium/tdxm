@@ -1,0 +1,21 @@
+# Constants for projecting the work vocabulary into OCSF classes. Field correspondence is in ocsf.sssom.tsv.
+ocsf_version: 1.9.0
+product: {name: Work record, vendor_name: shopfloor (concept demo)}
+classes:
+  Gap:
+    class_uid: 2003          # Compliance Finding
+    category_uid: 2          # Findings
+    activity_id: 1           # Create
+    title: "Gap: {gap_kind}"
+    compliance_status_id: 3  # Fail
+    severity_by:
+      field: gap_kind
+      values: {orphan_action: 4, unregistered_actor: 4, idle_privilege: 3, drift: 3, dead_customisation: 2,
+               duplicate_definition: 2, policy_candidate: 1, vocabulary: 1}
+  WorkEvent:
+    class_uid: 2003
+    category_uid: 2
+    activity_id: 1
+    title: "Work {kind}"
+    compliance_status_id: 3
+    severity_by: {field: kind, values: {stopped: 4, demoted: 3, rejected: 2}}

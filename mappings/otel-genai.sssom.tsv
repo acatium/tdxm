@@ -1,0 +1,12 @@
+# mapping_set_id: https://example.org/work/mappings/otel-genai
+# mapping_set_description: "The work vocabulary to OpenTelemetry's GenAI semantic conventions (Development status). The work.* registry adds what GenAI spans lack: the request, the step, the authority decision and the outcome."
+# license: https://www.apache.org/licenses/LICENSE-2.0
+# curie_map:
+#   work: https://example.org/work/
+#   otel: https://opentelemetry.io/docs/specs/semconv/registry/attributes/
+#   skos: http://www.w3.org/2004/02/skos/core#
+#   semapv: https://w3id.org/semapv/vocab/
+subject_id	predicate_id	object_id	mapping_justification	comment
+work:Actor.id	skos:closeMatch	otel:gen_ai.agent.id	semapv:ManualMappingCuration	When the actor is an agent.
+work:Actor.name	skos:closeMatch	otel:gen_ai.agent.name	semapv:ManualMappingCuration	When the actor is an agent.
+work:Action.operation	skos:closeMatch	otel:gen_ai.tool.name	semapv:ManualMappingCuration	An execute_tool span is an observed action.

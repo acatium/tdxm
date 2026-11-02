@@ -1,0 +1,115 @@
+id: https://example.org/work/access
+name: access
+title: Access, a profile of work for requests to use data
+description: >-
+  The first domain profile. Extends the core with datasets, grants and access policy. It adds classes and
+  slots; it never changes a core definition.
+version: 0.1.0-draft
+license: Apache-2.0
+prefixes:
+  access: https://example.org/work/access/
+  work: https://example.org/work/
+  linkml: https://w3id.org/linkml/
+default_prefix: access
+default_range: string
+imports:
+  - linkml:types
+  - work
+
+classes:
+
+  Dataset:
+    description: Data that people and agents ask to use.
+    slots: [id, name, platform, classification, domain, owner]
+
+  Role:
+    description: A kind of person or agent, by job. Policy is written over roles, never over individuals.
+    slots: [id, name, department]
+
+  Grant:
+    description: Standing access to a dataset, as held in an authority system.
+    slots: [id, actor, dataset, privilege, held_in, granted_at, request, last_used_at]
+
+  AccessRequest:
+    is_a: WorkRequest
+    description: A request to use a dataset.
+    slots: [dataset, privilege, justification, duration_days]
+
+  AccessPolicy:
+    description: >-
+      Access declared once, by role and classification, and compiled into the authority systems. When a
+      declared policy covers a request, the request need not exist.
+    slots: [id, description, role, domain, max_classification, privilege, effect, requires_approval]
+
+  ApprovalRule:
+    description: >-
+      Who must approve a request, and when. Declared once, compiled into the platform that holds the requests,
+      and checked by the replay against what the platform actually did.
+    slots: [id, description, approver_kind, approver_role, min_classification, domain]
+
+  Customisation:
+    description: >-
+      Something a customer added to the platform instead of to the model. Retired, reverted, declared into
+      the customer's model, replaced by an adapter, or kept with a reason.
+    slots: [id, name, customisation_kind, host_table, executions_180d, last_executed_at, plan, plan_reason]
+
+  AccessRecord:
+    is_a: Record
+    tree_root: true
+    description: The record, with the access profile.
+    slots: [roles, datasets, grants, policies, approval_rules, customisations]
+
+slots:
+  platform: {description: "The data platform holding the dataset."}
+  classification: {range: Classification, required: true}
+  domain: {description: "The business domain accountable for the data."}
+  department: {}
+  dataset: {range: Dataset}
+  privilege: {range: Privilege}
+  held_in: {description: "The authority system holding the grant, e.g. Veza or Immuta."}
+  granted_at: {range: datetime}
+  last_used_at: {range: datetime}
+  justification: {}
+  duration_days: {range: integer, minimum_value: 1}
+  role: {range: Role}
+  max_classification: {range: Classification}
+  approver_kind: {range: ApproverKind, required: true}
+  approver_role: {range: Role, description: "When approver_kind is role: which role approves."}
+  min_classification: {range: Classification, description: "Applies to datasets at or above this classification."}
+  approval_rules: {range: ApprovalRule, multivalued: true, inlined_as_list: true}
+  customisation_kind: {range: CustomisationKind, required: true}
+  host_table: {description: "The platform table the customisation acts on."}
+  executions_180d: {range: integer, minimum_value: 0}
+  last_executed_at: {range: datetime}
+  plan: {range: CleanupPlan}
+  plan_reason: {}
+  roles: {range: Role, multivalued: true, inlined_as_list: true}
+  datasets: {range: Dataset, multivalued: true, inlined_as_list: true}
+  grants: {range: Grant, multivalued: true, inlined_as_list: true}
+  policies: {range: AccessPolicy, multivalued: true, inlined_as_list: true}
+  customisations: {range: Customisation, multivalued: true, inlined_as_list: true}
+
+enums:
+  Classification:
+    description: Ordered from least to most sensitive.
+    permissible_values: {public: {}, internal: {}, confidential: {}, restricted: {}}
+  Privilege:
+    permissible_values: {read: {}, write: {}, admin: {}}
+  ApproverKind:
+    permissible_values:
+      dataset_owner: {description: "The owner of the dataset requested."}
+      role: {description: "Anyone holding approver_role."}
+  CustomisationKind:
+    permissible_values:
+      catalogue_item: {}
+      business_rule: {}
+      client_script: {}
+      custom_field: {}
+      approval_rule: {}
+  CleanupPlan:
+    permissible_values:
+      retire: {description: "Never runs; remove."}
+      revert_to_base: {description: "Duplicates the platform's own behaviour."}
+      declare: {description: "Carries business meaning; declare it in the customer's model."}
+      replace_with_adapter: {description: "Integration glue; replace with an adapter behind the compiler."}
+      keep: {description: "No equivalent in the vocabulary yet; the residue feeds the standard."}
